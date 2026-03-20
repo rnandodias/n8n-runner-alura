@@ -35,6 +35,6 @@ services:
 networks:
   n8n_net:
     external: true
-    name: root_default
+    name: n8n_default
   svc_net:
     external: true

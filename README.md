@@ -319,7 +319,7 @@ git init
 git branch -M main
 
 # Conecta ao GitHub (substitua pela URL do seu repo)
-git remote add origin https://github.com/SEU_USER/NOME_DO_REPO.git
+git remote add origin https://github.com/rnandodias/n8n-runner-alura.git
 ```
 
 ---
@@ -351,28 +351,30 @@ git push -u origin main
 
 ### Passo 4 — Gerar chave SSH para o GitHub Actions
 
-Execute no seu terminal local (nao na VPS):
+Execute no **PowerShell** (nao na VPS):
 
-```bash
-ssh-keygen -t ed25519 -C "gh-actions" -f ~/.ssh/id_ed25519_gh_actions
+```powershell
+ssh-keygen -t ed25519 -C "gh-actions" -f "$env:USERPROFILE\.ssh\id_ed25519_gh_actions"
 # Deixe a senha em branco (pressione Enter duas vezes)
 ```
 
-Isso gera dois arquivos:
-- `~/.ssh/id_ed25519_gh_actions` — **chave privada** (vai para o GitHub Secrets)
-- `~/.ssh/id_ed25519_gh_actions.pub` — **chave publica** (vai para a VPS)
+Isso gera dois arquivos em `C:\Users\SEU_USUARIO\.ssh\`:
+- `id_ed25519_gh_actions` — **chave privada** (vai para o GitHub Secrets)
+- `id_ed25519_gh_actions.pub` — **chave publica** (vai para a VPS)
 
 ---
 
 ### Passo 5 — Autorizar a chave na VPS
 
-```bash
+Execute no **PowerShell**:
+
+```powershell
 # Copie a chave publica para a VPS
-cat ~/.ssh/id_ed25519_gh_actions.pub | ssh SEU_USUARIO@IP_DA_VPS \
-  "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+$pubKey = Get-Content "$env:USERPROFILE\.ssh\id_ed25519_gh_actions.pub"
+ssh SEU_USUARIO@IP_DA_VPS "mkdir -p ~/.ssh && echo '$pubKey' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 
 # Teste a conexao
-ssh -i ~/.ssh/id_ed25519_gh_actions SEU_USUARIO@IP_DA_VPS "echo ok"
+ssh -i "$env:USERPROFILE\.ssh\id_ed25519_gh_actions" SEU_USUARIO@IP_DA_VPS "echo ok"
 ```
 
 ---
@@ -383,17 +385,18 @@ Acesse: `github.com/SEU_USER/NOME_DO_REPO` → **Settings → Secrets and variab
 
 | Secret | Valor |
 |---|---|
-| `SSH_PRIVATE_KEY` | Conteudo de `~/.ssh/id_ed25519_gh_actions` (chave **privada**, incluindo as linhas `-----BEGIN...` e `-----END...`) |
+| `SSH_PRIVATE_KEY` | Conteudo de `id_ed25519_gh_actions` (chave **privada**, incluindo as linhas `-----BEGIN...` e `-----END...`) |
 | `VPS_HOST` | IP ou hostname da VPS |
 | `VPS_PORT` | Porta SSH (normalmente `22`) |
 | `VPS_USER` | Usuario SSH (ex: `root`) |
 | `ANTHROPIC_API_KEY` | Sua chave da Anthropic |
 | `OPENAI_API_KEY` | Sua chave da OpenAI |
 
-Para ler a chave privada no terminal:
+Para ler e copiar a chave privada no PowerShell:
 
-```bash
-cat ~/.ssh/id_ed25519_gh_actions
+```powershell
+Get-Content "$env:USERPROFILE\.ssh\id_ed25519_gh_actions" | Set-Clipboard
+# A chave ja esta na area de transferencia, cole direto no GitHub
 ```
 
 ---

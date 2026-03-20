@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+beautifulsoup4
+lxml
+python-multipart
+openai
+anthropic
+python-docx
+httpx
+Pillow
+defusedxml
+cairosvg
+Unidecode

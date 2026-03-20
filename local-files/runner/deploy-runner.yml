@@ -1,0 +1,69 @@
+name: Deploy runner to VPS
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'n8n-runner/**'
+      - 'local-files/**'
+      - '.github/workflows/deploy-runner.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add VPS to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.VPS_PORT }}" -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Ensure dirs on VPS
+        run: |
+          ssh -p "${{ secrets.VPS_PORT }}" ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+            "mkdir -p /opt/n8n-runner /local-files/runner"
+
+      - name: Rsync repo para VPS
+        run: |
+          rsync -avz --delete --exclude='__pycache__' \
+            -e "ssh -p ${{ secrets.VPS_PORT }}" \
+            n8n-runner/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/n8n-runner/
+
+          rsync -avz --delete --exclude='__pycache__' \
+            -e "ssh -p ${{ secrets.VPS_PORT }}" \
+            local-files/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/local-files/
+
+      - name: Limpar cache Python na VPS
+        run: |
+          ssh -p "${{ secrets.VPS_PORT }}" ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            find /local-files -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true
+            find /local-files -name '*.py' -exec touch {} \;
+          "
+
+      - name: Criar .env na VPS
+        run: |
+          ssh -p "${{ secrets.VPS_PORT }}" ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            umask 177 && \
+            printf '%s\n' \
+              'OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}' \
+              'ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}' \
+              'LLM_PROVIDER=${{ secrets.LLM_PROVIDER }}' \
+              > /opt/n8n-runner/.env && \
+            chmod 600 /opt/n8n-runner/.env
+          "
+
+      - name: Build e restart do runner
+        run: |
+          ssh -p "${{ secrets.VPS_PORT }}" ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd /opt/n8n-runner && \
+            docker compose --env-file /opt/n8n-runner/.env build runner && \
+            docker compose --env-file /opt/n8n-runner/.env up -d --force-recreate runner && \
+            docker compose --env-file /opt/n8n-runner/.env ps
+          "

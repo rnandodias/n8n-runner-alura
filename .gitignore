@@ -1,0 +1,22 @@
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets (nunca commitar)
+.env
+
+# Testes locais (nao fazem parte do deploy)
+local-tests/
+
+# Docker compose local (apenas para desenvolvimento)
+docker-compose.local.yml
+
+# Workflows n8n exportados (versionar separadamente se necessario)
+workflows/

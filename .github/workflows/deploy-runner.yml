@@ -11,6 +11,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,7 +56,7 @@ jobs:
             printf '%s\n' \
               'OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}' \
               'ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}' \
-              'LLM_PROVIDER=${{ secrets.LLM_PROVIDER }}' \
+              'LLM_PROVIDER=anthropic' \
               > /opt/n8n-runner/.env && \
             chmod 600 /opt/n8n-runner/.env
           "

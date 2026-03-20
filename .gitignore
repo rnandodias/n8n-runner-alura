@@ -19,4 +19,4 @@ local-tests/
 docker-compose.local.yml
 
 # Workflows n8n exportados (versionar separadamente se necessario)
-workflows/
+/workflows/

@@ -29,7 +29,7 @@ async def _login(page: Page) -> None:
     await page.wait_for_load_state("networkidle")
     await page.fill(f'input[name="{_LOGIN_USER_FIELD}"]', email)
     await page.fill('input[name="password"]', password)
-    await page.click('button[type="submit"]')
+    await page.press('input[name="password"]', "Enter")
     await page.wait_for_load_state("networkidle")
 
     if "loginForm" in page.url or "/login" in page.url:

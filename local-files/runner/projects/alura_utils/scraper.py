@@ -25,11 +25,11 @@ async def _login(page: Page) -> None:
         raise ValueError("ALURA_EMAIL e ALURA_PASSWORD devem estar configurados no .env")
 
     await page.goto(f"{_BASE_URL}/loginForm")
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_load_state("domcontentloaded")
     await page.fill(f'input[name="{_LOGIN_USER_FIELD}"]', email)
     await page.fill('input[name="password"]', password)
     await page.press('input[name="password"]', "Enter")
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_load_state("domcontentloaded")
 
     if "login" in page.url:
         raise PermissionError("Login falhou. Verifique ALURA_EMAIL e ALURA_PASSWORD.")
@@ -54,7 +54,7 @@ async def get_sections(page: Page, course_id: int) -> tuple[str, list[dict]]:
     sections_ativas: [{section_id, titulo}] em ordem de exibição.
     """
     await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}/sections")
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_load_state("domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     active_li = soup.select_one("li.active")
@@ -80,7 +80,7 @@ async def get_tasks(page: Page, course_id: int, section_id: int) -> list[dict]:
     Inclui todos os tipos (VIDEO, HQ_EXPLANATION, SINGLE_CHOICE, TEXT_CONTENT, etc.).
     """
     await page.goto(f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/tasks")
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_load_state("domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     tasks = []
@@ -109,7 +109,7 @@ async def get_task_details(page: Page, course_id: int, section_id: int, task_id:
     await page.goto(
         f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/task/edit/{task_id}"
     )
-    await page.wait_for_load_state("networkidle")
+    await page.wait_for_load_state("domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     def _val(selector: str) -> str:

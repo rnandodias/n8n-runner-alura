@@ -60,6 +60,9 @@ jobs:
               'LLM_PROVIDER=anthropic' \
               'ALURA_EMAIL=${{ secrets.ALURA_EMAIL }}' \
               'ALURA_PASSWORD=${{ secrets.ALURA_PASSWORD }}' \
+              'POSTGRES_USER=${{ secrets.POSTGRES_USER }}' \
+              'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' \
+              'POSTGRES_DB=runner' \
               > /opt/n8n-runner/.env && \
             chmod 600 /opt/n8n-runner/.env
           "

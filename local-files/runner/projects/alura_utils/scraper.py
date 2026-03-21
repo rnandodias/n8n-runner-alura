@@ -1,6 +1,6 @@
 """
 Scraper Playwright para o Admin da Alura.
-Faz login e navega pelas páginas SSR para extrair dados.
+Navega pelas páginas SSR para extrair dados.
 
 Credenciais via variáveis de ambiente:
   ALURA_EMAIL    — e-mail de login
@@ -11,6 +11,8 @@ Nota: o formulário de login usa os campos 'username' e 'password'
 """
 
 import os
+from contextlib import asynccontextmanager
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 from playwright.async_api import Page, async_playwright
@@ -36,7 +38,20 @@ async def _login(page: Page) -> None:
         raise PermissionError("Login falhou. Verifique ALURA_EMAIL e ALURA_PASSWORD.")
 
 
-async def _get_sections(page: Page, course_id: int) -> list[dict]:
+@asynccontextmanager
+async def alura_session():
+    """Context manager que abre browser, faz login e cede a page."""
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
+        try:
+            await _login(page)
+            yield page
+        finally:
+            await browser.close()
+
+
+async def get_sections(page: Page, course_id: int) -> list[dict]:
     """Retorna sections ativas do curso: [{section_id, titulo}]"""
     await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}/sections")
     await page.wait_for_load_state("networkidle")
@@ -55,8 +70,8 @@ async def _get_sections(page: Page, course_id: int) -> list[dict]:
     return sections
 
 
-async def _get_video_tasks(page: Page, course_id: int, section_id: int) -> list[dict]:
-    """Retorna tasks de vídeo ativas de uma section: [{task_id, titulo}]"""
+async def get_video_tasks(page: Page, course_id: int, section_id: int) -> list[dict]:
+    """Retorna tasks de vídeo ativas: [{task_id, titulo, updated_at}]"""
     await page.goto(f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/tasks")
     await page.wait_for_load_state("networkidle")
     soup = BeautifulSoup(await page.content(), "lxml")
@@ -70,13 +85,19 @@ async def _get_video_tasks(page: Page, course_id: int, section_id: int) -> list[
         task_id = hidden.get("value")
         tipo = tds[1].text.strip()
         titulo = tds[2].text.strip()
+        updated_at_str = tds[3].text.strip()
         status = tds[4].text.strip()
         if tipo == "Vídeo" and status == "Ativo":
-            tasks.append({"task_id": int(task_id), "titulo": titulo})
+            updated_at = datetime.strptime(updated_at_str, "%d/%m/%Y %H:%M:%S")
+            tasks.append({
+                "task_id": int(task_id),
+                "titulo": titulo,
+                "updated_at": updated_at,
+            })
     return tasks
 
 
-async def _get_transcricao(page: Page, course_id: int, section_id: int, task_id: int) -> str:
+async def get_transcricao(page: Page, course_id: int, section_id: int, task_id: int) -> str:
     """Extrai o markdown da transcrição de um vídeo."""
     await page.goto(
         f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/task/edit/{task_id}"
@@ -85,44 +106,3 @@ async def _get_transcricao(page: Page, course_id: int, section_id: int, task_id:
     soup = BeautifulSoup(await page.content(), "lxml")
     textarea = soup.select_one("textarea[name='text']")
     return textarea.text.strip() if textarea else ""
-
-
-async def extrair_transcricoes_curso(course_id: int) -> dict:
-    """
-    Ponto de entrada principal.
-    Faz login, percorre todas as sections e vídeos do curso
-    e retorna as transcrições em formato estruturado.
-    """
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
-        try:
-            await _login(page)
-            sections = await _get_sections(page, course_id)
-
-            result_sections = []
-            for section in sections:
-                video_tasks = await _get_video_tasks(page, course_id, section["section_id"])
-                if not video_tasks:
-                    continue
-
-                videos = []
-                for task in video_tasks:
-                    transcricao = await _get_transcricao(
-                        page, course_id, section["section_id"], task["task_id"]
-                    )
-                    videos.append({
-                        "task_id": task["task_id"],
-                        "titulo": task["titulo"],
-                        "transcricao": transcricao,
-                    })
-
-                result_sections.append({
-                    "section_id": section["section_id"],
-                    "titulo": section["titulo"],
-                    "videos": videos,
-                })
-
-            return {"course_id": course_id, "sections": result_sections}
-        finally:
-            await browser.close()

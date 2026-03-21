@@ -51,7 +51,8 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/utils/transcricoes` | POST | Extrai transcricoes de todos os videos de um curso (scraping autenticado) |
+| `/utils/transcricoes` | POST | Sincroniza transcricoes do curso com o banco (scraping seletivo por data) |
+| `/utils/transcricoes/{course_id}` | GET | Retorna transcricoes do banco sem realizar scraping |
 
 ### Revisao com Agentes de IA
 

@@ -10,8 +10,11 @@ services:
       - LLM_PROVIDER=${LLM_PROVIDER:-anthropic}
       - ALURA_EMAIL=${ALURA_EMAIL}
       - ALURA_PASSWORD=${ALURA_PASSWORD}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-runner}
     volumes:
       - /local-files:/files
+    depends_on:
+      - postgres
 
     # (A) Somente rede interna (acesso via http://runner:8000 do n8n)
     networks:
@@ -33,6 +36,21 @@ services:
     #   n8n_net:
     #     aliases: [runner]
     #   traefik_net: {}
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-runner}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      svc_net: {}
+    restart: always
+
+volumes:
+  postgres_data:
 
 networks:
   n8n_net:

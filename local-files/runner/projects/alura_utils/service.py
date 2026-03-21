@@ -1,44 +1,72 @@
 """
-Orquestração do fluxo de extração de transcrições.
+Orquestração do fluxo de extração de tarefas do Admin Alura.
 Combina scraper (Playwright) + repository (PostgreSQL).
 """
 
-from projects.alura_utils.repository import get_alura_updated_at, get_course, upsert_transcricao
-from projects.alura_utils.scraper import alura_session, get_sections, get_transcricao, get_video_tasks
+from datetime import datetime
+
+from projects.alura_utils.repository import get_course_dados, upsert_course
+from projects.alura_utils.scraper import alura_session, get_sections, get_task_details, get_tasks
 
 
-async def sincronizar_transcricoes(course_id: int) -> dict:
+async def sincronizar_tarefas(course_id: int) -> dict:
     """
-    Abre sessão no Admin Alura e sincroniza as transcrições do curso com o banco.
-    - Sections e tasks são listadas com suas datas de atualização (scraping leve).
-    - Transcrições são re-extraídas apenas quando a data mudou ou o registro não existe.
-    - Retorna os dados completos do curso a partir do banco.
+    Sincroniza todas as tarefas ativas do curso com o banco.
+
+    - Reconstrói o documento JSON do curso a cada chamada (tarefas removidas
+      do Alura desaparecem naturalmente).
+    - Detalhes de cada tarefa são re-extraídos apenas quando a data da
+      listagem do Admin mudou em relação ao que está cacheado no banco.
+    - Retorna o documento completo salvo.
     """
+    existing = await get_course_dados(course_id)
+
+    # Monta cache de atividades já salvas: {task_id: atividade_dict}
+    task_cache: dict[int, dict] = {}
+    if existing:
+        for aula in existing.get("aulas", []):
+            for atividade in aula.get("atividades", []):
+                task_cache[atividade["task_id"]] = atividade
+
     async with alura_session() as page:
-        sections = await get_sections(page, course_id)
+        course_name, sections = await get_sections(page, course_id)
 
-        for section in sections:
-            video_tasks = await get_video_tasks(page, course_id, section["section_id"])
+        aulas = []
+        for position, section in enumerate(sections, start=1):
+            sid = section["section_id"]
+            tasks = await get_tasks(page, course_id, sid)
 
-            for task in video_tasks:
-                db_updated_at = await get_alura_updated_at(task["task_id"])
-                needs_update = (
-                    db_updated_at is None
-                    or db_updated_at.replace(tzinfo=None) < task["updated_at"]
-                )
+            atividades = []
+            for task in tasks:
+                task_id = task["task_id"]
+                alura_updated_at: datetime = task["alura_updated_at"]
+
+                cached = task_cache.get(task_id)
+                if cached:
+                    cached_dt = datetime.fromisoformat(cached["alura_updated_at"])
+                    needs_update = cached_dt < alura_updated_at
+                else:
+                    needs_update = True
 
                 if needs_update:
-                    transcricao = await get_transcricao(
-                        page, course_id, section["section_id"], task["task_id"]
-                    )
-                    await upsert_transcricao(
-                        task_id=task["task_id"],
-                        course_id=course_id,
-                        section_id=section["section_id"],
-                        section_titulo=section["titulo"],
-                        task_titulo=task["titulo"],
-                        transcricao=transcricao,
-                        alura_updated_at=task["updated_at"],
-                    )
+                    details = await get_task_details(page, course_id, sid, task_id)
+                    atividade = {
+                        "task_id": task_id,
+                        "alura_updated_at": alura_updated_at.isoformat(),
+                        **details,
+                    }
+                else:
+                    atividade = cached
 
-    return await get_course(course_id)
+                atividades.append(atividade)
+
+            aulas.append({
+                "section_id": sid,
+                "titulo": section["titulo"],
+                "position": position,
+                "atividades": atividades,
+            })
+
+    dados = {"nome": course_name, "aulas": aulas}
+    await upsert_course(course_id, dados)
+    return {"course_id": course_id, **dados}

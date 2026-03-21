@@ -3,48 +3,48 @@ Router FastAPI para utilitários da Alura.
 Prefix: /utils
 
 Funcionalidades:
-  POST /utils/transcricoes          — sincroniza e retorna transcrições de um curso
-  GET  /utils/transcricoes/{id}     — retorna transcrições do banco sem scraping
+  POST /utils/tarefas          — sincroniza e retorna todas as tarefas de um curso
+  GET  /utils/tarefas/{id}     — retorna tarefas do banco sem scraping
 """
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from projects.alura_utils.queue import scraping_semaphore
-from projects.alura_utils.repository import get_course
-from projects.alura_utils.service import sincronizar_transcricoes
+from projects.alura_utils.repository import get_course_dados
+from projects.alura_utils.service import sincronizar_tarefas
 
 router = APIRouter(prefix="/utils")
 
 
-class TranscricoesPayload(BaseModel):
+class TarefasPayload(BaseModel):
     course_id: int
 
 
-@router.post("/transcricoes")
-async def post_transcricoes(payload: TranscricoesPayload):
+@router.post("/tarefas")
+async def post_tarefas(payload: TarefasPayload):
     async with scraping_semaphore:
         try:
-            return await sincronizar_transcricoes(payload.course_id)
+            return await sincronizar_tarefas(payload.course_id)
         except PermissionError as e:
             raise HTTPException(status_code=401, detail=str(e))
         except ValueError as e:
             raise HTTPException(status_code=500, detail=str(e))
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Erro ao sincronizar transcrições: {e}")
+            raise HTTPException(status_code=500, detail=f"Erro ao sincronizar tarefas: {e}")
 
 
-@router.get("/transcricoes/{course_id}")
-async def get_transcricoes(course_id: int):
+@router.get("/tarefas/{course_id}")
+async def get_tarefas(course_id: int):
     try:
-        result = await get_course(course_id)
-        if not result["sections"]:
+        dados = await get_course_dados(course_id)
+        if not dados:
             raise HTTPException(
                 status_code=404,
-                detail=f"Nenhuma transcrição encontrada para o curso {course_id}",
+                detail=f"Nenhuma tarefa encontrada para o curso {course_id}",
             )
-        return result
+        return {"course_id": course_id, **dados}
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao consultar transcrições: {e}")
+        raise HTTPException(status_code=500, detail=f"Erro ao consultar tarefas: {e}")

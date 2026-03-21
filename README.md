@@ -51,8 +51,8 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/utils/transcricoes` | POST | Sincroniza transcricoes do curso com o banco (scraping seletivo por data) |
-| `/utils/transcricoes/{course_id}` | GET | Retorna transcricoes do banco sem realizar scraping |
+| `/utils/tarefas` | POST | Sincroniza todas as tarefas ativas do curso com o banco (scraping seletivo por data) |
+| `/utils/tarefas/{course_id}` | GET | Retorna tarefas do banco sem realizar scraping |
 
 ### Revisao com Agentes de IA
 

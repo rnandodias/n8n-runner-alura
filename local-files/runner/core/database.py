@@ -21,15 +21,18 @@ async def get_pool() -> asyncpg.Pool:
 
 async def _init_schema(pool: asyncpg.Pool) -> None:
     async with pool.acquire() as conn:
+        # Remove tabelas de versões anteriores, se existirem
         await conn.execute("""
-            CREATE TABLE IF NOT EXISTS alura_transcricoes (
-                task_id          INTEGER PRIMARY KEY,
-                course_id        INTEGER NOT NULL,
-                section_id       INTEGER NOT NULL,
-                section_titulo   TEXT,
-                task_titulo      TEXT,
-                transcricao      TEXT,
-                alura_updated_at TIMESTAMP,
-                extracted_at     TIMESTAMP DEFAULT NOW()
-            )
+            DROP TABLE IF EXISTS alura_alternativas;
+            DROP TABLE IF EXISTS alura_tarefas;
+            DROP TABLE IF EXISTS alura_secoes;
+            DROP TABLE IF EXISTS alura_transcricoes;
+        """)
+
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS alura_cursos (
+                course_id  INTEGER PRIMARY KEY,
+                synced_at  TIMESTAMPTZ DEFAULT NOW(),
+                dados      JSONB NOT NULL
+            );
         """)

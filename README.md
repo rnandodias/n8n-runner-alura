@@ -51,19 +51,19 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/revisao/extrair-texto` | POST | Extrai texto de DOCX para revisao |
-| `/revisao/aplicar` | POST | Aplica revisoes com Track Changes (OOXML) |
-| `/revisao/aplicar-json` | POST | Aplica revisoes JSON via form |
-| `/revisao/aplicar-form` | POST | Aplica revisoes via multipart form |
-| `/revisao/aplicar-comentarios-form` | POST | Aplica revisoes como comentarios DOCX |
-| `/revisao/agente-seo` | POST | Agente de revisao SEO/GEO |
-| `/revisao/agente-tecnico` | POST | Agente de revisao tecnica |
-| `/revisao/agente-texto` | POST | Agente de revisao textual/didatica |
-| `/revisao/agente-seo-form` | POST | Agente SEO via multipart form |
-| `/revisao/agente-tecnico-form` | POST | Agente tecnico via multipart form |
-| `/revisao/agente-texto-form` | POST | Agente texto via multipart form |
-| `/revisao/agente-imagem` | POST | Agente de revisao de imagens (visao multimodal) |
-| `/revisao/agente-imagem-form` | POST | Agente imagem via multipart form |
+| `/revisao/artigos/extrair-texto` | POST | Extrai texto de DOCX para revisao |
+| `/revisao/artigos/aplicar` | POST | Aplica revisoes com Track Changes (OOXML) |
+| `/revisao/artigos/aplicar-json` | POST | Aplica revisoes JSON via form |
+| `/revisao/artigos/aplicar-form` | POST | Aplica revisoes via multipart form |
+| `/revisao/artigos/aplicar-comentarios-form` | POST | Aplica revisoes como comentarios DOCX |
+| `/revisao/artigos/agente-seo` | POST | Agente de revisao SEO/GEO |
+| `/revisao/artigos/agente-tecnico` | POST | Agente de revisao tecnica |
+| `/revisao/artigos/agente-texto` | POST | Agente de revisao textual/didatica |
+| `/revisao/artigos/agente-seo-form` | POST | Agente SEO via multipart form |
+| `/revisao/artigos/agente-tecnico-form` | POST | Agente tecnico via multipart form |
+| `/revisao/artigos/agente-texto-form` | POST | Agente texto via multipart form |
+| `/revisao/artigos/agente-imagem` | POST | Agente de revisao de imagens (visao multimodal) |
+| `/revisao/artigos/agente-imagem-form` | POST | Agente imagem via multipart form |
 
 ---
 

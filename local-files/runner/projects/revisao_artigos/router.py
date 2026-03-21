@@ -1,6 +1,6 @@
 """
 Router FastAPI para o projeto de Revisao Automatica de Artigos.
-Endpoints: /html-to-docx e /revisao/*
+Prefix: /revisao/artigos
 """
 import json
 import os
@@ -31,7 +31,7 @@ from projects.revisao_artigos.prompts import (
 )
 from projects.revisao_artigos.scraping import extract_article_content
 
-router = APIRouter()
+router = APIRouter(prefix="/revisao/artigos")
 
 
 # ============================================================================
@@ -210,7 +210,7 @@ async def html_to_docx(payload: ExtractArticlePayload):
 # ENDPOINTS - REVISAO
 # ============================================================================
 
-@router.post("/revisao/extrair-texto")
+@router.post("/extrair-texto")
 async def revisao_extrair_texto(payload: ExtrairTextoDocxPayload):
     """Extrai texto estruturado de um documento DOCX para analise."""
     try:
@@ -259,7 +259,7 @@ async def revisao_extrair_texto(payload: ExtrairTextoDocxPayload):
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/aplicar")
+@router.post("/aplicar")
 async def revisao_aplicar(payload: AplicarRevisoesPayload):
     """Aplica revisoes a um documento DOCX com Track Changes."""
     try:
@@ -303,7 +303,7 @@ async def revisao_aplicar(payload: AplicarRevisoesPayload):
             os.unlink(input_path)
 
 
-@router.post("/revisao/aplicar-json")
+@router.post("/aplicar-json")
 async def revisao_aplicar_json(
     docx_url: str = Form(...),
     revisoes: str = Form(...),
@@ -352,7 +352,7 @@ async def revisao_aplicar_json(
             os.unlink(input_path)
 
 
-@router.post("/revisao/agente-seo")
+@router.post("/agente-seo")
 async def revisao_agente_seo(payload: RevisaoAgentPayload):
     """Executa o agente de revisao SEO."""
     try:
@@ -412,7 +412,7 @@ async def revisao_agente_seo(payload: RevisaoAgentPayload):
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/agente-tecnico")
+@router.post("/agente-tecnico")
 async def revisao_agente_tecnico(payload: RevisaoAgentPayload):
     """Executa o agente de revisao TECNICA."""
     try:
@@ -457,7 +457,7 @@ async def revisao_agente_tecnico(payload: RevisaoAgentPayload):
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/agente-texto")
+@router.post("/agente-texto")
 async def revisao_agente_texto(payload: RevisaoAgentPayload):
     """Executa o agente de revisao TEXTUAL."""
     try:
@@ -501,7 +501,7 @@ async def revisao_agente_texto(payload: RevisaoAgentPayload):
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/agente-seo-form")
+@router.post("/agente-seo-form")
 async def revisao_agente_seo_form(
     file: UploadFile = File(...),
     provider: str = Form("anthropic"),
@@ -571,7 +571,7 @@ async def revisao_agente_seo_form(
             os.unlink(guia_path)
 
 
-@router.post("/revisao/agente-tecnico-form")
+@router.post("/agente-tecnico-form")
 async def revisao_agente_tecnico_form(
     file: UploadFile = File(...),
     provider: str = Form("anthropic"),
@@ -616,7 +616,7 @@ async def revisao_agente_tecnico_form(
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/agente-texto-form")
+@router.post("/agente-texto-form")
 async def revisao_agente_texto_form(
     file: UploadFile = File(...),
     provider: str = Form("anthropic"),
@@ -659,7 +659,7 @@ async def revisao_agente_texto_form(
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/agente-imagem")
+@router.post("/agente-imagem")
 async def revisao_agente_imagem(payload: RevisaoImagemPayload):
     """Executa o agente de revisao de IMAGENS (visao multimodal)."""
     from datetime import datetime
@@ -746,7 +746,7 @@ async def revisao_agente_imagem(payload: RevisaoImagemPayload):
         raise HTTPException(500, f"Erro no agente IMAGEM: {str(e)}")
 
 
-@router.post("/revisao/agente-imagem-form")
+@router.post("/agente-imagem-form")
 async def revisao_agente_imagem_form(
     file: UploadFile = File(...),
     url_artigo: str = Form(...),
@@ -835,7 +835,7 @@ async def revisao_agente_imagem_form(
         os.unlink(tmp_path)
 
 
-@router.post("/revisao/aplicar-form")
+@router.post("/aplicar-form")
 async def revisao_aplicar_form(
     file: UploadFile = File(...),
     revisoes: str = Form(...),
@@ -880,7 +880,7 @@ async def revisao_aplicar_form(
             os.unlink(input_path)
 
 
-@router.post("/revisao/aplicar-comentarios-form")
+@router.post("/aplicar-comentarios-form")
 async def revisao_aplicar_comentarios_form(
     file: UploadFile = File(...),
     revisoes: str = Form(...),

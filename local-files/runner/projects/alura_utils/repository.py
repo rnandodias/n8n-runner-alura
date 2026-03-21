@@ -15,7 +15,7 @@ async def get_course_dados(course_id: int) -> dict | None:
             "SELECT dados FROM alura_cursos WHERE course_id = $1",
             course_id,
         )
-        return dict(row["dados"]) if row else None
+        return json.loads(row["dados"]) if row else None
 
 
 async def upsert_course(course_id: int, dados: dict) -> None:

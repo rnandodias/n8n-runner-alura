@@ -126,20 +126,29 @@ Todos os agentes retornam JSON estruturado:
 
 ```
 n8n-runner-alura/
+├── .github/
+│   └── workflows/
+│       └── deploy-runner.yml      # CI/CD para VPS
 ├── local-files/
 │   └── runner/
-│       ├── app.py                 # Aplicacao FastAPI principal
-│       ├── llm_client.py          # Cliente unificado LLM (Anthropic/OpenAI)
-│       ├── prompts_revisao.py     # Prompts dos agentes de revisao
-│       └── track_changes.py       # Implementacao OOXML Track Changes
+│       ├── app.py                 # Aplicacao FastAPI principal (thin app)
+│       ├── core/
+│       │   ├── llm_client.py      # Cliente unificado LLM (Anthropic/OpenAI)
+│       │   └── track_changes.py   # Implementacao OOXML Track Changes
+│       └── projects/
+│           └── revisao_artigos/
+│               ├── router.py      # Endpoints do projeto
+│               ├── prompts.py     # Prompts dos agentes de revisao
+│               ├── scraping.py    # Extracao de conteudo HTML (BeautifulSoup)
+│               └── docx_builder.py # Geracao de DOCX a partir de artigos
 ├── n8n-runner/
 │   ├── docker-compose.yml         # Compose do runner
 │   └── runner/
-│       ├── Dockerfile             # Imagem Docker
+│       ├── Dockerfile             # Imagem Docker (python:3.11-slim + Playwright)
 │       ├── requirements.txt       # Dependencias Python
-│       └── start.sh               # Script de inicializacao
-├── workflows/
-│   └── *.json                     # Workflows n8n exportados
+│       └── start.sh               # Script de inicializacao (uvicorn)
+├── local-tests/                   # Scripts de teste local (sem Docker)
+├── ENV.EXAMPLE.txt                # Template de variaveis de ambiente
 └── README.md
 ```
 
@@ -176,125 +185,11 @@ TRAEFIK_NETWORK=root_default
 ### Pre-requisitos na VPS
 
 1. Docker + Docker Compose instalados
-2. Criar diretorios:
+2. Criar redes Docker:
    ```bash
-   sudo mkdir -p /opt/n8n-runner/runner
-   sudo mkdir -p /local-files/runner
+   docker network create root_default 2>/dev/null || true
+   docker network create svc_net 2>/dev/null || true
    ```
-
-### Deploy Manual
-
-```bash
-cd /opt/n8n-runner
-docker compose --env-file .env build runner
-docker compose --env-file .env up -d runner
-docker compose --env-file .env logs -f runner
-```
-
-### Debug
-
-```bash
-# Logs do container
-docker compose --env-file .env logs -f runner
-
-# Acesso ao container
-docker exec -it $(docker ps --format '{{.Names}}' | grep runner | head -n1) bash
-
-# Testar conectividade (de dentro do n8n)
-docker exec -it $(docker ps --format '{{.Names}}' | grep n8n | head -n1) \
-  sh -lc "curl -i http://runner:8000/ping"
-```
-
----
-
-## Workflow n8n - Revisao de Artigos
-
-O projeto inclui workflow n8n para revisao automatizada:
-
-```
-[Trigger] → [Config] → [HTML to DOCX] → [Agentes IA em paralelo] → [Merge] → [Aplicar Comentarios] → [Output]
-                                                ↓
-                                    ┌───────────┼───────────┐
-                                    ↓           ↓           ↓
-                                 [SEO]     [Tecnico]    [Texto]
-```
-
-### Fluxo:
-1. **Input**: URL do artigo + palavras-chave (opcional)
-2. **Conversao**: HTML do artigo vira DOCX
-3. **Revisao**: Tres agentes rodam em paralelo
-4. **Merge**: Combina todas as sugestoes
-5. **Output**: DOCX com comentarios aplicados
-
-### Importar Workflow
-
-1. Acesse n8n → Settings → Import Workflow
-2. Cole o JSON de `workflows/`
-3. Configure credenciais (Google Drive, se usado)
-
----
-
-## Uso
-
-### Interno (de dentro do container n8n)
-
-```bash
-# Converter artigo para DOCX
-curl -X POST http://runner:8000/html-to-docx \
-  -H "Content-Type: application/json" \
-  -d '{"url": "https://exemplo.com/artigo"}'
-
-# Revisao SEO
-curl -X POST http://runner:8000/revisao/agente-seo-form \
-  -F "file=@artigo.docx" \
-  -F "palavras_chave=python, machine learning, ia" \
-  -F "provider=anthropic"
-
-# Aplicar comentarios
-curl -X POST http://runner:8000/revisao/aplicar-comentarios-form \
-  -F "file=@artigo.docx" \
-  -F 'revisoes=[{"tipo":"SEO","acao":"substituir","texto_original":"texto antigo","texto_novo":"texto novo","justificativa":"melhora SEO"}]'
-```
-
----
-
-## Dependencias Principais
-
-- **FastAPI** - Framework web
-- **python-docx** - Geracao e manipulacao de DOCX
-- **anthropic** - SDK Anthropic Claude
-- **openai** - SDK OpenAI
-- **BeautifulSoup4** - Parsing HTML para extracao de artigos
-- **Pillow / cairosvg** - Processamento de imagens
-
----
-
-## Notas Tecnicas
-
-### Track Changes OOXML
-
-O sistema implementa Track Changes nativo OOXML (sem depender de LibreOffice):
-- Manipulacao direta de `document.xml`
-- Suporte a insercoes, delecoes e modificacoes
-- Preservacao de formatacao original
-
-### Comentarios DOCX
-
-Comentarios sao inseridos com:
-- Ranges sobrepostos para multiplos comentarios no mesmo trecho
-- Formatacao visual com emojis por tipo (SEO, TECNICO, TEXTO)
-- Estrutura multi-paragrafo para corpo do comentario
-
-### Busca Web (Agente Tecnico)
-
-O agente tecnico usa `web_search` da Anthropic para verificar:
-- Versoes atuais de bibliotecas/frameworks
-- Documentacao oficial atualizada
-- Validade de informacoes tecnicas
-
----
-
-## Guia Completo de Deploy
 
 ### Passo 1 — Criar o repositório no GitHub
 
@@ -311,28 +206,19 @@ O agente tecnico usa `web_search` da Anthropic para verificar:
 ```bash
 cd /caminho/do/projeto
 
-# Apaga historico Git antigo (se existir)
-rm -rf .git
-
-# Inicia repositorio novo e limpo
 git init
 git branch -M main
 
 # Conecta ao GitHub (substitua pela URL do seu repo)
-git remote add origin https://github.com/rnandodias/n8n-runner-alura.git
+git remote add origin https://github.com/SEU_USUARIO/n8n-runner-alura.git
 ```
 
 ---
 
 ### Passo 3 — Primeiro commit e push
 
-Adicione apenas os arquivos do projeto — **nunca o .env**.
-
 ```bash
-git add .gitignore
-git add ENV.EXAMPLE.txt
-git add README.md
-git add CLAUDE.md
+git add .gitignore ENV.EXAMPLE.txt README.md CLAUDE.md
 git add .github/workflows/deploy-runner.yml
 git add n8n-runner/docker-compose.yml
 git add n8n-runner/runner/Dockerfile
@@ -404,18 +290,11 @@ Get-Content "$env:USERPROFILE\.ssh\id_ed25519_gh_actions" | Set-Clipboard
 ### Passo 7 — Preparar a VPS (apenas na primeira vez)
 
 ```bash
-# Conecte na VPS
 ssh SEU_USUARIO@IP_DA_VPS
 
-# Instale o Docker (se ainda nao tiver)
-curl -fsSL https://get.docker.com | sh
-
-# Crie as redes Docker que o projeto usa
+# Crie as redes Docker que o projeto usa (seguro rodar mesmo se ja existirem)
 docker network create root_default 2>/dev/null || true
 docker network create svc_net 2>/dev/null || true
-
-# Crie os diretorios necessarios
-mkdir -p /opt/n8n-runner /local-files/runner
 ```
 
 ---
@@ -429,11 +308,111 @@ Para verificar: acesse **github.com/SEU_USER/NOME_DO_REPO → Actions** e acompa
 Para forcar um deploy sem alterar codigo:
 
 ```bash
-git commit --allow-empty -m "chore: trigger deploy"
-git push origin main
+git commit --allow-empty -m "chore: trigger deploy" && git push origin main
 ```
 
 ---
+
+## Workflow n8n - Revisao de Artigos
+
+O projeto inclui workflow n8n para revisao automatizada:
+
+```
+[Trigger] → [Config] → [HTML to DOCX] → [Agentes IA em paralelo] → [Merge] → [Aplicar Comentarios] → [Output]
+                                                ↓
+                                    ┌───────────┼───────────┐
+                                    ↓           ↓           ↓
+                                 [SEO]     [Tecnico]    [Texto]
+```
+
+### Fluxo:
+1. **Input**: URL do artigo + palavras-chave (opcional)
+2. **Conversao**: HTML do artigo vira DOCX
+3. **Revisao**: Tres agentes rodam em paralelo
+4. **Merge**: Combina todas as sugestoes
+5. **Output**: DOCX com comentarios aplicados
+
+### Importar Workflow
+
+1. Acesse n8n → Settings → Import Workflow
+2. Cole o JSON de `workflows/`
+3. Configure credenciais (Google Drive, se usado)
+
+---
+
+## Uso
+
+### Interno (de dentro do container n8n)
+
+```bash
+# Converter artigo para DOCX
+curl -X POST http://runner:8000/html-to-docx \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://exemplo.com/artigo"}'
+
+# Revisao SEO
+curl -X POST http://runner:8000/revisao/agente-seo-form \
+  -F "file=@artigo.docx" \
+  -F "palavras_chave=python, machine learning, ia" \
+  -F "provider=anthropic"
+
+# Aplicar comentarios
+curl -X POST http://runner:8000/revisao/aplicar-comentarios-form \
+  -F "file=@artigo.docx" \
+  -F 'revisoes=[{"tipo":"SEO","acao":"substituir","texto_original":"texto antigo","texto_novo":"texto novo","justificativa":"melhora SEO"}]'
+```
+
+---
+
+## Debug
+
+```bash
+# Logs do container
+docker compose --env-file .env logs -f runner
+
+# Acesso ao container
+docker exec -it $(docker ps --format '{{.Names}}' | grep runner | head -n1) bash
+
+# Testar conectividade (de dentro do runner)
+docker exec -it $(docker ps --format '{{.Names}}' | grep runner | head -n1) \
+  python3 -c "import httpx; r = httpx.get('http://localhost:8000/ping'); print(r.status_code, r.text)"
+```
+
+---
+
+## Dependencias Principais
+
+- **FastAPI** - Framework web
+- **python-docx** - Geracao e manipulacao de DOCX
+- **anthropic** - SDK Anthropic Claude
+- **openai** - SDK OpenAI
+- **BeautifulSoup4** - Parsing HTML para extracao de artigos
+- **Pillow / cairosvg** - Processamento de imagens
+
+---
+
+## Notas Tecnicas
+
+### Track Changes OOXML
+
+O sistema implementa Track Changes nativo OOXML (sem depender de LibreOffice):
+- Manipulacao direta de `document.xml`
+- Suporte a insercoes, delecoes e modificacoes
+- Preservacao de formatacao original
+
+### Comentarios DOCX
+
+Comentarios sao inseridos com:
+- Ranges sobrepostos para multiplos comentarios no mesmo trecho
+- Formatacao visual com emojis por tipo (SEO, TECNICO, TEXTO)
+- Estrutura multi-paragrafo para corpo do comentario
+
+### Busca Web (Agente Tecnico)
+
+O agente tecnico usa `web_search` da Anthropic para verificar:
+- Versoes atuais de bibliotecas/frameworks
+- Documentacao oficial atualizada
+- Validade de informacoes tecnicas
 
 ### Rodar localmente (desenvolvimento)
 

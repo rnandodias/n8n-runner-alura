@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt /tmp/req.txt
 RUN python -m pip install --no-cache-dir --upgrade pip && \
-    python -m pip install --no-cache-dir -r /tmp/req.txt
+    python -m pip install --no-cache-dir -r /tmp/req.txt && \
+    playwright install chromium --with-deps
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh

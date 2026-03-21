@@ -57,6 +57,8 @@ jobs:
               'OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}' \
               'ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}' \
               'LLM_PROVIDER=anthropic' \
+              'ALURA_EMAIL=${{ secrets.ALURA_EMAIL }}' \
+              'ALURA_PASSWORD=${{ secrets.ALURA_PASSWORD }}' \
               > /opt/n8n-runner/.env && \
             chmod 600 /opt/n8n-runner/.env
           "

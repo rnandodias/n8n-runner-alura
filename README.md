@@ -45,7 +45,13 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/html-to-docx` | POST | Converte URL de artigo para DOCX binario |
+| `/revisao/artigos/html-to-docx` | POST | Converte URL de artigo para DOCX binario |
+
+### Alura Utils
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `/utils/transcricoes` | POST | Extrai transcricoes de todos os videos de um curso (scraping autenticado) |
 
 ### Revisao com Agentes de IA
 
@@ -136,11 +142,14 @@ n8n-runner-alura/
 │       │   ├── llm_client.py      # Cliente unificado LLM (Anthropic/OpenAI)
 │       │   └── track_changes.py   # Implementacao OOXML Track Changes
 │       └── projects/
-│           └── revisao_artigos/
-│               ├── router.py      # Endpoints do projeto
-│               ├── prompts.py     # Prompts dos agentes de revisao
-│               ├── scraping.py    # Extracao de conteudo HTML (BeautifulSoup)
-│               └── docx_builder.py # Geracao de DOCX a partir de artigos
+│           ├── revisao_artigos/
+│           │   ├── router.py      # Endpoints do projeto
+│           │   ├── prompts.py     # Prompts dos agentes de revisao
+│           │   ├── scraping.py    # Extracao de conteudo HTML (BeautifulSoup)
+│           │   └── docx_builder.py # Geracao de DOCX a partir de artigos
+│           └── alura_utils/
+│               ├── router.py      # Endpoints /utils/*
+│               └── scraper.py     # Playwright: login + scraping do Admin Alura
 ├── n8n-runner/
 │   ├── docker-compose.yml         # Compose do runner
 │   └── runner/
@@ -346,7 +355,7 @@ O projeto inclui workflow n8n para revisao automatizada:
 
 ```bash
 # Converter artigo para DOCX
-curl -X POST http://runner:8000/html-to-docx \
+curl -X POST http://runner:8000/revisao/artigos/html-to-docx \
   -H "Content-Type: application/json" \
   -d '{"url": "https://exemplo.com/artigo"}'
 

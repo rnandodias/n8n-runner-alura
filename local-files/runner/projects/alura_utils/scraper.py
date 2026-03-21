@@ -1,25 +1,37 @@
 """
 Scraper Playwright para o Admin da Alura.
-Faz login e navega pelas páginas SSR para extrair dados.
+Navega pelas páginas SSR para extrair dados.
 
 Credenciais via variáveis de ambiente:
   ALURA_EMAIL    — e-mail de login
   ALURA_PASSWORD — senha
+
+A sessão é persistida em _AUTH_STATE_FILE. Login só ocorre quando
+a sessão expirar — nunca há logoff explícito.
 
 Nota: o formulário de login usa os campos 'username' e 'password'
 (padrão Spring Security). Ajuste _LOGIN_USER_FIELD se necessário.
 """
 
 import os
+from pathlib import Path
 
 from bs4 import BeautifulSoup
-from playwright.async_api import Page, async_playwright
+from playwright.async_api import BrowserContext, Page, async_playwright
 
 _BASE_URL = "https://cursos.alura.com.br"
 _LOGIN_USER_FIELD = "username"  # ajuste se o campo tiver outro name
+_AUTH_STATE_FILE = Path("/tmp/alura_auth_state.json")
 
 
-async def _login(page: Page) -> None:
+async def _is_authenticated(page: Page) -> bool:
+    """Acessa uma página protegida e verifica se a sessão ainda é válida."""
+    await page.goto(f"{_BASE_URL}/admin/home")
+    await page.wait_for_load_state("networkidle")
+    return "login" not in page.url
+
+
+async def _login(context: BrowserContext, page: Page) -> None:
     email = os.environ.get("ALURA_EMAIL", "")
     password = os.environ.get("ALURA_PASSWORD", "")
     if not email or not password:
@@ -32,8 +44,16 @@ async def _login(page: Page) -> None:
     await page.press('input[name="password"]', "Enter")
     await page.wait_for_load_state("networkidle")
 
-    if "loginForm" in page.url or "/login" in page.url:
+    if "login" in page.url:
         raise PermissionError("Login falhou. Verifique ALURA_EMAIL e ALURA_PASSWORD.")
+
+    await context.storage_state(path=str(_AUTH_STATE_FILE))
+
+
+async def _ensure_authenticated(context: BrowserContext, page: Page) -> None:
+    """Faz login apenas se a sessão atual for inválida."""
+    if not await _is_authenticated(page):
+        await _login(context, page)
 
 
 async def _get_sections(page: Page, course_id: int) -> list[dict]:
@@ -90,14 +110,16 @@ async def _get_transcricao(page: Page, course_id: int, section_id: int, task_id:
 async def extrair_transcricoes_curso(course_id: int) -> dict:
     """
     Ponto de entrada principal.
-    Faz login, percorre todas as sections e vídeos do curso
-    e retorna as transcrições em formato estruturado.
+    Reutiliza sessão existente se válida; faz login apenas se necessário.
+    Nunca efetua logoff.
     """
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
+        storage = str(_AUTH_STATE_FILE) if _AUTH_STATE_FILE.exists() else None
+        context = await browser.new_context(storage_state=storage)
+        page = await context.new_page()
         try:
-            await _login(page)
+            await _ensure_authenticated(context, page)
             sections = await _get_sections(page, course_id)
 
             result_sections = []
@@ -125,4 +147,5 @@ async def extrair_transcricoes_curso(course_id: int) -> dict:
 
             return {"course_id": course_id, "sections": result_sections}
         finally:
+            await context.close()
             await browser.close()

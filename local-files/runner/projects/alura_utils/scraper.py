@@ -24,8 +24,7 @@ async def _login(page: Page) -> None:
     if not email or not password:
         raise ValueError("ALURA_EMAIL e ALURA_PASSWORD devem estar configurados no .env")
 
-    await page.goto(f"{_BASE_URL}/loginForm")
-    await page.wait_for_load_state("domcontentloaded")
+    await page.goto(f"{_BASE_URL}/loginForm", wait_until="domcontentloaded")
     await page.fill(f'input[name="{_LOGIN_USER_FIELD}"]', email)
     await page.fill('input[name="password"]', password)
     await page.press('input[name="password"]', "Enter")
@@ -52,8 +51,7 @@ async def get_course_meta(page: Page, course_id: int) -> dict:
     """
     Acessa a página principal do curso e extrai os metadados.
     """
-    await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}")
-    await page.wait_for_load_state("domcontentloaded")
+    await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}", wait_until="domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     def _val(selector: str) -> str:
@@ -94,8 +92,7 @@ async def get_sections(page: Page, course_id: int) -> tuple[str, list[dict]]:
     Retorna (nome_do_curso, sections_ativas).
     sections_ativas: [{section_id, titulo}] em ordem de exibição.
     """
-    await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}/sections")
-    await page.wait_for_load_state("domcontentloaded")
+    await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}/sections", wait_until="domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     active_li = soup.select_one("li.active")
@@ -120,8 +117,7 @@ async def get_tasks(page: Page, course_id: int, section_id: int) -> list[dict]:
     Retorna todas as tasks ativas de uma seção: [{task_id, titulo, alura_updated_at}].
     Inclui todos os tipos (VIDEO, HQ_EXPLANATION, SINGLE_CHOICE, TEXT_CONTENT, etc.).
     """
-    await page.goto(f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/tasks")
-    await page.wait_for_load_state("domcontentloaded")
+    await page.goto(f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/tasks", wait_until="domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     tasks = []
@@ -148,9 +144,9 @@ async def get_task_details(page: Page, course_id: int, section_id: int, task_id:
     Retorna um dict com os dados comuns e os específicos do tipo (kind).
     """
     await page.goto(
-        f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/task/edit/{task_id}"
+        f"{_BASE_URL}/admin/course/v2/{course_id}/section/{section_id}/task/edit/{task_id}",
+        wait_until="domcontentloaded",
     )
-    await page.wait_for_load_state("domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
 
     def _val(selector: str) -> str:

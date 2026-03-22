@@ -6,7 +6,7 @@ Combina scraper (Playwright) + repository (PostgreSQL).
 from datetime import datetime
 
 from projects.alura_utils.repository import get_course_dados, upsert_course
-from projects.alura_utils.scraper import alura_session, get_sections, get_task_details, get_tasks
+from projects.alura_utils.scraper import alura_session, get_course_meta, get_sections, get_task_details, get_tasks
 
 
 async def sincronizar_tarefas(course_id: int) -> dict:
@@ -29,7 +29,8 @@ async def sincronizar_tarefas(course_id: int) -> dict:
                 task_cache[atividade["task_id"]] = atividade
 
     async with alura_session() as page:
-        course_name, sections = await get_sections(page, course_id)
+        meta = await get_course_meta(page, course_id)
+        _, sections = await get_sections(page, course_id)
 
         aulas = []
         for position, section in enumerate(sections, start=1):
@@ -67,6 +68,6 @@ async def sincronizar_tarefas(course_id: int) -> dict:
                 "atividades": atividades,
             })
 
-    dados = {"nome": course_name, "aulas": aulas}
+    dados = {**meta, "aulas": aulas}
     await upsert_course(course_id, dados)
     return {"course_id": course_id, **dados}

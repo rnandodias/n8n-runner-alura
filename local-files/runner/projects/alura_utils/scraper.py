@@ -48,6 +48,47 @@ async def alura_session():
             await browser.close()
 
 
+async def get_course_meta(page: Page, course_id: int) -> dict:
+    """
+    Acessa a página principal do curso e extrai os metadados.
+    """
+    await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}")
+    await page.wait_for_load_state("domcontentloaded")
+    soup = BeautifulSoup(await page.content(), "lxml")
+
+    def _val(selector: str) -> str:
+        el = soup.select_one(selector)
+        return el["value"] if el and el.get("value") else ""
+
+    def _text(selector: str) -> str:
+        el = soup.select_one(selector)
+        return el.get_text(strip=True) if el else ""
+
+    theme_opt = soup.select_one("select[name='theme'] option[selected]")
+    tempo = _val("input[name='estimatedTimeToFinish']")
+
+    autores = [
+        {"author_id": int(opt["value"]), "nome": opt.get_text(strip=True)}
+        for opt in soup.select("select[name='authors'] option[selected]")
+        if opt.get("value")
+    ]
+
+    return {
+        "nome": _val("input[name='name']"),
+        "nome_en": _val("input[name='nameInEnglish']"),
+        "nome_es": _val("input[name='nameInSpanish']"),
+        "codigo": _val("input[name='code']"),
+        "meta_title": _val("input[name='metaTitle']"),
+        "meta_descricao": _val("input[name='metadescription']"),
+        "tempo_estimado": int(tempo) if tempo else None,
+        "publico_alvo": _val("input[name='targetPublic']"),
+        "destaques": _text("textarea[name='highlightedInformation']"),
+        "ementa": _text("textarea[name='ementa.raw']"),
+        "tema": theme_opt["value"] if theme_opt and theme_opt.get("value") else None,
+        "autores": autores,
+    }
+
+
 async def get_sections(page: Page, course_id: int) -> tuple[str, list[dict]]:
     """
     Retorna (nome_do_curso, sections_ativas).

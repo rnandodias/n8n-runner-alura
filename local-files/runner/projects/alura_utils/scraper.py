@@ -169,6 +169,8 @@ async def get_task_details(page: Page, course_id: int, section_id: int, task_id:
             alt_id = int(alt_id_input["value"]) if alt_id_input and alt_id_input.get("value") else None
             text_ta_alt = alt_div.select_one("textarea[name$='.text']")
             alt_text = text_ta_alt.get_text(strip=True) if text_ta_alt else ""
+            if not alt_id and not alt_text:
+                continue
             op_ta_alt = alt_div.select_one("textarea[name$='.opinion']")
             alt_opinion = op_ta_alt.get_text(strip=True) if op_ta_alt else ""
             correct_radio = alt_div.select_one("input.fieldGroup-alternative-actions-correct")

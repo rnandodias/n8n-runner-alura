@@ -32,3 +32,66 @@ async def upsert_course(course_id: int, dados: dict) -> None:
             """,
             course_id, json.dumps(dados, default=str),
         )
+
+
+async def get_all_carreiras() -> list[dict]:
+    """Retorna todas as carreiras cadastradas com seus dados em cache."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            "SELECT slug, titulo, dados, synced_at FROM alura_carreiras ORDER BY slug"
+        )
+        return [
+            {
+                "slug": r["slug"],
+                "titulo": r["titulo"],
+                "dados": json.loads(r["dados"]) if r["dados"] else None,
+                "synced_at": r["synced_at"].isoformat() if r["synced_at"] else None,
+            }
+            for r in rows
+        ]
+
+
+async def upsert_carreira(slug: str, titulo: str, dados: dict) -> None:
+    """Salva (ou atualiza) os dados de uma carreira."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """
+            INSERT INTO alura_carreiras (slug, titulo, dados, synced_at)
+            VALUES ($1, $2, $3, NOW())
+            ON CONFLICT (slug) DO UPDATE SET
+                titulo    = EXCLUDED.titulo,
+                dados     = EXCLUDED.dados,
+                synced_at = NOW()
+            """,
+            slug, titulo, json.dumps(dados, default=str),
+        )
+
+
+async def insert_carreira_slug(slug: str, titulo: str) -> None:
+    """Adiciona novo slug de carreira para rastreamento."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """
+            INSERT INTO alura_carreiras (slug, titulo)
+            VALUES ($1, $2)
+            ON CONFLICT (slug) DO UPDATE SET titulo = EXCLUDED.titulo
+            """,
+            slug, titulo,
+        )
+
+
+async def update_course_carreiras(course_slug: str, carreiras: list[dict]) -> None:
+    """Atualiza o campo carreiras no JSON do curso identificado pelo slug."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """
+            UPDATE alura_cursos
+            SET dados = jsonb_set(dados, '{carreiras}', $1::jsonb)
+            WHERE dados->>'slug' = $2
+            """,
+            json.dumps(carreiras, default=str), course_slug,
+        )

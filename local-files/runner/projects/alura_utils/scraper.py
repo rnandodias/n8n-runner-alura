@@ -47,56 +47,23 @@ async def alura_session():
             await browser.close()
 
 
-async def get_course_meta(page: Page, course_id: int) -> dict:
-    """
-    Acessa a página principal do curso e extrai os metadados.
-    """
+async def get_course_slug(page: Page, course_id: int) -> str:
+    """Extrai o slug do curso da página admin."""
     await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}", wait_until="domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
-
-    def _val(selector: str) -> str:
-        el = soup.select_one(selector)
-        return el["value"] if el and el.get("value") else ""
-
-    def _text(selector: str) -> str:
-        el = soup.select_one(selector)
-        return el.get_text(strip=True) if el else ""
-
-    theme_opt = soup.select_one("select[name='theme'] option[selected]")
-    tempo = _val("input[name='estimatedTimeToFinish']")
-
-    autores = [
-        {"author_id": int(opt["value"]), "nome": opt.get_text(strip=True)}
-        for opt in soup.select("select[name='authors'] option[selected]")
-        if opt.get("value")
-    ]
-
-    return {
-        "nome": _val("input[name='name']"),
-        "nome_en": _val("input[name='nameInEnglish']"),
-        "nome_es": _val("input[name='nameInSpanish']"),
-        "codigo": _val("input[name='code']"),
-        "meta_title": _val("input[name='metaTitle']"),
-        "meta_descricao": _val("input[name='metadescription']"),
-        "tempo_estimado": int(tempo) if tempo else None,
-        "publico_alvo": _val("input[name='targetPublic']"),
-        "destaques": _text("textarea[name='highlightedInformation']"),
-        "ementa": _text("textarea[name='ementa.raw']"),
-        "tema": theme_opt["value"] if theme_opt and theme_opt.get("value") else None,
-        "autores": autores,
-    }
+    el = soup.select_one("input[name='code']")
+    slug = el["value"] if el and el.get("value") else ""
+    if not slug:
+        raise ValueError(f"Não foi possível obter o slug do curso {course_id}")
+    return slug
 
 
-async def get_sections(page: Page, course_id: int) -> tuple[str, list[dict]]:
+async def get_sections(page: Page, course_id: int) -> list[dict]:
     """
-    Retorna (nome_do_curso, sections_ativas).
-    sections_ativas: [{section_id, titulo}] em ordem de exibição.
+    Retorna sections ativas: [{section_id, titulo}] em ordem de exibição.
     """
     await page.goto(f"{_BASE_URL}/admin/courses/v2/{course_id}/sections", wait_until="domcontentloaded")
     soup = BeautifulSoup(await page.content(), "lxml")
-
-    active_li = soup.select_one("li.active")
-    course_name = active_li.get_text(strip=True) if active_li else f"Curso {course_id}"
 
     sections = []
     for row in soup.select("table#sectionIds tbody tr"):
@@ -109,7 +76,7 @@ async def get_sections(page: Page, course_id: int) -> tuple[str, list[dict]]:
         if status == "Ativo":
             sections.append({"section_id": int(section_id), "titulo": titulo})
 
-    return course_name, sections
+    return sections
 
 
 async def get_tasks(page: Page, course_id: int, section_id: int) -> list[dict]:

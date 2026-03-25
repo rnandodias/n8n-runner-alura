@@ -88,23 +88,36 @@ def _get_carreiras_para_curso(slug: str, carreiras_cache: list[dict]) -> list[di
 
 def _build_dados(api_data: dict, aulas: list, carreiras: list) -> dict:
     slug = api_data.get("slug", "")
+    instrutores = [
+        {k: v for k, v in instrutor.items() if k != "fotos"}
+        for instrutor in api_data.get("instrutores", [])
+    ]
     return {
         "slug": slug,
         "link": f"https://cursos.alura.com.br/course/{slug}",
+        "data_criacao": api_data.get("data_criacao"),
         "data_atualizacao": api_data.get("data_atualizacao"),
         "nome": api_data.get("nome"),
         "metadescription": api_data.get("metadescription"),
         "meta_title": api_data.get("meta_title"),
         "categoria": api_data.get("categoria"),
+        "categorias": api_data.get("categorias", []),
         "subcategoria": api_data.get("subcategoria"),
-        "instrutores": api_data.get("instrutores", []),
+        "subcategorias": api_data.get("subcategorias", []),
+        "instrutores": instrutores,
         "ementa": api_data.get("ementa", []),
         "chamadas": api_data.get("chamadas", []),
         "publico_alvo": api_data.get("publico_alvo"),
-        "carga_horaria": api_data.get("carga_horaria"),
         "nota": api_data.get("nota"),
+        "nota_disponivel": api_data.get("nota_disponivel"),
+        "quantidade_aulas": api_data.get("quantidade_aulas"),
+        "minutos_video": api_data.get("minutos_video"),
+        "carga_horaria": api_data.get("carga_horaria"),
+        "quantidade_atividades": api_data.get("quantidade_atividades"),
         "quantidade_alunos": api_data.get("quantidade_alunos"),
         "quantidade_avaliacoes": api_data.get("quantidade_avaliacoes"),
+        "depoimentos": api_data.get("depoimentos", []),
+        "formacoes": api_data.get("formacoes", []),
         "carreiras": carreiras,
         "aulas": aulas,
     }

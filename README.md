@@ -151,6 +151,31 @@ Contém 112 competências (~669 habilidades), carregada em memória na inicializ
 
 ---
 
+## Provedores e Modelos
+
+Todos os endpoints que aceitam `provider` e `model` suportam as opções abaixo.
+
+### Anthropic
+
+| Model ID | Tier | Recomendado para |
+|---|---|---|
+| `claude-opus-4-6` | Mais capaz | Tarefas complexas, agentes, raciocínio |
+| `claude-sonnet-4-6` | Balanceado (**padrão**) | Uso geral, classificação, revisão |
+| `claude-haiku-4-5-20251001` | Mais rápido/barato | Alto volume, tempo real |
+| `claude-sonnet-4-5-20250929` | Legacy | Ainda disponível, sem suporte a 1M tokens |
+
+### OpenAI
+
+| Model ID | Tier | Recomendado para |
+|---|---|---|
+| `gpt-5.4` | Mais capaz | Tarefas complexas, agentes |
+| `gpt-5.4-mini` | Balanceado (**padrão**) | Uso geral, classificação, revisão |
+| `gpt-5.4-nano` | Mais rápido/barato | Alto volume, tarefas simples |
+
+> **Atenção:** `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o` e `gpt-4o-mini` foram **aposentados em fevereiro de 2026** e não estão mais disponíveis na API da OpenAI.
+
+---
+
 ## Agentes de Revisao de Artigos
 
 O sistema inclui quatro agentes especializados de IA para revisão de artigos:
@@ -274,6 +299,8 @@ OPENAI_API_KEY=sk-...
 # Chaves por projeto (opcional — para controle de custos separado)
 CLASSIFICADOR_COMPETENCIAS_ANTHROPIC_API_KEY=sk-ant-...
 CLASSIFICADOR_COMPETENCIAS_OPENAI_API_KEY=sk-...
+REVISAO_ARTIGOS_ANTHROPIC_API_KEY=sk-ant-...
+REVISAO_ARTIGOS_OPENAI_API_KEY=sk-...
 
 # Modelos padrao (opcional — se nao definido, usa o hardcoded no cliente)
 ANTHROPIC_MODEL=claude-sonnet-4-5-20250929

@@ -387,7 +387,7 @@ class OpenAIClient(LLMClient):
     def __init__(self, model: str = None, api_key: str = None):
         from openai import OpenAI
         self.client = OpenAI(api_key=api_key)
-        self.model = model or os.getenv("OPENAI_MODEL", "gpt-4.1")
+        self.model = model or os.getenv("OPENAI_MODEL", "gpt-5.4-mini")
 
     def _build_system(self, system_prompt: str, artigo_context: str = None) -> str:
         """Monta system prompt com artigo_context como prefixo (cache automatico da OpenAI)."""

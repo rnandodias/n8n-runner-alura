@@ -393,7 +393,7 @@ async def revisao_agente_seo(payload: RevisaoAgentPayload):
             guia_seo=guia_seo
         )
 
-        llm_client = criar_cliente_llm(provider=payload.provider)
+        llm_client = criar_cliente_llm(provider=payload.provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -438,7 +438,7 @@ async def revisao_agente_tecnico(payload: RevisaoAgentPayload):
             data_publicacao=payload.data_publicacao or ""
         )
 
-        llm_client = criar_cliente_llm(provider=payload.provider)
+        llm_client = criar_cliente_llm(provider=payload.provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta_com_busca(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -482,7 +482,7 @@ async def revisao_agente_texto(payload: RevisaoAgentPayload):
             url=payload.url_artigo or ""
         )
 
-        llm_client = criar_cliente_llm(provider=payload.provider)
+        llm_client = criar_cliente_llm(provider=payload.provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -548,7 +548,7 @@ async def revisao_agente_seo_form(
             palavras_chave=palavras_formatadas
         )
 
-        llm_client = criar_cliente_llm(provider=provider)
+        llm_client = criar_cliente_llm(provider=provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -597,7 +597,7 @@ async def revisao_agente_tecnico_form(
             data_publicacao=data_publicacao
         )
 
-        llm_client = criar_cliente_llm(provider=provider)
+        llm_client = criar_cliente_llm(provider=provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta_com_busca(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -640,7 +640,7 @@ async def revisao_agente_texto_form(
             url=url_artigo
         )
 
-        llm_client = criar_cliente_llm(provider=provider)
+        llm_client = criar_cliente_llm(provider=provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta(system_prompt, user_prompt, artigo_context=artigo_context)
         revisoes = llm_client.extrair_json(resposta)
 
@@ -707,7 +707,7 @@ async def revisao_agente_imagem(payload: RevisaoImagemPayload):
                 data_atual=data_atual
             )
 
-            llm_client = criar_cliente_llm(provider=payload.provider)
+            llm_client = criar_cliente_llm(provider=payload.provider, project="REVISAO_ARTIGOS")
             resposta = llm_client.gerar_resposta_com_imagens_e_busca(
                 system_prompt=system_prompt,
                 user_prompt=user_prompt,
@@ -797,7 +797,7 @@ async def revisao_agente_imagem_form(
             data_atual=data_atual
         )
 
-        llm_client = criar_cliente_llm(provider=provider)
+        llm_client = criar_cliente_llm(provider=provider, project="REVISAO_ARTIGOS")
         resposta = llm_client.gerar_resposta_com_imagens_e_busca(
             system_prompt=system_prompt,
             user_prompt=user_prompt,

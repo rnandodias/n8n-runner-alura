@@ -256,9 +256,9 @@ class LLMClient(ABC):
 class AnthropicClient(LLMClient):
     """Cliente para API da Anthropic (Claude)."""
 
-    def __init__(self, model: str = None):
+    def __init__(self, model: str = None, api_key: str = None):
         import anthropic
-        self.client = anthropic.Anthropic(max_retries=10)
+        self.client = anthropic.Anthropic(api_key=api_key, max_retries=10)
         self.model = model or os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5-20250929")
 
     def _build_system(self, system_prompt: str, artigo_context: str = None):
@@ -384,9 +384,9 @@ class AnthropicClient(LLMClient):
 class OpenAIClient(LLMClient):
     """Cliente para API da OpenAI (GPT)."""
 
-    def __init__(self, model: str = None):
+    def __init__(self, model: str = None, api_key: str = None):
         from openai import OpenAI
-        self.client = OpenAI()
+        self.client = OpenAI(api_key=api_key)
         self.model = model or os.getenv("OPENAI_MODEL", "gpt-4.1")
 
     def _build_system(self, system_prompt: str, artigo_context: str = None) -> str:
@@ -480,22 +480,33 @@ class OpenAIClient(LLMClient):
         return self.gerar_resposta_com_imagens(system_prompt, user_prompt, imagens, max_tokens, artigo_context=artigo_context)
 
 
-def criar_cliente_llm(provider: str = None, model: str = None) -> LLMClient:
+def criar_cliente_llm(provider: str = None, model: str = None, project: str = None) -> LLMClient:
     """
     Cria um cliente LLM baseado no provedor especificado.
 
     Args:
         provider: "anthropic" ou "openai". Se None, usa LLM_PROVIDER do ambiente.
         model: Modelo especifico. Se None, usa padrao do provedor.
+        project: Nome do projeto em maiúsculas (ex: "CLASSIFICADOR_COMPETENCIAS").
+                 Se fornecido, busca chave de API em {PROJECT}_ANTHROPIC_API_KEY
+                 ou {PROJECT}_OPENAI_API_KEY antes de cair no global.
 
     Returns:
         Instancia de LLMClient
     """
     provider = provider or os.getenv("LLM_PROVIDER", "anthropic")
 
+    api_key = None
+    if project:
+        project_upper = project.upper()
+        if provider.lower() == "anthropic":
+            api_key = os.getenv(f"{project_upper}_ANTHROPIC_API_KEY")
+        elif provider.lower() == "openai":
+            api_key = os.getenv(f"{project_upper}_OPENAI_API_KEY")
+
     if provider.lower() == "anthropic":
-        return AnthropicClient(model)
+        return AnthropicClient(model, api_key=api_key)
     elif provider.lower() == "openai":
-        return OpenAIClient(model)
+        return OpenAIClient(model, api_key=api_key)
     else:
         raise ValueError(f"Provedor desconhecido: {provider}. Use 'anthropic' ou 'openai'.")

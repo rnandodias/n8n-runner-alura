@@ -1,15 +1,16 @@
-# Runner Alura - Agente de Revisao Automatica de Artigos
+# Runner Alura - Sidecar FastAPI para n8n
 
-Servico FastAPI para revisao automatizada de artigos, integrado ao n8n via containers Docker.
+Serviço FastAPI usado como sidecar do n8n para automações envolvendo cursos e artigos da Alura.
 
 ## Visao Geral
 
 Este projeto fornece um runner FastAPI que combina:
+- **Scraping com Playwright** para sincronizar dados de cursos do Admin Alura
+- **API pública da Alura** para metadados de cursos e carreiras
+- **PostgreSQL** para persistência dos dados de cursos em JSONB
+- **Agentes de IA** (Anthropic Claude e OpenAI GPT) para classificação de competências e revisão de artigos
 - **BeautifulSoup/httpx** para extração de conteúdo de artigos e conversão para DOCX
-- **Agentes de IA** (Anthropic Claude e OpenAI GPT) para revisao automatizada de artigos
-- **python-docx / OOXML** para manipulacao de documentos e aplicacao de comentarios
-
-Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
+- **python-docx / OOXML** para manipulação de documentos e aplicação de comentários
 
 ---
 
@@ -24,10 +25,15 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                      Runner FastAPI                             │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────┐  │
-│  │  BeautifulSoup   │  │   Agentes de IA  │  │ python-docx  │  │
-│  │  (extracao HTML) │  │  Claude / GPT    │  │  (OOXML)     │  │
-│  └──────────────────┘  └──────────────────┘  └──────────────┘  │
+│  ┌──────────────┐  ┌──────────────────┐  ┌──────────────────┐  │
+│  │  Playwright  │  │   Agentes de IA  │  │  BeautifulSoup   │  │
+│  │  (scraping)  │  │  Claude / GPT    │  │  python-docx     │  │
+│  └──────────────┘  └──────────────────┘  └──────────────────┘  │
+│                           │                                     │
+│                    ┌──────▼──────┐                              │
+│                    │ PostgreSQL  │                              │
+│                    │  (JSONB)    │                              │
+│                    └─────────────┘                              │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -35,48 +41,119 @@ Usado como sidecar do n8n para automacoes envolvendo revisao de artigos com IA.
 
 ## Endpoints
 
-### Utilitarios
+### Utilitários
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/ping` | GET | Health check do servico |
+| `GET /ping` | GET | Health check do serviço |
+
+### Alura Utils — Cursos e Carreiras
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/cursos` | POST | Sincroniza curso (scraping Admin + API pública) |
+| `GET /utils/cursos/{course_id}` | GET | Retorna dados do curso do banco sem scraping |
+| `POST /utils/carreiras/sync` | POST | Atualiza cache de todas as carreiras |
+| `POST /utils/carreiras` | POST | Adiciona novo slug de carreira |
+| `GET /utils/carreiras` | GET | Lista carreiras cadastradas |
+
+### Classificador de Competências
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/cursos/{course_id}/competencias` | POST | Classifica competências do curso via LLM e persiste no banco |
+| `GET /utils/cursos/{course_id}/competencias` | GET | Retorna competências já classificadas |
 
 ### Conversao de Artigos
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/revisao/artigos/html-to-docx` | POST | Converte URL de artigo para DOCX binario |
-
-### Alura Utils
-
-| Endpoint | Metodo | Descricao |
-|----------|--------|-----------|
-| `/utils/tarefas` | POST | Sincroniza todas as tarefas ativas do curso com o banco (scraping seletivo por data) |
-| `/utils/tarefas/{course_id}` | GET | Retorna tarefas do banco sem realizar scraping |
+| `POST /revisao/artigos/html-to-docx` | POST | Converte URL de artigo para DOCX binario |
 
 ### Revisao com Agentes de IA
 
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
-| `/revisao/artigos/extrair-texto` | POST | Extrai texto de DOCX para revisao |
-| `/revisao/artigos/aplicar` | POST | Aplica revisoes com Track Changes (OOXML) |
-| `/revisao/artigos/aplicar-json` | POST | Aplica revisoes JSON via form |
-| `/revisao/artigos/aplicar-form` | POST | Aplica revisoes via multipart form |
-| `/revisao/artigos/aplicar-comentarios-form` | POST | Aplica revisoes como comentarios DOCX |
-| `/revisao/artigos/agente-seo` | POST | Agente de revisao SEO/GEO |
-| `/revisao/artigos/agente-tecnico` | POST | Agente de revisao tecnica |
-| `/revisao/artigos/agente-texto` | POST | Agente de revisao textual/didatica |
-| `/revisao/artigos/agente-seo-form` | POST | Agente SEO via multipart form |
-| `/revisao/artigos/agente-tecnico-form` | POST | Agente tecnico via multipart form |
-| `/revisao/artigos/agente-texto-form` | POST | Agente texto via multipart form |
-| `/revisao/artigos/agente-imagem` | POST | Agente de revisao de imagens (visao multimodal) |
-| `/revisao/artigos/agente-imagem-form` | POST | Agente imagem via multipart form |
+| `POST /revisao/artigos/extrair-texto` | POST | Extrai texto de DOCX para revisao |
+| `POST /revisao/artigos/aplicar` | POST | Aplica revisoes com Track Changes (OOXML) |
+| `POST /revisao/artigos/aplicar-json` | POST | Aplica revisoes JSON via form |
+| `POST /revisao/artigos/aplicar-form` | POST | Aplica revisoes via multipart form |
+| `POST /revisao/artigos/aplicar-comentarios-form` | POST | Aplica revisoes como comentarios DOCX |
+| `POST /revisao/artigos/agente-seo` | POST | Agente de revisao SEO/GEO |
+| `POST /revisao/artigos/agente-tecnico` | POST | Agente de revisao tecnica |
+| `POST /revisao/artigos/agente-texto` | POST | Agente de revisao textual/didatica |
+| `POST /revisao/artigos/agente-seo-form` | POST | Agente SEO via multipart form |
+| `POST /revisao/artigos/agente-tecnico-form` | POST | Agente tecnico via multipart form |
+| `POST /revisao/artigos/agente-texto-form` | POST | Agente texto via multipart form |
+| `POST /revisao/artigos/agente-imagem` | POST | Agente de revisao de imagens (visao multimodal) |
+| `POST /revisao/artigos/agente-imagem-form` | POST | Agente imagem via multipart form |
+
+---
+
+## Classificador de Competências
+
+Endpoint que analisa as transcrições dos vídeos de um curso e identifica entre 4 e 6 competências
+da biblioteca de competências da plataforma.
+
+### Entrada
+
+```bash
+# Classificar e persistir
+POST /utils/cursos/{course_id}/competencias?provider=anthropic&model=claude-sonnet-4-6
+
+# Consultar resultado salvo
+GET /utils/cursos/{course_id}/competencias
+```
+
+Parâmetros opcionais da classificação:
+- `provider`: `"anthropic"` (padrão) ou `"openai"`
+- `model`: modelo específico. Se omitido, usa o padrão do provedor.
+
+### Saída
+
+```json
+{
+  "course_id": 12345,
+  "total": 5,
+  "competencias": [
+    {
+      "id": "CP0042",
+      "nome": "Nome da competência",
+      "descricao": "Descrição da competência",
+      "habilidades": [
+        { "id": "HB00201", "nome": "nome da habilidade" },
+        { "id": "HB00202", "nome": "nome da habilidade" }
+      ]
+    }
+  ]
+}
+```
+
+As competências são persistidas dentro do JSONB do curso (`dados.competencias`).
+Cursos não classificados não possuem a chave — o GET retorna 404 nesses casos.
+
+### Chave de API por projeto
+
+Para controle de custos, o classificador suporta chave de API dedicada:
+
+```env
+CLASSIFICADOR_COMPETENCIAS_ANTHROPIC_API_KEY=sk-ant-...   # opcional
+CLASSIFICADOR_COMPETENCIAS_OPENAI_API_KEY=sk-...          # opcional
+```
+
+Se não configuradas, usa as chaves globais (`ANTHROPIC_API_KEY` / `OPENAI_API_KEY`).
+O mesmo padrão `{PROJETO}_ANTHROPIC_API_KEY` funciona para qualquer projeto.
+
+### Biblioteca de Competências
+
+Localizada em `local-files/runner/projects/classificador_competencias/biblioteca_competencias.json`.
+Contém 112 competências (~669 habilidades), carregada em memória na inicialização do serviço.
 
 ---
 
 ## Agentes de Revisao de Artigos
 
-O sistema inclui quatro agentes especializados de IA para revisao de artigos:
+O sistema inclui quatro agentes especializados de IA para revisão de artigos:
 
 ### Agente SEO
 - Analisa intencao de busca e resposta do conteudo
@@ -107,13 +184,12 @@ O sistema inclui quatro agentes especializados de IA para revisao de artigos:
 - Identifica textos presos em imagens que deveriam estar no artigo
 - Sugere onde adicionar imagens faltantes
 - Usa visao multimodal (Claude Vision ou GPT-4 Vision)
+- Suporta rasterizacao de SVG via cairosvg
 
 **Nota:** O agente de imagem requer `url_artigo` para extrair as imagens via scraping.
 Com Anthropic, usa visao + busca web. Com OpenAI, usa apenas visao.
 
-### Formato de Saida
-
-Todos os agentes retornam JSON estruturado:
+### Formato de Saida dos Agentes
 
 ```json
 [
@@ -135,30 +211,43 @@ Todos os agentes retornam JSON estruturado:
 n8n-runner-alura/
 ├── .github/
 │   └── workflows/
-│       └── deploy-runner.yml      # CI/CD para VPS
+│       └── deploy-runner.yml             # CI/CD para VPS
 ├── local-files/
 │   └── runner/
-│       ├── app.py                 # Aplicacao FastAPI principal (thin app)
+│       ├── app.py                        # Aplicação FastAPI principal (thin app)
 │       ├── core/
-│       │   ├── llm_client.py      # Cliente unificado LLM (Anthropic/OpenAI)
-│       │   └── track_changes.py   # Implementacao OOXML Track Changes
+│       │   ├── database.py               # Pool PostgreSQL + inicializacao de schema
+│       │   ├── llm_client.py             # Cliente unificado LLM (Anthropic/OpenAI)
+│       │   └── track_changes.py          # Implementacao OOXML Track Changes
 │       └── projects/
-│           ├── revisao_artigos/
-│           │   ├── router.py      # Endpoints do projeto
-│           │   ├── prompts.py     # Prompts dos agentes de revisao
-│           │   ├── scraping.py    # Extracao de conteudo HTML (BeautifulSoup)
-│           │   └── docx_builder.py # Geracao de DOCX a partir de artigos
-│           └── alura_utils/
-│               ├── router.py      # Endpoints /utils/*
-│               └── scraper.py     # Playwright: login + scraping do Admin Alura
+│           ├── alura_utils/
+│           │   ├── router.py             # Endpoints /utils/cursos e /utils/carreiras
+│           │   ├── service.py            # Orquestracao de sync (scraping + API)
+│           │   ├── repository.py         # Operacoes no banco (alura_cursos, alura_carreiras)
+│           │   ├── scraper.py            # Playwright: login + scraping do Admin Alura
+│           │   ├── api_client.py         # Cliente HTTP para API publica da Alura
+│           │   └── queue.py              # Semaphore para controle de concorrencia do scraping
+│           ├── classificador_competencias/
+│           │   ├── router.py             # Endpoints /utils/cursos/{id}/competencias
+│           │   ├── service.py            # Extrai transcricoes + chama LLM + valida resposta
+│           │   ├── prompts.py            # System e user prompts do classificador
+│           │   └── biblioteca_competencias.json  # 112 competencias, ~669 habilidades
+│           └── revisao_artigos/
+│               ├── router.py             # Endpoints /revisao/artigos/*
+│               ├── prompts.py            # Prompts dos agentes de revisao
+│               ├── scraping.py           # Extracao de conteudo HTML (BeautifulSoup)
+│               └── docx_builder.py       # Geracao de DOCX a partir de artigos
+├── manuais/
+│   └── biblioteca_competencias_prompt_ready.json  # Fonte original da biblioteca
 ├── n8n-runner/
-│   ├── docker-compose.yml         # Compose do runner
+│   ├── docker-compose.yml                # Compose do runner
 │   └── runner/
-│       ├── Dockerfile             # Imagem Docker (python:3.11-slim + Playwright)
-│       ├── requirements.txt       # Dependencias Python
-│       └── start.sh               # Script de inicializacao (uvicorn)
-├── local-tests/                   # Scripts de teste local (sem Docker)
-├── ENV.EXAMPLE.txt                # Template de variaveis de ambiente
+│       ├── Dockerfile                    # Imagem Docker (Playwright + LibreOffice)
+│       ├── requirements.txt              # Dependencias Python
+│       └── start.sh                      # Script de inicializacao (uvicorn)
+├── local-tests/                          # Scripts de teste local (sem Docker)
+├── workflows/                            # JSONs de workflows n8n exportados
+├── ENV.EXAMPLE.txt                       # Template de variaveis de ambiente
 └── README.md
 ```
 
@@ -171,14 +260,22 @@ n8n-runner-alura/
 Criar `/opt/n8n-runner/.env` na VPS:
 
 ```env
-# APIs de LLM
-OPENAI_API_KEY=sk-...
+# Banco de dados
+DATABASE_URL=postgresql://user:pass@host/db
+
+# Credenciais do Admin Alura (para scraping)
+ALURA_EMAIL=admin@alura.com
+ALURA_PASSWORD=sua-senha
+
+# APIs de LLM (chaves globais — fallback para todos os projetos)
 ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
 
-# Provider padrao (anthropic ou openai)
-LLM_PROVIDER=anthropic
+# Chaves por projeto (opcional — para controle de custos separado)
+CLASSIFICADOR_COMPETENCIAS_ANTHROPIC_API_KEY=sk-ant-...
+CLASSIFICADOR_COMPETENCIAS_OPENAI_API_KEY=sk-...
 
-# Modelo padrao (opcional)
+# Modelos padrao (opcional — se nao definido, usa o hardcoded no cliente)
 ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 OPENAI_MODEL=gpt-4.1
 
@@ -228,18 +325,8 @@ git remote add origin https://github.com/SEU_USUARIO/n8n-runner-alura.git
 ### Passo 3 — Primeiro commit e push
 
 ```bash
-git add .gitignore ENV.EXAMPLE.txt README.md CLAUDE.md
-git add .github/workflows/deploy-runner.yml
-git add n8n-runner/docker-compose.yml
-git add n8n-runner/runner/Dockerfile
-git add n8n-runner/runner/requirements.txt
-git add n8n-runner/runner/start.sh
-git add local-files/runner/app.py
-git add local-files/runner/llm_client.py
-git add local-files/runner/prompts_revisao.py
-git add local-files/runner/track_changes.py
-
-git commit -m "Inicial: Agente de Revisao Automatica de Artigos"
+git add -A
+git commit -m "Inicial: Runner Alura"
 git push -u origin main
 ```
 
@@ -325,7 +412,7 @@ git commit --allow-empty -m "chore: trigger deploy" && git push origin main
 
 ## Workflow n8n - Revisao de Artigos
 
-O projeto inclui workflow n8n para revisao automatizada:
+O projeto inclui workflow n8n para revisão automatizada:
 
 ```
 [Trigger] → [Config] → [HTML to DOCX] → [Agentes IA em paralelo] → [Merge] → [Aplicar Comentarios] → [Output]
@@ -352,7 +439,22 @@ O projeto inclui workflow n8n para revisao automatizada:
 
 ## Uso
 
-### Interno (de dentro do container n8n)
+### Sincronizar e classificar um curso
+
+```bash
+# 1. Sincronizar dados do curso (scraping)
+curl -X POST http://runner:8000/utils/cursos \
+  -H "Content-Type: application/json" \
+  -d '{"course_id": 12345}'
+
+# 2. Classificar competências
+curl -X POST "http://runner:8000/utils/cursos/12345/competencias?provider=anthropic"
+
+# 3. Consultar resultado
+curl http://runner:8000/utils/cursos/12345/competencias
+```
+
+### Revisao de artigos
 
 ```bash
 # Converter artigo para DOCX
@@ -361,13 +463,13 @@ curl -X POST http://runner:8000/revisao/artigos/html-to-docx \
   -d '{"url": "https://exemplo.com/artigo"}'
 
 # Revisao SEO
-curl -X POST http://runner:8000/revisao/agente-seo-form \
+curl -X POST http://runner:8000/revisao/artigos/agente-seo-form \
   -F "file=@artigo.docx" \
   -F "palavras_chave=python, machine learning, ia" \
   -F "provider=anthropic"
 
 # Aplicar comentarios
-curl -X POST http://runner:8000/revisao/aplicar-comentarios-form \
+curl -X POST http://runner:8000/revisao/artigos/aplicar-comentarios-form \
   -F "file=@artigo.docx" \
   -F 'revisoes=[{"tipo":"SEO","acao":"substituir","texto_original":"texto antigo","texto_novo":"texto novo","justificativa":"melhora SEO"}]'
 ```
@@ -393,15 +495,31 @@ docker exec -it $(docker ps --format '{{.Names}}' | grep runner | head -n1) \
 ## Dependencias Principais
 
 - **FastAPI** - Framework web
-- **python-docx** - Geracao e manipulacao de DOCX
+- **asyncpg** - Cliente PostgreSQL assíncrono
 - **anthropic** - SDK Anthropic Claude
 - **openai** - SDK OpenAI
+- **playwright** - Scraping do Admin Alura
+- **python-docx** - Geracao e manipulacao de DOCX
 - **BeautifulSoup4** - Parsing HTML para extracao de artigos
-- **Pillow / cairosvg** - Processamento de imagens
+- **Pillow / cairosvg** - Processamento de imagens (rasterizacao de SVG)
 
 ---
 
 ## Notas Tecnicas
+
+### Sincronizacao de Cursos
+
+O sync é incremental por `data_atualizacao`:
+- Se a data do curso na API não mudou → retorna cache direto (sem scraping)
+- Se mudou → re-faz scraping das tarefas do curso
+- Dentro do scraping, tarefas individuais são comparadas por `alura_updated_at`
+
+### Classificador de Competências
+
+- Input: campo `text` de atividades com `kind == "VIDEO"` (transcrições dos vídeos)
+- A biblioteca é carregada em memória na inicialização (zero I/O por request)
+- Para Anthropic, a biblioteca é enviada com `cache_control: ephemeral` — tokens cacheados entre chamadas
+- Resposta validada: IDs inválidos são descartados em vez de lançar erro
 
 ### Track Changes OOXML
 

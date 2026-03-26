@@ -83,6 +83,20 @@ async def insert_carreira_slug(slug: str, titulo: str) -> None:
         )
 
 
+async def update_course_competencias(course_id: int, competencias: list[dict]) -> None:
+    """Salva (ou substitui) a lista de competências no JSON do curso."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """
+            UPDATE alura_cursos
+            SET dados = jsonb_set(dados, '{competencias}', $1::jsonb)
+            WHERE course_id = $2
+            """,
+            json.dumps(competencias, ensure_ascii=False), course_id,
+        )
+
+
 async def update_course_carreiras(course_slug: str, carreiras: list[dict]) -> None:
     """Atualiza o campo carreiras no JSON do curso identificado pelo slug."""
     pool = await get_pool()

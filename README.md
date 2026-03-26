@@ -166,17 +166,21 @@ Todos os endpoints que aceitam `provider` e `model` suportam as opções abaixo.
 
 ### OpenAI
 
-| Model ID | Contexto | Tier | Recomendado para |
+| Model ID | Contexto | Input/MTok | Recomendado para |
 |---|---|---|---|
-| `gpt-4.1` | 1M tokens | Balanceado (**padrão**) | Uso geral, classificação, revisão |
-| `gpt-4.1-mini` | 1M tokens | Mais leve/barato | Bom custo-benefício com contexto grande |
-| `gpt-5.4` | 1M tokens | Mais capaz | Tarefas muito complexas |
-| `gpt-5.4-mini` | 400k tokens | Balanceado | Bom, mas janela menor |
-| `gpt-5.4-nano` | — | Mais barato | Tarefas simples e alto volume |
-| `o3` | 200k tokens | Reasoning | Problemas complexos de raciocínio |
-| `o4-mini` | 200k tokens | Reasoning leve | Ciência, matemática, código |
+| `gpt-4.1` | **1M tokens** | $2.00 | Classificação, revisão — **melhor contexto pelo preço** (**padrão**) |
+| `gpt-4.1-mini` | **1M tokens** | — | Contexto grande com custo reduzido |
+| `gpt-5.4` | **1M tokens** | $2.50 | Tarefas muito complexas com contexto grande |
+| `gpt-5` | 400k tokens | $1.25 | Input mais barato, mas janela menor |
+| `gpt-5.1` | 400k tokens | — | Reasoning configurável, janela menor |
+| `gpt-5.2` | 400k tokens | $1.75 | Reasoning e código, janela menor |
+| `gpt-5-mini` | — | $0.25 | Alto volume, tarefas simples |
+| `gpt-4.1-nano` | — | $0.10 | Muito barato, tarefas simples |
+| `gpt-5-nano` | — | $0.05 | Opção mais barata disponível |
+| `o3` | 200k tokens | — | Raciocínio complexo |
+| `o4-mini` | 200k tokens | — | Raciocínio leve, ciência e código |
 
-> **Nota:** `gpt-4.1` e `gpt-4.1-mini` foram removidos da interface ChatGPT mas continuam **totalmente ativos na API**. Para tarefas com transcrições longas, prefira modelos com janela de 1M tokens.
+> **Nota:** `gpt-4.1` e `gpt-4.1-mini` foram removidos da interface ChatGPT mas continuam **totalmente ativos na API**. Para tarefas com transcrições longas de cursos, prefira modelos com janela de 1M tokens. Fonte: `platform.openai.com/docs/models` e `openai.com/api/pricing`.
 
 ---
 

@@ -63,6 +63,10 @@ jobs:
               'POSTGRES_USER=${{ secrets.POSTGRES_USER }}' \
               'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' \
               'POSTGRES_DB=runner' \
+              'REVISAO_ARTIGOS_ANTHROPIC_API_KEY=${{ secrets.REVISAO_ARTIGOS_ANTHROPIC_API_KEY }}' \
+              'REVISAO_ARTIGOS_OPENAI_API_KEY=${{ secrets.REVISAO_ARTIGOS_OPENAI_API_KEY }}' \
+              'CLASSIFICADOR_COMPETENCIAS_ANTHROPIC_API_KEY=${{ secrets.CLASSIFICADOR_COMPETENCIAS_ANTHROPIC_API_KEY }}' \
+              'CLASSIFICADOR_COMPETENCIAS_OPENAI_API_KEY=${{ secrets.CLASSIFICADOR_COMPETENCIAS_OPENAI_API_KEY }}' \
               > /opt/n8n-runner/.env && \
             chmod 600 /opt/n8n-runner/.env
           "

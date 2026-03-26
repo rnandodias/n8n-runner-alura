@@ -157,22 +157,26 @@ Todos os endpoints que aceitam `provider` e `model` suportam as opções abaixo.
 
 ### Anthropic
 
-| Model ID | Tier | Recomendado para |
-|---|---|---|
-| `claude-opus-4-6` | Mais capaz | Tarefas complexas, agentes, raciocínio |
-| `claude-sonnet-4-6` | Balanceado (**padrão**) | Uso geral, classificação, revisão |
-| `claude-haiku-4-5-20251001` | Mais rápido/barato | Alto volume, tempo real |
-| `claude-sonnet-4-5-20250929` | Legacy | Ainda disponível, sem suporte a 1M tokens |
+| Model ID | Contexto | Tier | Recomendado para |
+|---|---|---|---|
+| `claude-sonnet-4-6` | 1M tokens | Balanceado (**padrão**) | Uso geral, classificação, revisão |
+| `claude-opus-4-6` | 1M tokens | Mais capaz | Tarefas muito complexas |
+| `claude-haiku-4-5-20251001` | 200k tokens | Mais rápido/barato | Alto volume — risco de estouro em cursos longos |
+| `claude-sonnet-4-5-20250929` | 200k tokens | Legacy | Ainda disponível |
 
 ### OpenAI
 
-| Model ID | Tier | Recomendado para |
-|---|---|---|
-| `gpt-5.4` | Mais capaz | Tarefas complexas, agentes |
-| `gpt-5.4-mini` | Balanceado (**padrão**) | Uso geral, classificação, revisão |
-| `gpt-5.4-nano` | Mais rápido/barato | Alto volume, tarefas simples |
+| Model ID | Contexto | Tier | Recomendado para |
+|---|---|---|---|
+| `gpt-4.1` | 1M tokens | Balanceado (**padrão**) | Uso geral, classificação, revisão |
+| `gpt-4.1-mini` | 1M tokens | Mais leve/barato | Bom custo-benefício com contexto grande |
+| `gpt-5.4` | 1M tokens | Mais capaz | Tarefas muito complexas |
+| `gpt-5.4-mini` | 400k tokens | Balanceado | Bom, mas janela menor |
+| `gpt-5.4-nano` | — | Mais barato | Tarefas simples e alto volume |
+| `o3` | 200k tokens | Reasoning | Problemas complexos de raciocínio |
+| `o4-mini` | 200k tokens | Reasoning leve | Ciência, matemática, código |
 
-> **Atenção:** `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o` e `gpt-4o-mini` foram **aposentados em fevereiro de 2026** e não estão mais disponíveis na API da OpenAI.
+> **Nota:** `gpt-4.1` e `gpt-4.1-mini` foram removidos da interface ChatGPT mas continuam **totalmente ativos na API**. Para tarefas com transcrições longas, prefira modelos com janela de 1M tokens.
 
 ---
 

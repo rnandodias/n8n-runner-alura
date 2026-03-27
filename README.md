@@ -251,62 +251,149 @@ Cursos sem transcrições ou não encontrados no banco são automaticamente igno
 }
 ```
 
-### Exemplo de uso
+---
+
+## Como usar — Anthropic Batch
+
+A Anthropic Batch API **não tem webhook**. O fluxo é sempre: **submit → polling de status → salvar**. Escolha a variante que faz mais sentido para o seu caso.
+
+### Variante padrão (`anthropic/padrao`)
+
+Envia as transcrições brutas direto para o Opus. Mais simples, maior custo por token.
 
 ```bash
-# 1. Submeter batch Anthropic otimizado
+# 1. Submeter o batch
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/padrao/submit \
+  -H "Content-Type: application/json" \
+  -d '{"course_ids": [123, 456, 789]}'
+
+# Resposta:
+# {"batch_id": "msgbatch_abc123", "submitted": [123, 456, 789], "skipped": [], "processing_status": "in_progress"}
+
+# 2. Verificar status (repita até processing_status == "ended")
+curl http://runner:8000/utils/competencias/batch/anthropic/padrao/status/msgbatch_abc123
+
+# 3. Salvar resultados no banco
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/padrao/salvar/msgbatch_abc123
+
+# Resposta:
+# {"saved": [123, 456, 789], "errors": [], "total": 3}
+```
+
+### Variante otimizada (`anthropic/otimizado`)
+
+Haiku sumariza cada curso síncronamente no submit, depois Opus classifica os resumos em batch. Custo ~52% menor.
+
+```bash
+# 1. Submeter o batch (Haiku sumariza cada curso durante o submit — pode demorar alguns minutos)
 curl -X POST http://runner:8000/utils/competencias/batch/anthropic/otimizado/submit \
   -H "Content-Type: application/json" \
-  -d '{"course_ids": [123, 456, 789], "force": false}'
+  -d '{"course_ids": [123, 456, 789]}'
 
-# 2. Verificar status (polling)
+# 2. Verificar status
 curl http://runner:8000/utils/competencias/batch/anthropic/otimizado/status/msgbatch_abc123
 
-# 3. Quando processing_status == "ended", salvar resultados
+# 3. Salvar resultados no banco
 curl -X POST http://runner:8000/utils/competencias/batch/anthropic/otimizado/salvar/msgbatch_abc123
+```
+
+**Forçar reclassificação** de cursos já processados:
+
+```bash
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/padrao/submit \
+  -H "Content-Type: application/json" \
+  -d '{"course_ids": [123, 456], "force": true}'
+```
+
+**Usar modelo diferente:**
+
+```bash
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/padrao/submit \
+  -H "Content-Type: application/json" \
+  -d '{"course_ids": [123, 456], "model": "claude-sonnet-4-6"}'
 ```
 
 ---
 
-### Automatizando com n8n — Anthropic (polling)
+### Automatizando com n8n — Anthropic (dois workflows)
 
-A API Anthropic Batches **não tem webhook**. Use um workflow de polling com n8n:
+Como a Anthropic não tem webhook, use **dois workflows separados**: um para submeter e outro para fazer polling.
+
+#### Workflow 1 — Submit (disparo manual ou agendado)
 
 ```
-[Schedule — a cada 5 min]
-        │
-        ▼
-[HTTP Request — GET status/{batch_id}]
-        │
-        ▼
-[IF — processing_status == "ended"?]
-   │                    │
-  Sim                  Não
-   │                    │
-   ▼                    ▼
-[HTTP Request —    [NoOp — aguarda
- POST salvar/       próximo ciclo]
- {batch_id}]
-        │
-        ▼
-[Set — desativar workflow ou notificar]
+[Manual Trigger]
+      │
+      ▼
+[HTTP Request — POST /submit]
+  Method: POST
+  URL: http://runner:8000/utils/competencias/batch/anthropic/otimizado/submit
+  Body (JSON):
+    {"course_ids": [123, 456, 789]}
+      │
+      ▼
+[Set — salva batch_id como variável]
+  Variável: batch_id
+  Valor: {{ $json.batch_id }}
+      │
+      ▼
+[Ativar Workflow 2 — Polling]
+  (via n8n API ou Execute Workflow)
 ```
 
 **Passo a passo:**
 
-1. Crie um workflow n8n
-2. Adicione um nó **Schedule Trigger** com intervalo de 5 minutos
-3. Adicione um nó **HTTP Request**:
-   - Method: `GET`
-   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/status/{{ $vars.batch_id }}`
-4. Adicione um nó **IF**:
-   - Condição: `{{ $json.processing_status }}` equals `ended`
-5. Ramo **true**: adicione **HTTP Request**:
+1. Crie um workflow **"Batch Submit"**
+2. Adicione **Manual Trigger** (ou Schedule se quiser rodar periodicamente)
+3. Adicione **HTTP Request**:
    - Method: `POST`
-   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/salvar/{{ $vars.batch_id }}`
-6. No nó de salvar, adicione um **Set** para desativar o workflow ou enviar notificação
+   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/submit`
+   - Body Content Type: `JSON`
+   - Body: `{"course_ids": [123, 456, 789]}`
+4. Adicione **Set** para capturar o `batch_id`:
+   - Name: `batch_id` / Value: `{{ $json.batch_id }}`
+5. Adicione **Execute Workflow** apontando para o Workflow 2 (polling), passando o `batch_id`
 
-> **Dica:** Armazene o `batch_id` em uma variável de workflow n8n (`$vars`) após o submit para reutilizar no polling.
+---
+
+#### Workflow 2 — Polling (verifica e salva quando pronto)
+
+```
+[Schedule Trigger — a cada 5 min]
+        │
+        ▼
+[HTTP Request — GET /status/{batch_id}]
+        │
+        ▼
+[IF — processing_status == "ended"?]
+   │                        │
+  Sim                      Não
+   │                        │
+   ▼                        ▼
+[HTTP Request —         [Stop and Error
+ POST /salvar/{batch_id}]   ou NoOp]
+   │
+   ▼
+[Desativar este workflow]
+```
+
+**Passo a passo:**
+
+1. Crie um workflow **"Batch Polling"** com um parâmetro de entrada para o `batch_id`
+2. Adicione **Schedule Trigger** com intervalo de 5 minutos
+3. Adicione **HTTP Request** para status:
+   - Method: `GET`
+   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/status/{{ $('Schedule Trigger').params.batch_id }}`
+4. Adicione nó **IF**:
+   - Condição: `{{ $json.processing_status }}` **equals** `ended`
+5. Ramo **true** — adicione **HTTP Request** para salvar:
+   - Method: `POST`
+   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/salvar/{{ $('Schedule Trigger').params.batch_id }}`
+6. Após o salvar, adicione **n8n** node para desativar o próprio workflow (evita polling infinito):
+   - Resource: `Workflow` / Operation: `Deactivate`
+   - Workflow ID: `{{ $workflow.id }}`
+
+> **Dica:** O `processing_status` pode ser `"in_progress"` ou `"ended"`. Só chame o `/salvar` quando for `"ended"` — antes disso o endpoint retornará erro.
 
 ---
 

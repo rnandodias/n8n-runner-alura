@@ -97,17 +97,33 @@ da biblioteca de competências da plataforma.
 
 ### Entrada
 
-```bash
-# Classificar e persistir
-POST /utils/cursos/{course_id}/competencias?provider=anthropic&model=claude-sonnet-4-6
+Todos os parâmetros são passados como **query string**:
 
-# Consultar resultado salvo
+```bash
+# Classificar com defaults (anthropic + claude-sonnet-4-5-20250929)
+POST /utils/cursos/{course_id}/competencias
+
+# Forçar reclassificação (ignora cache)
+POST /utils/cursos/{course_id}/competencias?force=true
+
+# Escolher provider e modelo
+POST /utils/cursos/{course_id}/competencias?provider=anthropic&model=claude-opus-4-6
+POST /utils/cursos/{course_id}/competencias?provider=openai&model=gpt-4.1
+
+# Forçar reclassificação com modelo específico
+POST /utils/cursos/{course_id}/competencias?force=true&provider=anthropic&model=claude-opus-4-6
+
+# Consultar resultado salvo (sem chamar LLM)
 GET /utils/cursos/{course_id}/competencias
 ```
 
-Parâmetros opcionais da classificação:
-- `provider`: `"anthropic"` (padrão) ou `"openai"`
-- `model`: modelo específico. Se omitido, usa o padrão do provedor.
+Parâmetros opcionais:
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `provider` | string | `"anthropic"` | Provider do LLM: `"anthropic"` ou `"openai"` |
+| `model` | string | padrão do provider | ID do modelo. Ver tabela [Provedores e Modelos](#provedores-e-modelos) |
+| `force` | bool | `false` | Se `true`, reclassifica mesmo que já exista resultado salvo |
 
 ### Saída
 

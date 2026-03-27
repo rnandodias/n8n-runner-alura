@@ -63,6 +63,41 @@ Este projeto fornece um runner FastAPI que combina:
 |----------|--------|-----------|
 | `POST /utils/cursos/{course_id}/competencias` | POST | Classifica competências do curso via LLM e persiste no banco |
 | `GET /utils/cursos/{course_id}/competencias` | GET | Retorna competências já classificadas |
+| `POST /utils/cursos/{course_id}/competencias/otimizado` | POST | Classifica com Haiku→Opus (dois steps, custo reduzido) |
+| `GET /utils/cursos/{course_id}/competencias/otimizado` | GET | Retorna competências classificadas pelo método otimizado |
+
+### Batch — Anthropic (padrão)
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/competencias/batch/anthropic/padrao/submit` | POST | Submete batch: transcrições brutas → Opus |
+| `GET /utils/competencias/batch/anthropic/padrao/status/{batch_id}` | GET | Consulta status do batch |
+| `POST /utils/competencias/batch/anthropic/padrao/salvar/{batch_id}` | POST | Lê resultados e persiste no banco |
+
+### Batch — Anthropic (otimizado)
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/competencias/batch/anthropic/otimizado/submit` | POST | Submete batch: Haiku sumariza → Opus classifica em batch |
+| `GET /utils/competencias/batch/anthropic/otimizado/status/{batch_id}` | GET | Consulta status do batch |
+| `POST /utils/competencias/batch/anthropic/otimizado/salvar/{batch_id}` | POST | Lê resultados e persiste no banco |
+
+### Batch — OpenAI (padrão)
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/competencias/batch/openai/padrao/submit` | POST | Submete batch: transcrições brutas → gpt-4.1 |
+| `GET /utils/competencias/batch/openai/padrao/status/{batch_id}` | GET | Consulta status do batch |
+| `POST /utils/competencias/batch/openai/padrao/salvar/{batch_id}` | POST | Lê resultados e persiste no banco |
+| `POST /utils/competencias/batch/openai/webhook` | POST | Recebe notificação de batch concluído (ambas variantes OpenAI) |
+
+### Batch — OpenAI (otimizado)
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `POST /utils/competencias/batch/openai/otimizado/submit` | POST | Submete batch: gpt-4.1-mini sumariza → gpt-4.1 classifica em batch |
+| `GET /utils/competencias/batch/openai/otimizado/status/{batch_id}` | GET | Consulta status do batch |
+| `POST /utils/competencias/batch/openai/otimizado/salvar/{batch_id}` | POST | Lê resultados e persiste no banco |
 
 ### Conversao de Artigos
 
@@ -164,6 +199,158 @@ O mesmo padrão `{PROJETO}_ANTHROPIC_API_KEY` funciona para qualquer projeto.
 
 Localizada em `local-files/runner/projects/classificador_competencias/biblioteca_competencias.json`.
 Contém 112 competências (~669 habilidades), carregada em memória na inicialização do serviço.
+
+---
+
+## Classificação em Batch
+
+Para classificar muitos cursos de uma vez, o runner suporta as **Batch APIs** da Anthropic e da OpenAI, que oferecem **50% de desconto** em troca de latência de até 24 h.
+
+### Variantes disponíveis
+
+| Variante | Provider | Step 1 | Step 2 (batch) | Campo no banco |
+| --- | --- | --- | --- | --- |
+| `anthropic/padrao` | Anthropic | — | Opus (transcrições brutas) | `competencias_batch_anthropic_padrao` |
+| `anthropic/otimizado` | Anthropic | Haiku sumariza (síncrono) | Opus classifica resumos | `competencias_batch_anthropic_otimizado` |
+| `openai/padrao` | OpenAI | — | gpt-4.1 (transcrições brutas) | `competencias_batch_openai_padrao` |
+| `openai/otimizado` | OpenAI | gpt-4.1-mini sumariza (síncrono) | gpt-4.1 classifica resumos | `competencias_batch_openai_otimizado` |
+
+> Todas as variantes são **independentes** — os resultados ficam em campos separados, permitindo comparação direta. Para remover uma variante, apague o arquivo de service correspondente e remova o import do `router.py`.
+
+### Parâmetros do submit
+
+Corpo JSON para todos os endpoints `submit`:
+
+```json
+{
+  "course_ids": [123, 456, 789],
+  "force": false
+}
+```
+
+Variantes padrão aceitam também `"model"`. Variantes otimizado aceitam `"modelo_sumarizacao"` e `"modelo_classificacao"`.
+
+| Campo | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `course_ids` | `list[int]` | — | IDs dos cursos a processar |
+| `force` | `bool` | `false` | Se `true`, reclassifica mesmo que já exista resultado salvo |
+| `model` | `string` | modelo padrão da variante | (só variantes padrão) Modelo para classificação |
+| `modelo_sumarizacao` | `string` | Haiku / gpt-4.1-mini | (só variantes otimizado) Modelo do step 1 |
+| `modelo_classificacao` | `string` | Opus / gpt-4.1 | (só variantes otimizado) Modelo do step 2 (batch) |
+
+Cursos sem transcrições ou não encontrados no banco são automaticamente ignorados (`skipped`).
+
+### Saída do submit
+
+```json
+{
+  "batch_id": "msgbatch_abc123",
+  "submitted": [123, 456],
+  "skipped": [789],
+  "processing_status": "in_progress"
+}
+```
+
+### Exemplo de uso
+
+```bash
+# 1. Submeter batch Anthropic otimizado
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/otimizado/submit \
+  -H "Content-Type: application/json" \
+  -d '{"course_ids": [123, 456, 789], "force": false}'
+
+# 2. Verificar status (polling)
+curl http://runner:8000/utils/competencias/batch/anthropic/otimizado/status/msgbatch_abc123
+
+# 3. Quando processing_status == "ended", salvar resultados
+curl -X POST http://runner:8000/utils/competencias/batch/anthropic/otimizado/salvar/msgbatch_abc123
+```
+
+---
+
+### Automatizando com n8n — Anthropic (polling)
+
+A API Anthropic Batches **não tem webhook**. Use um workflow de polling com n8n:
+
+```
+[Schedule — a cada 5 min]
+        │
+        ▼
+[HTTP Request — GET status/{batch_id}]
+        │
+        ▼
+[IF — processing_status == "ended"?]
+   │                    │
+  Sim                  Não
+   │                    │
+   ▼                    ▼
+[HTTP Request —    [NoOp — aguarda
+ POST salvar/       próximo ciclo]
+ {batch_id}]
+        │
+        ▼
+[Set — desativar workflow ou notificar]
+```
+
+**Passo a passo:**
+
+1. Crie um workflow n8n
+2. Adicione um nó **Schedule Trigger** com intervalo de 5 minutos
+3. Adicione um nó **HTTP Request**:
+   - Method: `GET`
+   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/status/{{ $vars.batch_id }}`
+4. Adicione um nó **IF**:
+   - Condição: `{{ $json.processing_status }}` equals `ended`
+5. Ramo **true**: adicione **HTTP Request**:
+   - Method: `POST`
+   - URL: `http://runner:8000/utils/competencias/batch/anthropic/otimizado/salvar/{{ $vars.batch_id }}`
+6. No nó de salvar, adicione um **Set** para desativar o workflow ou enviar notificação
+
+> **Dica:** Armazene o `batch_id` em uma variável de workflow n8n (`$vars`) após o submit para reutilizar no polling.
+
+---
+
+### Automatizando com n8n — OpenAI (webhook)
+
+A API OpenAI Batches **tem suporte a webhook**. O runner expõe um endpoint único em:
+
+```
+POST /utils/competencias/batch/openai/webhook
+```
+
+O endpoint roteia automaticamente para `padrao` ou `otimizado` com base no `metadata.variant` salvo no batch durante o submit.
+
+**Configuração:**
+
+1. Configure a URL do webhook no painel da OpenAI apontando para:
+
+   ```text
+   https://seu-runner.dominio.com.br/utils/competencias/batch/openai/webhook
+   ```
+
+2. Adicione a variável de ambiente `OPENAI_WEBHOOK_SECRET` no `.env` com o segredo gerado pela OpenAI
+3. O runner verificará a assinatura `OpenAI-Signature` automaticamente
+
+**Passo a passo no n8n (submit + aguardar webhook):**
+
+```
+[Manual Trigger ou Schedule]
+        │
+        ▼
+[HTTP Request — POST submit]
+  body: {"course_ids": [...], "force": false}
+        │
+        ▼
+[Set — salva batch_id como variável]
+        │
+        ▼
+[Webhook n8n — aguarda evento do runner]
+        │
+        ▼
+[Notificação ou próximo passo do pipeline]
+```
+
+> **Nota:** O runner chama `salvar()` automaticamente ao receber o webhook da OpenAI. Não é necessário chamar o endpoint `/salvar` manualmente.
 
 ---
 
@@ -278,9 +465,20 @@ n8n-runner-alura/
 │           │   └── queue.py              # Semaphore para controle de concorrencia do scraping
 │           ├── classificador_competencias/
 │           │   ├── router.py             # Endpoints /utils/cursos/{id}/competencias
+│           │   ├── router_otimizado.py   # Endpoints /utils/cursos/{id}/competencias/otimizado
 │           │   ├── service.py            # Extrai transcricoes + chama LLM + valida resposta
-│           │   ├── prompts.py            # System e user prompts do classificador
-│           │   └── biblioteca_competencias.json  # 112 competencias, ~669 habilidades
+│           │   ├── service_otimizado.py  # Dois steps: Haiku sumariza → Opus classifica
+│           │   ├── prompts.py            # Prompts do classificador padrão
+│           │   ├── prompts_otimizado.py  # Prompts do classificador otimizado
+│           │   ├── biblioteca_competencias.json  # 112 competencias, ~669 habilidades
+│           │   └── batch/
+│           │       ├── router.py         # 13 endpoints batch (todos os providers/variantes)
+│           │       ├── anthropic/
+│           │       │   ├── service_padrao.py     # Batch Anthropic: transcrições → Opus
+│           │       │   └── service_otimizado.py  # Batch Anthropic: Haiku→Opus
+│           │       └── openai/
+│           │           ├── service_padrao.py     # Batch OpenAI: transcrições → gpt-4.1
+│           │           └── service_otimizado.py  # Batch OpenAI: mini→gpt-4.1
 │           └── revisao_artigos/
 │               ├── router.py             # Endpoints /revisao/artigos/*
 │               ├── prompts.py            # Prompts dos agentes de revisao
@@ -329,6 +527,9 @@ REVISAO_ARTIGOS_OPENAI_API_KEY=sk-...
 # Modelos padrao (opcional — se nao definido, usa o hardcoded no cliente)
 ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 OPENAI_MODEL=gpt-4.1
+
+# Segredo para verificação de assinaturas do webhook OpenAI Batch
+OPENAI_WEBHOOK_SECRET=whsec_...
 
 # HTTPS via Traefik (opcional)
 RUNNER_SUBDOMAIN=runner

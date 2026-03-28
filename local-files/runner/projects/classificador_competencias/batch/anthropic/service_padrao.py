@@ -25,7 +25,7 @@ from projects.classificador_competencias.service import (
 )
 
 _DEFAULT_MODEL = "claude-opus-4-6"
-_DB_FIELD = "competencias_batch_anthropic_padrao"
+_DB_FIELD = "competencias"
 
 
 def _get_client() -> anthropic.Anthropic:

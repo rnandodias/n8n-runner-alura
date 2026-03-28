@@ -36,7 +36,7 @@ from projects.classificador_competencias.service_otimizado import _BIBLIOTECA_CO
 
 _DEFAULT_MODEL_SUMARIZACAO = "claude-haiku-4-5-20251001"
 _DEFAULT_MODEL_CLASSIFICACAO = "claude-opus-4-6"
-_DB_FIELD = "competencias_batch_anthropic_otimizado"
+_DB_FIELD = "competencias_otimizado"
 
 
 def _get_client() -> anthropic.Anthropic:

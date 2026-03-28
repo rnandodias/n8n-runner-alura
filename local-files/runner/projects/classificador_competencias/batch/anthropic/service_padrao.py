@@ -148,8 +148,22 @@ async def salvar(batch_id: str) -> dict:
     saved = []
     errors = []
 
-    for result in client.messages.batches.results(batch_id):
-        course_id_str = result.custom_id
+    # results() retorna BinaryAPIResponse com o JSONL bruto — parseia linha a linha
+    resposta = client.messages.batches.results(batch_id)
+    linhas = resposta.text.strip().splitlines()
+    print(f"[batch/anthropic/padrao] {len(linhas)} resultado(s) recebido(s) do batch {batch_id}")
+
+    for linha in linhas:
+        if not linha.strip():
+            continue
+
+        try:
+            data = json.loads(linha)
+        except json.JSONDecodeError as e:
+            print(f"[batch/anthropic/padrao] Linha inválida no JSONL: {e}")
+            continue
+
+        course_id_str = data.get("custom_id", "")
         try:
             course_id = int(course_id_str)
         except ValueError:
@@ -157,13 +171,15 @@ async def salvar(batch_id: str) -> dict:
             errors.append(course_id_str)
             continue
 
-        if result.result.type != "succeeded":
-            print(f"[batch/anthropic/padrao] Curso {course_id}: {result.result.type}")
+        result = data.get("result", {})
+        if result.get("type") != "succeeded":
+            print(f"[batch/anthropic/padrao] Curso {course_id}: {result.get('type')}")
             errors.append(course_id)
             continue
 
         try:
-            texto = result.result.message.content[0].text
+            content = result["message"]["content"]
+            texto = next(b["text"] for b in content if b["type"] == "text")
             competencias = _parsear_resposta(texto)
             competencias = _validar_competencias(competencias)
         except Exception as e:

@@ -182,22 +182,20 @@ async def salvar(batch_id: str) -> dict:
     saved = []
     errors = []
 
-    # results() retorna BinaryAPIResponse com o JSONL bruto — parseia linha a linha
-    resposta = client.messages.batches.results(batch_id)
-    linhas = resposta.text.strip().splitlines()
-    print(f"[batch/anthropic/otimizado] {len(linhas)} resultado(s) recebido(s) do batch {batch_id}")
-
-    for linha in linhas:
-        if not linha.strip():
-            continue
-
+    # results() retorna um iterável (JSONLDecoder) de MessageBatchIndividualResponse
+    for item in client.messages.batches.results(batch_id):
         try:
-            data = json.loads(linha)
-        except json.JSONDecodeError as e:
-            print(f"[batch/anthropic/otimizado] Linha inválida no JSONL: {e}")
+            # Suporta objeto com atributos (SDK atual) e dict (versões alternativas)
+            if isinstance(item, dict):
+                course_id_str = item.get("custom_id", "")
+                result_type = item.get("result", {}).get("type", "")
+            else:
+                course_id_str = item.custom_id
+                result_type = item.result.type
+        except Exception as e:
+            print(f"[batch/anthropic/otimizado] Erro ao ler item do batch: {e}")
             continue
 
-        course_id_str = data.get("custom_id", "")
         try:
             course_id = int(course_id_str)
         except ValueError:
@@ -205,15 +203,17 @@ async def salvar(batch_id: str) -> dict:
             errors.append(course_id_str)
             continue
 
-        result = data.get("result", {})
-        if result.get("type") != "succeeded":
-            print(f"[batch/anthropic/otimizado] Curso {course_id}: {result.get('type')}")
+        if result_type != "succeeded":
+            print(f"[batch/anthropic/otimizado] Curso {course_id}: {result_type}")
             errors.append(course_id)
             continue
 
         try:
-            content = result["message"]["content"]
-            texto = next(b["text"] for b in content if b["type"] == "text")
+            if isinstance(item, dict):
+                content = item["result"]["message"]["content"]
+                texto = next(b["text"] for b in content if b["type"] == "text")
+            else:
+                texto = item.result.message.content[0].text
             competencias = _parsear_resposta(texto)
             competencias = _validar_competencias(competencias)
         except Exception as e:

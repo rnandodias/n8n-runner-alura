@@ -36,11 +36,11 @@ with open(_BIBLIOTECA_PATH, encoding="utf-8") as _f:
 # Biblioteca comprimida: remove descricao_competencia para reduzir tokens (~50% menor)
 _BIBLIOTECA_COMPRIMIDA = [
     {
-        "id_competencia": c["id_competencia"],
+        "codigo_competencia": c["codigo_competencia"],
         "nome_competencia": c["nome_competencia"],
         "habilidades": c["habilidades"],
     }
-    for c in _BIBLIOTECA_COMPLETA["competencias"]
+    for c in _BIBLIOTECA_COMPLETA["biblioteca_competencias"]
 ]
 _BIBLIOTECA_COMPRIMIDA_JSON = json.dumps(_BIBLIOTECA_COMPRIMIDA, ensure_ascii=False, indent=2)
 

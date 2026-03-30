@@ -18,11 +18,11 @@ _BIBLIOTECA_PATH = Path(__file__).parent / "biblioteca_competencias.json"
 with open(_BIBLIOTECA_PATH, encoding="utf-8") as _f:
     _BIBLIOTECA = json.load(_f)
 
-_BIBLIOTECA_JSON = json.dumps(_BIBLIOTECA["competencias"], ensure_ascii=False, indent=2)
-_BIBLIOTECA_IDS = {c["id_competencia"] for c in _BIBLIOTECA["competencias"]}
+_BIBLIOTECA_JSON = json.dumps(_BIBLIOTECA["biblioteca_competencias"], ensure_ascii=False, indent=2)
+_BIBLIOTECA_IDS = {c["codigo_competencia"] for c in _BIBLIOTECA["biblioteca_competencias"]}
 _HABILIDADES_IDS = {
-    h["id_habilidade"]
-    for c in _BIBLIOTECA["competencias"]
+    h["codigo_habilidade"]
+    for c in _BIBLIOTECA["biblioteca_competencias"]
     for h in c["habilidades"]
 }
 

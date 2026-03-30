@@ -32,11 +32,11 @@ Retorne APENAS um objeto JSON válido, sem texto adicional, neste formato exato:
 {
   "competencias": [
     {
-      "id": "CP0001",
+      "id": "CP001",
       "nome": "Nome da competência",
       "descricao": "Descrição da competência",
       "habilidades": [
-        { "id": "HB00001", "nome": "nome da habilidade" }
+        { "id": "HB0001", "nome": "nome da habilidade" }
       ]
     }
   ]

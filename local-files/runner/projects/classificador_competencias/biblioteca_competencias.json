@@ -3,16 +3,7 @@
     {
       "codigo_competencia": "CP001",
       "nome_competencia": "Lógica de programação",
-      "descricao_competencia": "Construção de soluções computacionais com controle de fluxo, variáveis e decomposição de problemas.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter"
-      ],
+      "descricao_competencia": "Construção de soluções com variáveis, controle de fluxo e decomposição de problemas.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0001",
@@ -35,19 +26,7 @@
     {
       "codigo_competencia": "CP002",
       "nome_competencia": "Estruturas de dados",
-      "descricao_competencia": "Organização e manipulação de coleções e estruturas usadas na implementação de software.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Ciência de Dados",
-        "Engenharia de Dados",
-        "Engenharia de Machine Learning"
-      ],
+      "descricao_competencia": "Organização e manipulação de coleções usadas na implementação de software e análise.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0005",
@@ -71,17 +50,6 @@
       "codigo_competencia": "CP003",
       "nome_competencia": "Fundamentos de algoritmos",
       "descricao_competencia": "Criação de procedimentos lógicos para resolver tarefas com previsibilidade e clareza.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Ciência de Dados",
-        "Engenharia de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA"
-      ],
       "habilidades": [
         {
           "codigo_habilidade": "HB0009",
@@ -103,2139 +71,3842 @@
     },
     {
       "codigo_competencia": "CP004",
-      "nome_competencia": "Versionamento colaborativo",
-      "descricao_competencia": "Controle de histórico e colaboração em código, conteúdo e artefatos técnicos.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Engenharia de Dados",
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Cloud Security",
-        "UX Design",
-        "UI Design",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Resolução estruturada de problemas",
+      "descricao_competencia": "Abordagem metódica para entender contextos, formular hipóteses e testar soluções.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0013",
-          "nome_habilidade": "criar commits com propósito claro"
+          "nome_habilidade": "delimitar o problema a resolver"
         },
         {
           "codigo_habilidade": "HB0014",
-          "nome_habilidade": "trabalhar com branches"
+          "nome_habilidade": "levantar hipóteses de causa"
         },
         {
           "codigo_habilidade": "HB0015",
-          "nome_habilidade": "resolver conflitos de merge"
+          "nome_habilidade": "comparar alternativas de solução"
         },
         {
           "codigo_habilidade": "HB0016",
-          "nome_habilidade": "revisar mudanças em pull requests"
+          "nome_habilidade": "validar resultados obtidos"
         }
       ]
     },
     {
       "codigo_competencia": "CP005",
-      "nome_competencia": "Programação orientada a objetos",
-      "descricao_competencia": "Modelagem de software com encapsulamento, composição e organização por objetos.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Mobile com Flutter",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Leitura e manutenção de código",
+      "descricao_competencia": "Interpretação, diagnóstico e evolução de bases existentes com segurança e clareza.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0017",
-          "nome_habilidade": "modelar classes e objetos"
+          "nome_habilidade": "navegar por código legado"
         },
         {
           "codigo_habilidade": "HB0018",
-          "nome_habilidade": "aplicar encapsulamento"
+          "nome_habilidade": "identificar responsabilidades em módulos"
         },
         {
           "codigo_habilidade": "HB0019",
-          "nome_habilidade": "usar herança e composição"
+          "nome_habilidade": "localizar causas de falhas"
         },
         {
           "codigo_habilidade": "HB0020",
-          "nome_habilidade": "organizar responsabilidades entre objetos"
+          "nome_habilidade": "evoluir código sem quebrar comportamento"
         }
       ]
     },
     {
       "codigo_competencia": "CP006",
-      "nome_competencia": "Desenvolvimento de APIs",
-      "descricao_competencia": "Criação, evolução e integração de interfaces de serviços para aplicações.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Versionamento colaborativo",
+      "descricao_competencia": "Controle de histórico e colaboração em código, conteúdo e artefatos técnicos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0021",
-          "nome_habilidade": "criar endpoints REST"
+          "nome_habilidade": "criar commits com propósito claro"
         },
         {
           "codigo_habilidade": "HB0022",
-          "nome_habilidade": "validar entradas e saídas"
+          "nome_habilidade": "trabalhar com branches"
         },
         {
           "codigo_habilidade": "HB0023",
-          "nome_habilidade": "documentar APIs com OpenAPI"
+          "nome_habilidade": "resolver conflitos de merge"
         },
         {
           "codigo_habilidade": "HB0024",
-          "nome_habilidade": "versionar contratos de serviço"
+          "nome_habilidade": "revisar mudanças em pull requests"
         }
       ]
     },
     {
       "codigo_competencia": "CP007",
-      "nome_competencia": "Integração entre sistemas",
-      "descricao_competencia": "Conexão de aplicações, serviços e plataformas com troca confiável de informações.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Engenharia de Dados",
-        "Engenharia de IA",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Platform Engineering"
-      ],
+      "nome_competencia": "Terminal e linha de comando",
+      "descricao_competencia": "Uso de comandos e scripts para operar ambientes, arquivos e processos técnicos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0025",
-          "nome_habilidade": "consumir APIs externas"
+          "nome_habilidade": "navegar por diretórios e arquivos"
         },
         {
           "codigo_habilidade": "HB0026",
-          "nome_habilidade": "integrar serviços por mensageria"
+          "nome_habilidade": "executar comandos e utilitários"
         },
         {
           "codigo_habilidade": "HB0027",
-          "nome_habilidade": "transformar formatos de dados"
+          "nome_habilidade": "encadear comandos em pipelines"
         },
         {
           "codigo_habilidade": "HB0028",
-          "nome_habilidade": "tratar falhas de integração"
+          "nome_habilidade": "automatizar tarefas simples no terminal"
         }
       ]
     },
     {
       "codigo_competencia": "CP008",
-      "nome_competencia": "Persistência de dados",
-      "descricao_competencia": "Armazenamento, recuperação e atualização de dados em aplicações e serviços.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Mobile com Flutter",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Fundamentos de Linux",
+      "descricao_competencia": "Operação básica de sistemas Linux para desenvolvimento, dados e infraestrutura.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0029",
-          "nome_habilidade": "mapear entidades para banco"
+          "nome_habilidade": "inspecionar processos e serviços"
         },
         {
           "codigo_habilidade": "HB0030",
-          "nome_habilidade": "executar operações CRUD"
+          "nome_habilidade": "gerenciar permissões de arquivos"
         },
         {
           "codigo_habilidade": "HB0031",
-          "nome_habilidade": "modelar relacionamentos entre dados"
+          "nome_habilidade": "editar configurações em ambiente Linux"
         },
         {
           "codigo_habilidade": "HB0032",
-          "nome_habilidade": "tratar transações e consistência"
+          "nome_habilidade": "coletar informações do sistema"
         }
       ]
     },
     {
       "codigo_competencia": "CP009",
-      "nome_competencia": "Modelagem de dados",
-      "descricao_competencia": "Estruturação de dados para suportar operações, análise e evolução de sistemas.",
-      "carreiras_relacionadas": [
-        "Engenharia de Dados",
-        "Ciência de Dados",
-        "Análise de Dados",
-        "Governança de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Arquitetura de Soluções",
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET"
-      ],
+      "nome_competencia": "Fundamentos de redes",
+      "descricao_competencia": "Compreensão prática de comunicação entre sistemas, portas, protocolos e conectividade.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0033",
-          "nome_habilidade": "definir entidades e atributos"
+          "nome_habilidade": "identificar protocolos de rede"
         },
         {
           "codigo_habilidade": "HB0034",
-          "nome_habilidade": "normalizar estruturas relacionais"
+          "nome_habilidade": "testar conectividade entre serviços"
         },
         {
           "codigo_habilidade": "HB0035",
-          "nome_habilidade": "modelar fatos e dimensões"
+          "nome_habilidade": "interpretar endereços e portas"
         },
         {
           "codigo_habilidade": "HB0036",
-          "nome_habilidade": "avaliar impacto de mudanças no modelo"
+          "nome_habilidade": "diagnosticar falhas básicas de comunicação"
         }
       ]
     },
     {
       "codigo_competencia": "CP010",
-      "nome_competencia": "Consultas e manipulação de dados",
-      "descricao_competencia": "Extração, filtragem e transformação de dados com linguagem declarativa e operações tabulares.",
-      "carreiras_relacionadas": [
-        "Engenharia de Dados",
-        "Ciência de Dados",
-        "Análise de Dados",
-        "Governança de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Desenvolvimento Backend Python"
-      ],
+      "nome_competencia": "Fundamentos de sistemas",
+      "descricao_competencia": "Leitura de ambientes computacionais, recursos e componentes de execução.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0037",
-          "nome_habilidade": "escrever consultas SQL"
+          "nome_habilidade": "identificar uso de cpu e memória"
         },
         {
           "codigo_habilidade": "HB0038",
-          "nome_habilidade": "combinar tabelas com joins"
+          "nome_habilidade": "distinguir processos e threads"
         },
         {
           "codigo_habilidade": "HB0039",
-          "nome_habilidade": "agregar dados para análise"
+          "nome_habilidade": "analisar uso de disco e rede"
         },
         {
           "codigo_habilidade": "HB0040",
-          "nome_habilidade": "transformar dados tabulares"
+          "nome_habilidade": "relacionar componentes de runtime"
         }
       ]
     },
     {
       "codigo_competencia": "CP011",
-      "nome_competencia": "Automação com scripts",
-      "descricao_competencia": "Criação de rotinas automatizadas para tarefas operacionais, analíticas e de desenvolvimento.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Python",
-        "Engenharia de Dados",
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Cloud Security",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Pensamento analítico",
+      "descricao_competencia": "Uso de raciocínio estruturado para interpretar sinais, métricas e relações em dados.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0041",
-          "nome_habilidade": "automatizar tarefas repetitivas"
+          "nome_habilidade": "formular perguntas analíticas"
         },
         {
           "codigo_habilidade": "HB0042",
-          "nome_habilidade": "manipular arquivos em lote"
+          "nome_habilidade": "separar fatos de interpretações"
         },
         {
           "codigo_habilidade": "HB0043",
-          "nome_habilidade": "orquestrar comandos e processos"
+          "nome_habilidade": "identificar padrões relevantes"
         },
         {
           "codigo_habilidade": "HB0044",
-          "nome_habilidade": "agendar execuções automatizadas"
+          "nome_habilidade": "sintetizar conclusões com evidências"
         }
       ]
     },
     {
       "codigo_competencia": "CP012",
-      "nome_competencia": "Testes de software",
-      "descricao_competencia": "Validação automatizada do comportamento de componentes, serviços e fluxos de aplicação.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Pensamento estatístico inicial",
+      "descricao_competencia": "Leitura de variabilidade, tendência e incerteza em contextos orientados por dados.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0045",
-          "nome_habilidade": "criar testes unitários"
+          "nome_habilidade": "comparar distribuições simples"
         },
         {
           "codigo_habilidade": "HB0046",
-          "nome_habilidade": "executar testes de integração"
+          "nome_habilidade": "interpretar médias e dispersão"
         },
         {
           "codigo_habilidade": "HB0047",
-          "nome_habilidade": "simular dependências com mocks"
+          "nome_habilidade": "avaliar amostras e vieses básicos"
         },
         {
           "codigo_habilidade": "HB0048",
-          "nome_habilidade": "validar cenários de erro"
+          "nome_habilidade": "questionar conclusões precipitadas"
         }
       ]
     },
     {
       "codigo_competencia": "CP013",
-      "nome_competencia": "Refatoração e manutenção evolutiva",
-      "descricao_competencia": "Melhoria contínua de código e estrutura sem alterar o comportamento esperado.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Fundamentos de experiência digital",
+      "descricao_competencia": "Leitura de contexto de uso, usabilidade e valor em produtos e interfaces.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0049",
-          "nome_habilidade": "identificar duplicações e acoplamento"
+          "nome_habilidade": "identificar objetivos do usuário"
         },
         {
           "codigo_habilidade": "HB0050",
-          "nome_habilidade": "simplificar estruturas de código"
+          "nome_habilidade": "analisar fricções de navegação"
         },
         {
           "codigo_habilidade": "HB0051",
-          "nome_habilidade": "preservar comportamento com testes"
+          "nome_habilidade": "relacionar interface e tarefa"
         },
         {
           "codigo_habilidade": "HB0052",
-          "nome_habilidade": "evoluir código legado com segurança"
+          "nome_habilidade": "avaliar clareza de fluxos"
         }
       ]
     },
     {
       "codigo_competencia": "CP014",
-      "nome_competencia": "Arquitetura de aplicações",
-      "descricao_competencia": "Organização estrutural de componentes, camadas e responsabilidades de uma solução.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Platform Engineering"
-      ],
+      "nome_competencia": "Fundamentos de marketing digital",
+      "descricao_competencia": "Entendimento básico de canais, audiência, métricas e objetivos de marketing.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0053",
-          "nome_habilidade": "separar camadas da aplicação"
+          "nome_habilidade": "distinguir canais de aquisição"
         },
         {
           "codigo_habilidade": "HB0054",
-          "nome_habilidade": "definir responsabilidades por componente"
+          "nome_habilidade": "relacionar objetivo e formato de campanha"
         },
         {
           "codigo_habilidade": "HB0055",
-          "nome_habilidade": "aplicar padrões arquiteturais"
+          "nome_habilidade": "identificar métricas básicas de performance"
         },
         {
           "codigo_habilidade": "HB0056",
-          "nome_habilidade": "avaliar impactos de mudanças estruturais"
+          "nome_habilidade": "interpretar jornada de audiência"
         }
       ]
     },
     {
       "codigo_competencia": "CP015",
-      "nome_competencia": "Escalabilidade e desempenho",
-      "descricao_competencia": "Adequação de sistemas para volume, concorrência, latência e uso eficiente de recursos.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Site Reliability Engineering",
-        "Platform Engineering"
-      ],
+      "nome_competencia": "Maturidade profissional inicial",
+      "descricao_competencia": "Hábitos e atitudes que sustentam aprendizagem, colaboração e atuação no mercado.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0057",
-          "nome_habilidade": "identificar gargalos de execução"
+          "nome_habilidade": "organizar rotina de estudo e trabalho"
         },
         {
           "codigo_habilidade": "HB0058",
-          "nome_habilidade": "otimizar consultas e processamento"
+          "nome_habilidade": "registrar aprendizados e decisões"
         },
         {
           "codigo_habilidade": "HB0059",
-          "nome_habilidade": "aplicar cache em pontos críticos"
+          "nome_habilidade": "buscar feedback de forma ativa"
         },
         {
           "codigo_habilidade": "HB0060",
-          "nome_habilidade": "planejar escalabilidade horizontal"
+          "nome_habilidade": "cumprir combinados com consistência"
         }
       ]
     },
     {
       "codigo_competencia": "CP016",
-      "nome_competencia": "Frontend com React",
-      "descricao_competencia": "Construção de interfaces web reativas com componentes, estado e integração com serviços.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Frontend React",
-        "UI Design",
-        "UX Design"
-      ],
+      "nome_competencia": "Programação orientada a objetos",
+      "descricao_competencia": "Modelagem de software com encapsulamento, composição e organização por objetos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0061",
-          "nome_habilidade": "criar componentes reutilizáveis"
+          "nome_habilidade": "modelar classes e objetos"
         },
         {
           "codigo_habilidade": "HB0062",
-          "nome_habilidade": "gerenciar estado da interface"
+          "nome_habilidade": "aplicar encapsulamento"
         },
         {
           "codigo_habilidade": "HB0063",
-          "nome_habilidade": "consumir APIs no frontend"
+          "nome_habilidade": "usar herança e composição"
         },
         {
           "codigo_habilidade": "HB0064",
-          "nome_habilidade": "navegar entre rotas da aplicação"
+          "nome_habilidade": "organizar responsabilidades entre objetos"
         }
       ]
     },
     {
       "codigo_competencia": "CP017",
-      "nome_competencia": "Mobile com Flutter",
-      "descricao_competencia": "Desenvolvimento de aplicações móveis com widgets, estado e integração com serviços.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Mobile com Flutter",
-        "UI Design",
-        "UX Design"
-      ],
+      "nome_competencia": "Programação funcional aplicada",
+      "descricao_competencia": "Uso de funções, imutabilidade e transformação de dados para código previsível.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0065",
-          "nome_habilidade": "compor interfaces com widgets"
+          "nome_habilidade": "compor funções para resolver tarefas"
         },
         {
           "codigo_habilidade": "HB0066",
-          "nome_habilidade": "gerenciar estado do app"
+          "nome_habilidade": "aplicar transformação imutável de dados"
         },
         {
           "codigo_habilidade": "HB0067",
-          "nome_habilidade": "integrar app com APIs"
+          "nome_habilidade": "usar operações de mapeamento e filtro"
         },
         {
           "codigo_habilidade": "HB0068",
-          "nome_habilidade": "persistir dados no dispositivo"
+          "nome_habilidade": "reduzir efeitos colaterais"
         }
       ]
     },
     {
       "codigo_competencia": "CP018",
-      "nome_competencia": "Experiência do usuário",
-      "descricao_competencia": "Projeto de fluxos digitais centrados nas necessidades, objetivos e comportamento das pessoas usuárias.",
-      "carreiras_relacionadas": [
-        "UX Design",
-        "UI Design",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Desenvolvimento de APIs",
+      "descricao_competencia": "Criação, evolução e integração de interfaces de serviços para aplicações.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0069",
-          "nome_habilidade": "mapear jornadas de uso"
+          "nome_habilidade": "criar endpoints REST"
         },
         {
           "codigo_habilidade": "HB0070",
-          "nome_habilidade": "definir fluxos de interação"
+          "nome_habilidade": "validar entradas e saídas"
         },
         {
           "codigo_habilidade": "HB0071",
-          "nome_habilidade": "validar hipóteses com usuários"
+          "nome_habilidade": "documentar APIs com OpenAPI"
         },
         {
           "codigo_habilidade": "HB0072",
-          "nome_habilidade": "identificar fricções na experiência"
+          "nome_habilidade": "versionar contratos de serviço"
         }
       ]
     },
     {
       "codigo_competencia": "CP019",
-      "nome_competencia": "Design de interface",
-      "descricao_competencia": "Construção visual e estrutural de interfaces digitais consistentes, legíveis e funcionais.",
-      "carreiras_relacionadas": [
-        "UI Design",
-        "UX Design",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter"
-      ],
+      "nome_competencia": "Arquitetura de APIs",
+      "descricao_competencia": "Definição estrutural de serviços, contratos e padrões para integração confiável.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0073",
-          "nome_habilidade": "criar layouts de interface"
+          "nome_habilidade": "definir recursos e rotas coerentes"
         },
         {
           "codigo_habilidade": "HB0074",
-          "nome_habilidade": "aplicar hierarquia visual"
+          "nome_habilidade": "padronizar códigos e mensagens de erro"
         },
         {
           "codigo_habilidade": "HB0075",
-          "nome_habilidade": "prototipar telas navegáveis"
+          "nome_habilidade": "planejar versionamento de contratos"
         },
         {
           "codigo_habilidade": "HB0076",
-          "nome_habilidade": "documentar componentes visuais"
+          "nome_habilidade": "alinhar segurança e documentação da API"
         }
       ]
     },
     {
       "codigo_competencia": "CP020",
-      "nome_competencia": "Design systems",
-      "descricao_competencia": "Definição e manutenção de padrões reutilizáveis para interfaces e implementação consistente.",
-      "carreiras_relacionadas": [
-        "UI Design",
-        "UX Design",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Integração entre sistemas",
+      "descricao_competencia": "Conexão de aplicações, serviços e plataformas com troca confiável de informações.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0077",
-          "nome_habilidade": "definir biblioteca de componentes"
+          "nome_habilidade": "consumir APIs externas"
         },
         {
           "codigo_habilidade": "HB0078",
-          "nome_habilidade": "padronizar tokens visuais"
+          "nome_habilidade": "integrar serviços por mensageria"
         },
         {
           "codigo_habilidade": "HB0079",
-          "nome_habilidade": "documentar regras de uso"
+          "nome_habilidade": "transformar formatos de dados"
         },
         {
           "codigo_habilidade": "HB0080",
-          "nome_habilidade": "alinhar handoff entre design e código"
+          "nome_habilidade": "tratar falhas de integração"
         }
       ]
     },
     {
       "codigo_competencia": "CP021",
-      "nome_competencia": "Visualização de dados",
-      "descricao_competencia": "Representação visual de dados para análise, comunicação e apoio à decisão.",
-      "carreiras_relacionadas": [
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de Dados",
-        "Governança de Dados",
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Recursos Humanos"
-      ],
+      "nome_competencia": "Persistência de dados",
+      "descricao_competencia": "Armazenamento, recuperação e atualização de dados em aplicações e serviços.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0081",
-          "nome_habilidade": "selecionar gráfico adequado"
+          "nome_habilidade": "mapear entidades para banco"
         },
         {
           "codigo_habilidade": "HB0082",
-          "nome_habilidade": "construir dashboards"
+          "nome_habilidade": "executar operações CRUD"
         },
         {
           "codigo_habilidade": "HB0083",
-          "nome_habilidade": "destacar padrões e outliers"
+          "nome_habilidade": "modelar relacionamentos entre dados"
         },
         {
           "codigo_habilidade": "HB0084",
-          "nome_habilidade": "comunicar achados visualmente"
+          "nome_habilidade": "tratar transações e consistência"
         }
       ]
     },
     {
       "codigo_competencia": "CP022",
-      "nome_competencia": "Análise exploratória de dados",
-      "descricao_competencia": "Investigação inicial de dados para identificar padrões, anomalias e oportunidades analíticas.",
-      "carreiras_relacionadas": [
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de Dados",
-        "Engenharia de Machine Learning",
-        "Especialista em IA"
-      ],
+      "nome_competencia": "Modelagem para aplicações",
+      "descricao_competencia": "Estruturação de dados e regras de domínio para sustentar fluxos de software.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0085",
-          "nome_habilidade": "inspecionar distribuição de variáveis"
+          "nome_habilidade": "definir entidades e agregados"
         },
         {
           "codigo_habilidade": "HB0086",
-          "nome_habilidade": "comparar grupos e segmentos"
+          "nome_habilidade": "representar regras de domínio"
         },
         {
           "codigo_habilidade": "HB0087",
-          "nome_habilidade": "detectar valores ausentes e extremos"
+          "nome_habilidade": "organizar relacionamentos entre objetos"
         },
         {
           "codigo_habilidade": "HB0088",
-          "nome_habilidade": "formular hipóteses analíticas"
+          "nome_habilidade": "avaliar impacto de mudanças no modelo"
         }
       ]
     },
     {
       "codigo_competencia": "CP023",
-      "nome_competencia": "Preparação de dados",
-      "descricao_competencia": "Tratamento e organização de dados para consumo analítico, estatístico e por modelos.",
-      "carreiras_relacionadas": [
-        "Engenharia de Dados",
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Especialista em IA"
-      ],
+      "nome_competencia": "Desenvolvimento backend com Java",
+      "descricao_competencia": "Construção de serviços e aplicações backend no ecossistema Java.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0089",
-          "nome_habilidade": "limpar dados inconsistentes"
+          "nome_habilidade": "estruturar projetos Java backend"
         },
         {
           "codigo_habilidade": "HB0090",
-          "nome_habilidade": "padronizar formatos e tipos"
+          "nome_habilidade": "criar serviços e controladores"
         },
         {
           "codigo_habilidade": "HB0091",
-          "nome_habilidade": "combinar fontes de dados"
+          "nome_habilidade": "integrar persistência em aplicações Java"
         },
         {
           "codigo_habilidade": "HB0092",
-          "nome_habilidade": "criar variáveis derivadas"
+          "nome_habilidade": "testar fluxos de negócio em Java"
         }
       ]
     },
     {
       "codigo_competencia": "CP024",
-      "nome_competencia": "Estatística aplicada",
-      "descricao_competencia": "Uso de conceitos estatísticos para interpretar dados, testar hipóteses e avaliar resultados.",
-      "carreiras_relacionadas": [
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Especialista em IA"
-      ],
+      "nome_competencia": "Desenvolvimento backend com Python",
+      "descricao_competencia": "Construção de APIs, automações e serviços no ecossistema Python.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0093",
-          "nome_habilidade": "calcular medidas descritivas"
+          "nome_habilidade": "estruturar aplicações Python backend"
         },
         {
           "codigo_habilidade": "HB0094",
-          "nome_habilidade": "avaliar correlação entre variáveis"
+          "nome_habilidade": "criar rotas e serviços em Python"
         },
         {
           "codigo_habilidade": "HB0095",
-          "nome_habilidade": "executar testes de hipótese"
+          "nome_habilidade": "integrar banco de dados com Python"
         },
         {
           "codigo_habilidade": "HB0096",
-          "nome_habilidade": "interpretar intervalos de confiança"
+          "nome_habilidade": "testar fluxos de backend em Python"
         }
       ]
     },
     {
       "codigo_competencia": "CP025",
-      "nome_competencia": "Pipelines de dados",
-      "descricao_competencia": "Construção de fluxos confiáveis para ingestão, transformação e disponibilização de dados.",
-      "carreiras_relacionadas": [
-        "Engenharia de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Governança de Dados",
-        "Platform Engineering"
-      ],
+      "nome_competencia": "Desenvolvimento backend com Node.js",
+      "descricao_competencia": "Construção de serviços assíncronos e APIs no ecossistema Node.js.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0097",
-          "nome_habilidade": "orquestrar etapas de ETL"
+          "nome_habilidade": "estruturar aplicações Node.js"
         },
         {
           "codigo_habilidade": "HB0098",
-          "nome_habilidade": "monitorar execuções de pipeline"
+          "nome_habilidade": "criar rotas e middlewares"
         },
         {
           "codigo_habilidade": "HB0099",
-          "nome_habilidade": "tratar falhas de processamento"
+          "nome_habilidade": "integrar serviços e bancos no backend"
         },
         {
           "codigo_habilidade": "HB0100",
-          "nome_habilidade": "publicar dados para consumo"
+          "nome_habilidade": "tratar assincronia em fluxos de aplicação"
         }
       ]
     },
     {
       "codigo_competencia": "CP026",
-      "nome_competencia": "Qualidade de dados",
-      "descricao_competencia": "Garantia de confiabilidade, consistência e adequação dos dados ao uso pretendido.",
-      "carreiras_relacionadas": [
-        "Governança de Dados",
-        "Engenharia de Dados",
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Desenvolvimento backend com PHP",
+      "descricao_competencia": "Construção de aplicações web e serviços no ecossistema PHP.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0101",
-          "nome_habilidade": "definir regras de qualidade"
+          "nome_habilidade": "estruturar aplicações PHP"
         },
         {
           "codigo_habilidade": "HB0102",
-          "nome_habilidade": "validar integridade dos dados"
+          "nome_habilidade": "criar rotas e controladores"
         },
         {
           "codigo_habilidade": "HB0103",
-          "nome_habilidade": "medir completude e consistência"
+          "nome_habilidade": "integrar persistência em backend PHP"
         },
         {
           "codigo_habilidade": "HB0104",
-          "nome_habilidade": "corrigir desvios identificados"
+          "nome_habilidade": "organizar regras de negócio no servidor"
         }
       ]
     },
     {
       "codigo_competencia": "CP027",
-      "nome_competencia": "Governança de dados",
-      "descricao_competencia": "Definição de políticas, papéis e controles para uso responsável da informação.",
-      "carreiras_relacionadas": [
-        "Governança de Dados",
-        "Engenharia de Dados",
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Recursos Humanos"
-      ],
+      "nome_competencia": "Desenvolvimento backend com .NET",
+      "descricao_competencia": "Construção de APIs e serviços corporativos no ecossistema .NET.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0105",
-          "nome_habilidade": "definir papéis e responsabilidades"
+          "nome_habilidade": "estruturar aplicações .NET"
         },
         {
           "codigo_habilidade": "HB0106",
-          "nome_habilidade": "classificar dados por criticidade"
+          "nome_habilidade": "criar endpoints e serviços"
         },
         {
           "codigo_habilidade": "HB0107",
-          "nome_habilidade": "documentar políticas de uso"
+          "nome_habilidade": "integrar dados em aplicações .NET"
         },
         {
           "codigo_habilidade": "HB0108",
-          "nome_habilidade": "auditar aderência a regras"
+          "nome_habilidade": "testar fluxos de backend em .NET"
         }
       ]
     },
     {
       "codigo_competencia": "CP028",
-      "nome_competencia": "Metadados e linhagem",
-      "descricao_competencia": "Rastreabilidade de origem, transformação e contexto de uso dos dados.",
-      "carreiras_relacionadas": [
-        "Governança de Dados",
-        "Engenharia de Dados",
-        "Engenharia de Machine Learning",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Desenvolvimento frontend com React",
+      "descricao_competencia": "Construção de interfaces web reativas com componentes, estado e integração.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0109",
-          "nome_habilidade": "catalogar ativos de dados"
+          "nome_habilidade": "criar componentes reutilizáveis"
         },
         {
           "codigo_habilidade": "HB0110",
-          "nome_habilidade": "mapear origem e destino dos dados"
+          "nome_habilidade": "gerenciar estado da interface"
         },
         {
           "codigo_habilidade": "HB0111",
-          "nome_habilidade": "registrar transformações aplicadas"
+          "nome_habilidade": "consumir APIs no frontend"
         },
         {
           "codigo_habilidade": "HB0112",
-          "nome_habilidade": "consultar impacto de mudanças"
+          "nome_habilidade": "navegar entre rotas da aplicação"
         }
       ]
     },
     {
       "codigo_competencia": "CP029",
-      "nome_competencia": "Machine learning supervisionado",
-      "descricao_competencia": "Construção de modelos preditivos com dados rotulados para classificação e regressão.",
-      "carreiras_relacionadas": [
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Especialista em IA",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Desenvolvimento mobile com Flutter",
+      "descricao_competencia": "Desenvolvimento de aplicações móveis com widgets, estado e integração.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0113",
-          "nome_habilidade": "treinar modelos supervisionados"
+          "nome_habilidade": "compor interfaces com widgets"
         },
         {
           "codigo_habilidade": "HB0114",
-          "nome_habilidade": "separar dados de treino e teste"
+          "nome_habilidade": "gerenciar estado do app"
         },
         {
           "codigo_habilidade": "HB0115",
-          "nome_habilidade": "selecionar métricas de avaliação"
+          "nome_habilidade": "integrar app com APIs"
         },
         {
           "codigo_habilidade": "HB0116",
-          "nome_habilidade": "comparar desempenho entre modelos"
+          "nome_habilidade": "persistir dados no dispositivo"
         }
       ]
     },
     {
       "codigo_competencia": "CP030",
-      "nome_competencia": "Engenharia de atributos",
-      "descricao_competencia": "Criação e seleção de representações de dados que ampliam o desempenho de modelos.",
-      "carreiras_relacionadas": [
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Especialista em IA",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Automação com scripts",
+      "descricao_competencia": "Criação de rotinas automatizadas para tarefas operacionais e de desenvolvimento.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0117",
-          "nome_habilidade": "codificar variáveis categóricas"
+          "nome_habilidade": "automatizar tarefas repetitivas"
         },
         {
           "codigo_habilidade": "HB0118",
-          "nome_habilidade": "normalizar variáveis numéricas"
+          "nome_habilidade": "manipular arquivos em lote"
         },
         {
           "codigo_habilidade": "HB0119",
-          "nome_habilidade": "criar atributos derivados"
+          "nome_habilidade": "orquestrar comandos e processos"
         },
         {
           "codigo_habilidade": "HB0120",
-          "nome_habilidade": "selecionar atributos relevantes"
+          "nome_habilidade": "agendar execuções automatizadas"
         }
       ]
     },
     {
       "codigo_competencia": "CP031",
-      "nome_competencia": "Avaliação de modelos",
-      "descricao_competencia": "Análise de desempenho, robustez e adequação de modelos ao objetivo de negócio.",
-      "carreiras_relacionadas": [
-        "Ciência de Dados",
-        "Engenharia de Machine Learning",
-        "Especialista em IA",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Manipulação de arquivos e processos",
+      "descricao_competencia": "Tratamento programático de arquivos, diretórios, processos e fluxos locais.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0121",
-          "nome_habilidade": "calcular métricas de desempenho"
+          "nome_habilidade": "ler e escrever arquivos estruturados"
         },
         {
           "codigo_habilidade": "HB0122",
-          "nome_habilidade": "avaliar overfitting e underfitting"
+          "nome_habilidade": "percorrer diretórios e lotes de arquivos"
         },
         {
           "codigo_habilidade": "HB0123",
-          "nome_habilidade": "validar modelos com cross-validation"
+          "nome_habilidade": "iniciar e monitorar processos"
         },
         {
           "codigo_habilidade": "HB0124",
-          "nome_habilidade": "interpretar erros do modelo"
+          "nome_habilidade": "tratar erros em automações locais"
         }
       ]
     },
     {
       "codigo_competencia": "CP032",
-      "nome_competencia": "MLOps e operação de modelos",
-      "descricao_competencia": "Automação do ciclo de vida de modelos em produção com monitoramento e rastreabilidade.",
-      "carreiras_relacionadas": [
-        "Engenharia de Machine Learning",
-        "Engenharia de IA",
-        "Especialista em IA",
-        "Platform Engineering",
-        "Site Reliability Engineering"
-      ],
+      "nome_competencia": "Testes de software",
+      "descricao_competencia": "Validação automatizada do comportamento de componentes, serviços e fluxos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0125",
-          "nome_habilidade": "empacotar modelos para deploy"
+          "nome_habilidade": "criar testes unitários"
         },
         {
           "codigo_habilidade": "HB0126",
-          "nome_habilidade": "versionar artefatos de modelo"
+          "nome_habilidade": "executar testes de integração"
         },
         {
           "codigo_habilidade": "HB0127",
-          "nome_habilidade": "monitorar deriva e desempenho"
+          "nome_habilidade": "simular dependências com mocks"
         },
         {
           "codigo_habilidade": "HB0128",
-          "nome_habilidade": "automatizar reprocesso e reimplantação"
+          "nome_habilidade": "validar cenários de erro"
         }
       ]
     },
     {
       "codigo_competencia": "CP033",
-      "nome_competencia": "Prompt engineering",
-      "descricao_competencia": "Definição de instruções eficazes para orientar modelos generativos em tarefas específicas.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Recursos Humanos"
-      ],
+      "nome_competencia": "Refatoração e manutenção evolutiva",
+      "descricao_competencia": "Melhoria contínua de código e estrutura sem alterar o comportamento esperado.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0129",
-          "nome_habilidade": "escrever prompts orientados a tarefa"
+          "nome_habilidade": "identificar duplicações e acoplamento"
         },
         {
           "codigo_habilidade": "HB0130",
-          "nome_habilidade": "estruturar contexto e restrições"
+          "nome_habilidade": "simplificar estruturas de código"
         },
         {
           "codigo_habilidade": "HB0131",
-          "nome_habilidade": "refinar prompts com base em saídas"
+          "nome_habilidade": "preservar comportamento com testes"
         },
         {
           "codigo_habilidade": "HB0132",
-          "nome_habilidade": "definir formatos de resposta"
+          "nome_habilidade": "evoluir código legado com segurança"
         }
       ]
     },
     {
       "codigo_competencia": "CP034",
-      "nome_competencia": "Aplicações com LLMs",
-      "descricao_competencia": "Construção de soluções que incorporam modelos de linguagem em fluxos reais de produto.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Desenvolvimento Backend Python"
-      ],
+      "nome_competencia": "Qualidade de código",
+      "descricao_competencia": "Aplicação de critérios de legibilidade, consistência e sustentabilidade em software.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0133",
-          "nome_habilidade": "integrar aplicações com APIs de modelos"
+          "nome_habilidade": "aplicar convenções de código"
         },
         {
           "codigo_habilidade": "HB0134",
-          "nome_habilidade": "controlar contexto e histórico"
+          "nome_habilidade": "reduzir complexidade desnecessária"
         },
         {
           "codigo_habilidade": "HB0135",
-          "nome_habilidade": "estruturar saídas em formatos utilizáveis"
+          "nome_habilidade": "identificar code smells"
         },
         {
           "codigo_habilidade": "HB0136",
-          "nome_habilidade": "tratar limites e falhas de geração"
+          "nome_habilidade": "melhorar clareza e coesão dos módulos"
         }
       ]
     },
     {
       "codigo_competencia": "CP035",
-      "nome_competencia": "Busca semântica e embeddings",
-      "descricao_competencia": "Representação vetorial e recuperação semântica de conteúdo para aplicações inteligentes.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Engenharia de Dados",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Padrões de projeto",
+      "descricao_competencia": "Uso de soluções recorrentes para organizar responsabilidades e colaboração entre componentes.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0137",
-          "nome_habilidade": "gerar embeddings de conteúdo"
+          "nome_habilidade": "identificar situações adequadas para padrões"
         },
         {
           "codigo_habilidade": "HB0138",
-          "nome_habilidade": "indexar vetores para consulta"
+          "nome_habilidade": "aplicar padrões comportamentais"
         },
         {
           "codigo_habilidade": "HB0139",
-          "nome_habilidade": "recuperar contexto por similaridade"
+          "nome_habilidade": "aplicar padrões estruturais"
         },
         {
           "codigo_habilidade": "HB0140",
-          "nome_habilidade": "avaliar relevância de recuperação"
+          "nome_habilidade": "evitar uso excessivo de abstrações"
         }
       ]
     },
     {
       "codigo_competencia": "CP036",
-      "nome_competencia": "RAG e enriquecimento contextual",
-      "descricao_competencia": "Combinação de recuperação de contexto e geração para respostas mais precisas e rastreáveis.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Modularização de software",
+      "descricao_competencia": "Separação de responsabilidades em módulos coesos com baixo acoplamento.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0141",
-          "nome_habilidade": "preparar base documental para RAG"
+          "nome_habilidade": "dividir código por contexto funcional"
         },
         {
           "codigo_habilidade": "HB0142",
-          "nome_habilidade": "fragmentar conteúdo para recuperação"
+          "nome_habilidade": "definir interfaces entre módulos"
         },
         {
           "codigo_habilidade": "HB0143",
-          "nome_habilidade": "combinar contexto recuperado com geração"
+          "nome_habilidade": "isolar dependências entre camadas"
         },
         {
           "codigo_habilidade": "HB0144",
-          "nome_habilidade": "avaliar groundedness das respostas"
+          "nome_habilidade": "evoluir módulos sem efeitos colaterais amplos"
         }
       ]
     },
     {
       "codigo_competencia": "CP037",
-      "nome_competencia": "Agentes e automação inteligente",
-      "descricao_competencia": "Construção de fluxos autônomos com ferramentas, decisões e execução orientada por objetivos.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Escalabilidade e desempenho",
+      "descricao_competencia": "Adequação de sistemas para volume, concorrência e uso eficiente de recursos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0145",
-          "nome_habilidade": "definir objetivos e etapas do agente"
+          "nome_habilidade": "identificar gargalos de execução"
         },
         {
           "codigo_habilidade": "HB0146",
-          "nome_habilidade": "integrar ferramentas ao fluxo"
+          "nome_habilidade": "otimizar consultas e processamento"
         },
         {
           "codigo_habilidade": "HB0147",
-          "nome_habilidade": "controlar memória e contexto do agente"
+          "nome_habilidade": "aplicar cache em pontos críticos"
         },
         {
           "codigo_habilidade": "HB0148",
-          "nome_habilidade": "estabelecer guardrails de execução"
+          "nome_habilidade": "planejar escalabilidade horizontal"
         }
       ]
     },
     {
       "codigo_competencia": "CP038",
-      "nome_competencia": "Avaliação de sistemas de IA",
-      "descricao_competencia": "Medição da qualidade, confiabilidade e segurança de saídas e comportamentos de sistemas inteligentes.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Tech Lead",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Modelagem de dados",
+      "descricao_competencia": "Estruturação de dados para suportar operações, análise e evolução de sistemas.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0149",
-          "nome_habilidade": "definir critérios de avaliação"
+          "nome_habilidade": "definir entidades e atributos"
         },
         {
           "codigo_habilidade": "HB0150",
-          "nome_habilidade": "comparar respostas com casos de referência"
+          "nome_habilidade": "normalizar estruturas relacionais"
         },
         {
           "codigo_habilidade": "HB0151",
-          "nome_habilidade": "medir precisão e cobertura"
+          "nome_habilidade": "modelar fatos e dimensões"
         },
         {
           "codigo_habilidade": "HB0152",
-          "nome_habilidade": "identificar falhas recorrentes"
+          "nome_habilidade": "avaliar impacto de mudanças no modelo"
         }
       ]
     },
     {
       "codigo_competencia": "CP039",
-      "nome_competencia": "Desenvolvimento assistido por IA",
-      "descricao_competencia": "Uso crítico de copilotos para acelerar implementação, revisão e evolução de software.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Consultas e manipulação de dados",
+      "descricao_competencia": "Extração, filtragem e transformação de dados com operações tabulares e SQL.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0153",
-          "nome_habilidade": "gerar código com copilotos"
+          "nome_habilidade": "escrever consultas SQL"
         },
         {
           "codigo_habilidade": "HB0154",
-          "nome_habilidade": "revisar sugestões antes de aplicar"
+          "nome_habilidade": "combinar tabelas com joins"
         },
         {
           "codigo_habilidade": "HB0155",
-          "nome_habilidade": "usar IA para criar testes"
+          "nome_habilidade": "agregar dados para análise"
         },
         {
           "codigo_habilidade": "HB0156",
-          "nome_habilidade": "usar IA para refatorar código"
+          "nome_habilidade": "transformar dados tabulares"
         }
       ]
     },
     {
       "codigo_competencia": "CP040",
-      "nome_competencia": "Documentação técnica assistida por IA",
-      "descricao_competencia": "Produção e atualização de artefatos técnicos com apoio de modelos generativos.",
-      "carreiras_relacionadas": [
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Engenharia de Dados",
-        "Engenharia de IA",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Análise exploratória de dados",
+      "descricao_competencia": "Investigação inicial de dados para identificar padrões e oportunidades analíticas.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0157",
-          "nome_habilidade": "gerar documentação inicial com IA"
+          "nome_habilidade": "inspecionar distribuição de variáveis"
         },
         {
           "codigo_habilidade": "HB0158",
-          "nome_habilidade": "sintetizar decisões técnicas"
+          "nome_habilidade": "comparar grupos e segmentos"
         },
         {
           "codigo_habilidade": "HB0159",
-          "nome_habilidade": "padronizar descrições de APIs e fluxos"
+          "nome_habilidade": "detectar valores ausentes e extremos"
         },
         {
           "codigo_habilidade": "HB0160",
-          "nome_habilidade": "revisar documentação produzida por IA"
+          "nome_habilidade": "formular hipóteses analíticas"
         }
       ]
     },
     {
       "codigo_competencia": "CP041",
-      "nome_competencia": "Containers e empacotamento",
-      "descricao_competencia": "Empacotamento reprodutível de aplicações e serviços para execução consistente.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Preparação de dados",
+      "descricao_competencia": "Tratamento e organização de dados para consumo analítico e por modelos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0161",
-          "nome_habilidade": "criar imagens de aplicação"
+          "nome_habilidade": "limpar dados inconsistentes"
         },
         {
           "codigo_habilidade": "HB0162",
-          "nome_habilidade": "definir dependências de runtime"
+          "nome_habilidade": "padronizar formatos e tipos"
         },
         {
           "codigo_habilidade": "HB0163",
-          "nome_habilidade": "executar containers localmente"
+          "nome_habilidade": "combinar fontes de dados"
         },
         {
           "codigo_habilidade": "HB0164",
-          "nome_habilidade": "otimizar tamanho e segurança da imagem"
+          "nome_habilidade": "criar variáveis derivadas"
         }
       ]
     },
     {
       "codigo_competencia": "CP042",
-      "nome_competencia": "CI/CD e entrega contínua",
-      "descricao_competencia": "Automação de build, validação e implantação para acelerar entregas com confiabilidade.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Visualização de dados",
+      "descricao_competencia": "Representação visual de dados para análise, comunicação e apoio à decisão.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0165",
-          "nome_habilidade": "automatizar build e testes"
+          "nome_habilidade": "selecionar gráfico adequado"
         },
         {
           "codigo_habilidade": "HB0166",
-          "nome_habilidade": "publicar artefatos de deploy"
+          "nome_habilidade": "construir dashboards"
         },
         {
           "codigo_habilidade": "HB0167",
-          "nome_habilidade": "configurar etapas de implantação"
+          "nome_habilidade": "destacar padrões e outliers"
         },
         {
           "codigo_habilidade": "HB0168",
-          "nome_habilidade": "reverter releases com segurança"
+          "nome_habilidade": "comunicar achados visualmente"
         }
       ]
     },
     {
       "codigo_competencia": "CP043",
-      "nome_competencia": "Orquestração com Kubernetes",
-      "descricao_competencia": "Operação de workloads conteinerizados com escalabilidade, configuração e resiliência.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Cloud Security",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Estatística aplicada",
+      "descricao_competencia": "Uso de conceitos estatísticos para interpretar dados e avaliar resultados.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0169",
-          "nome_habilidade": "implantar workloads em cluster"
+          "nome_habilidade": "calcular medidas descritivas"
         },
         {
           "codigo_habilidade": "HB0170",
-          "nome_habilidade": "configurar serviços e ingressos"
+          "nome_habilidade": "avaliar correlação entre variáveis"
         },
         {
           "codigo_habilidade": "HB0171",
-          "nome_habilidade": "ajustar escalonamento de pods"
+          "nome_habilidade": "executar testes de hipótese"
         },
         {
           "codigo_habilidade": "HB0172",
-          "nome_habilidade": "diagnosticar falhas em execução"
+          "nome_habilidade": "interpretar intervalos de confiança"
         }
       ]
     },
     {
       "codigo_competencia": "CP044",
-      "nome_competencia": "Cloud e serviços gerenciados",
-      "descricao_competencia": "Uso de recursos de nuvem para compor soluções escaláveis e operáveis.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Cloud Security",
-        "Arquitetura de Soluções",
-        "Engenharia de Dados",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning"
-      ],
+      "nome_competencia": "Dashboards e indicadores",
+      "descricao_competencia": "Organização de métricas e painéis para acompanhamento contínuo de objetivos.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0173",
-          "nome_habilidade": "selecionar serviços de computação"
+          "nome_habilidade": "definir indicadores relevantes"
         },
         {
           "codigo_habilidade": "HB0174",
-          "nome_habilidade": "configurar armazenamento em nuvem"
+          "nome_habilidade": "estruturar painéis por público"
         },
         {
           "codigo_habilidade": "HB0175",
-          "nome_habilidade": "integrar serviços gerenciados"
+          "nome_habilidade": "atualizar visualizações com consistência"
         },
         {
           "codigo_habilidade": "HB0176",
-          "nome_habilidade": "avaliar custo e escala"
+          "nome_habilidade": "destacar desvios e tendências"
         }
       ]
     },
     {
       "codigo_competencia": "CP045",
-      "nome_competencia": "Observabilidade",
-      "descricao_competencia": "Coleta e interpretação de sinais operacionais para entender saúde e comportamento de sistemas.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Pipelines de dados",
+      "descricao_competencia": "Construção de fluxos confiáveis para ingestão, transformação e disponibilização de dados.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0177",
-          "nome_habilidade": "coletar logs métricas e traces"
+          "nome_habilidade": "orquestrar etapas de ETL"
         },
         {
           "codigo_habilidade": "HB0178",
-          "nome_habilidade": "criar painéis operacionais"
+          "nome_habilidade": "monitorar execuções de pipeline"
         },
         {
           "codigo_habilidade": "HB0179",
-          "nome_habilidade": "definir alertas relevantes"
+          "nome_habilidade": "tratar falhas de processamento"
         },
         {
           "codigo_habilidade": "HB0180",
-          "nome_habilidade": "investigar incidentes com telemetria"
+          "nome_habilidade": "publicar dados para consumo"
         }
       ]
     },
     {
       "codigo_competencia": "CP046",
-      "nome_competencia": "Confiabilidade de serviços",
-      "descricao_competencia": "Planejamento e operação de sistemas com foco em disponibilidade, resiliência e recuperação.",
-      "carreiras_relacionadas": [
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Cloud Security"
-      ],
+      "nome_competencia": "Ingestão de dados",
+      "descricao_competencia": "Coleta e entrada de dados a partir de fontes diversas com controle de origem.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0181",
-          "nome_habilidade": "definir objetivos de disponibilidade"
+          "nome_habilidade": "conectar fontes estruturadas e não estruturadas"
         },
         {
           "codigo_habilidade": "HB0182",
-          "nome_habilidade": "planejar redundância e failover"
+          "nome_habilidade": "extrair dados de APIs e arquivos"
         },
         {
           "codigo_habilidade": "HB0183",
-          "nome_habilidade": "executar testes de resiliência"
+          "nome_habilidade": "validar registros na entrada"
         },
         {
           "codigo_habilidade": "HB0184",
-          "nome_habilidade": "conduzir recuperação de incidentes"
+          "nome_habilidade": "registrar origem e frequência de coleta"
         }
       ]
     },
     {
       "codigo_competencia": "CP047",
-      "nome_competencia": "Plataformas internas de engenharia",
-      "descricao_competencia": "Criação de capacidades compartilhadas para acelerar times com consistência operacional.",
-      "carreiras_relacionadas": [
-        "Platform Engineering",
-        "Site Reliability Engineering",
-        "Tech Lead",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Transformação de dados",
+      "descricao_competencia": "Conversão e enriquecimento de dados para adequação a análise e consumo.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0185",
-          "nome_habilidade": "padronizar fluxos de entrega"
+          "nome_habilidade": "padronizar esquemas de dados"
         },
         {
           "codigo_habilidade": "HB0186",
-          "nome_habilidade": "disponibilizar serviços self-service"
+          "nome_habilidade": "aplicar regras de transformação"
         },
         {
           "codigo_habilidade": "HB0187",
-          "nome_habilidade": "documentar caminhos de uso da plataforma"
+          "nome_habilidade": "enriquecer registros com novas fontes"
         },
         {
           "codigo_habilidade": "HB0188",
-          "nome_habilidade": "medir experiência do desenvolvedor"
+          "nome_habilidade": "preparar saídas para consumo analítico"
         }
       ]
     },
     {
       "codigo_competencia": "CP048",
-      "nome_competencia": "Segurança de aplicações",
-      "descricao_competencia": "Incorporação de práticas de proteção ao longo do desenvolvimento e operação de software.",
-      "carreiras_relacionadas": [
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Desenvolvimento Backend Java",
-        "Desenvolvimento Backend Python",
-        "Desenvolvimento Backend Node.js",
-        "Desenvolvimento Backend PHP",
-        "Desenvolvimento Backend .NET",
-        "Desenvolvimento Frontend React",
-        "Desenvolvimento Mobile com Flutter",
-        "Tech Lead",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Qualidade de dados",
+      "descricao_competencia": "Garantia de confiabilidade, consistência e adequação dos dados ao uso.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0189",
-          "nome_habilidade": "identificar vulnerabilidades comuns"
+          "nome_habilidade": "definir regras de qualidade"
         },
         {
           "codigo_habilidade": "HB0190",
-          "nome_habilidade": "validar entradas contra abuso"
+          "nome_habilidade": "validar integridade dos dados"
         },
         {
           "codigo_habilidade": "HB0191",
-          "nome_habilidade": "proteger dependências e segredos"
+          "nome_habilidade": "medir completude e consistência"
         },
         {
           "codigo_habilidade": "HB0192",
-          "nome_habilidade": "corrigir falhas com prioridade"
+          "nome_habilidade": "corrigir desvios identificados"
         }
       ]
     },
     {
       "codigo_competencia": "CP049",
-      "nome_competencia": "Gestão de identidade e acesso",
-      "descricao_competencia": "Controle de autenticação, autorização e privilégios em sistemas e ambientes.",
-      "carreiras_relacionadas": [
-        "Cloud Security",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Metadados e linhagem",
+      "descricao_competencia": "Rastreabilidade de origem, transformação e contexto de uso dos dados.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0193",
-          "nome_habilidade": "configurar autenticação de usuários"
+          "nome_habilidade": "catalogar ativos de dados"
         },
         {
           "codigo_habilidade": "HB0194",
-          "nome_habilidade": "definir perfis e permissões"
+          "nome_habilidade": "mapear origem e destino dos dados"
         },
         {
           "codigo_habilidade": "HB0195",
-          "nome_habilidade": "aplicar princípio do menor privilégio"
+          "nome_habilidade": "registrar transformações aplicadas"
         },
         {
           "codigo_habilidade": "HB0196",
-          "nome_habilidade": "auditar acessos e credenciais"
+          "nome_habilidade": "consultar impacto de mudanças"
         }
       ]
     },
     {
       "codigo_competencia": "CP050",
-      "nome_competencia": "Segurança em cloud",
-      "descricao_competencia": "Proteção de recursos e configurações em nuvem com foco em postura e conformidade.",
-      "carreiras_relacionadas": [
-        "Cloud Security",
-        "Site Reliability Engineering",
-        "Platform Engineering",
-        "Arquitetura de Soluções"
-      ],
+      "nome_competencia": "Governança de dados",
+      "descricao_competencia": "Definição de políticas, papéis e controles para uso responsável da informação.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0197",
-          "nome_habilidade": "revisar configurações inseguras"
+          "nome_habilidade": "definir papéis e responsabilidades"
         },
         {
           "codigo_habilidade": "HB0198",
-          "nome_habilidade": "proteger redes e perímetros"
+          "nome_habilidade": "classificar dados por criticidade"
         },
         {
           "codigo_habilidade": "HB0199",
-          "nome_habilidade": "monitorar postura de segurança"
+          "nome_habilidade": "documentar políticas de uso"
         },
         {
           "codigo_habilidade": "HB0200",
-          "nome_habilidade": "responder a desvios de conformidade"
+          "nome_habilidade": "auditar aderência a regras"
         }
       ]
     },
     {
       "codigo_competencia": "CP051",
-      "nome_competencia": "Threat modeling",
-      "descricao_competencia": "Análise estruturada de ameaças para orientar controles e decisões de proteção.",
-      "carreiras_relacionadas": [
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Cloud Security",
-        "Arquitetura de Soluções",
-        "Tech Lead"
-      ],
+      "nome_competencia": "Análise de negócio com dados",
+      "descricao_competencia": "Uso de dados para responder perguntas operacionais e estratégicas do negócio.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0201",
-          "nome_habilidade": "mapear ativos e superfícies de ataque"
+          "nome_habilidade": "traduzir perguntas de negócio em análises"
         },
         {
           "codigo_habilidade": "HB0202",
-          "nome_habilidade": "identificar ameaças por fluxo"
+          "nome_habilidade": "conectar métricas a objetivos"
         },
         {
           "codigo_habilidade": "HB0203",
-          "nome_habilidade": "priorizar riscos por impacto"
+          "nome_habilidade": "identificar causas e oportunidades"
         },
         {
           "codigo_habilidade": "HB0204",
-          "nome_habilidade": "propor mitigação por cenário"
+          "nome_habilidade": "recomendar ações com base em evidências"
         }
       ]
     },
     {
       "codigo_competencia": "CP052",
-      "nome_competencia": "Conformidade e privacidade",
-      "descricao_competencia": "Aplicação de requisitos regulatórios e organizacionais no uso de dados e tecnologia.",
-      "carreiras_relacionadas": [
-        "Governança de Dados",
-        "Cloud Security",
-        "AppSec: Desenvolvimento Seguro de Aplicações",
-        "Recursos Humanos",
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Arquitetura de Soluções",
-        "Especialista em IA",
-        "Engenharia de IA"
-      ],
+      "nome_competencia": "Comunicação de insights",
+      "descricao_competencia": "Transformação de achados analíticos em mensagens claras para tomada de decisão.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0205",
-          "nome_habilidade": "classificar dados pessoais"
+          "nome_habilidade": "sintetizar descobertas relevantes"
         },
         {
           "codigo_habilidade": "HB0206",
-          "nome_habilidade": "aplicar requisitos de consentimento"
+          "nome_habilidade": "adaptar linguagem ao público"
         },
         {
           "codigo_habilidade": "HB0207",
-          "nome_habilidade": "documentar bases de tratamento"
+          "nome_habilidade": "explicar limitações da análise"
         },
         {
           "codigo_habilidade": "HB0208",
-          "nome_habilidade": "avaliar riscos de conformidade"
+          "nome_habilidade": "apresentar recomendações acionáveis"
         }
       ]
     },
     {
       "codigo_competencia": "CP053",
-      "nome_competencia": "Arquitetura de soluções",
-      "descricao_competencia": "Desenho end-to-end de soluções alinhando componentes, integrações, riscos e valor.",
-      "carreiras_relacionadas": [
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Engenharia de IA",
-        "Engenharia de Dados",
-        "Platform Engineering"
-      ],
+      "nome_competencia": "Data storytelling",
+      "descricao_competencia": "Construção de narrativas baseadas em dados para gerar entendimento e ação.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0209",
-          "nome_habilidade": "modelar solução ponta a ponta"
+          "nome_habilidade": "organizar sequência lógica de achados"
         },
         {
           "codigo_habilidade": "HB0210",
-          "nome_habilidade": "definir componentes e integrações"
+          "nome_habilidade": "combinar texto visual e evidência"
         },
         {
           "codigo_habilidade": "HB0211",
-          "nome_habilidade": "avaliar trade-offs técnicos"
+          "nome_habilidade": "contextualizar números com impacto"
         },
         {
           "codigo_habilidade": "HB0212",
-          "nome_habilidade": "documentar decisões arquiteturais"
+          "nome_habilidade": "fechar narrativa com recomendação"
         }
       ]
     },
     {
       "codigo_competencia": "CP054",
-      "nome_competencia": "Arquitetura orientada a negócio",
-      "descricao_competencia": "Tradução de objetivos, restrições e prioridades do negócio em decisões de solução.",
-      "carreiras_relacionadas": [
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Liderança",
-        "Growth Marketing",
-        "Recursos Humanos"
-      ],
+      "nome_competencia": "People analytics",
+      "descricao_competencia": "Uso de dados de pessoas para compreender padrões e apoiar decisões organizacionais.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0213",
-          "nome_habilidade": "levantar requisitos de negócio"
-        },
-        {
-          "codigo_habilidade": "HB0214",
-          "nome_habilidade": "mapear restrições operacionais"
-        },
-        {
-          "codigo_habilidade": "HB0215",
-          "nome_habilidade": "priorizar critérios de decisão"
-        },
-        {
-          "codigo_habilidade": "HB0216",
-          "nome_habilidade": "explicar impactos da solução"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP055",
-      "nome_competencia": "Arquitetura de IA",
-      "descricao_competencia": "Definição estrutural de soluções com modelos, dados, avaliação e guardrails.",
-      "carreiras_relacionadas": [
-        "Arquitetura de Soluções",
-        "Engenharia de IA",
-        "Especialista em IA",
-        "Engenharia de Machine Learning"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0217",
-          "nome_habilidade": "definir componentes de IA na solução"
-        },
-        {
-          "codigo_habilidade": "HB0218",
-          "nome_habilidade": "integrar modelos com fluxos corporativos"
-        },
-        {
-          "codigo_habilidade": "HB0219",
-          "nome_habilidade": "estabelecer avaliação e guardrails"
-        },
-        {
-          "codigo_habilidade": "HB0220",
-          "nome_habilidade": "planejar operação de soluções inteligentes"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP056",
-      "nome_competencia": "Liderança técnica",
-      "descricao_competencia": "Condução de decisões, padrões e evolução técnica de times de engenharia.",
-      "carreiras_relacionadas": [
-        "Tech Lead",
-        "Arquitetura de Soluções",
-        "Liderança"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0221",
-          "nome_habilidade": "definir padrões de engenharia"
-        },
-        {
-          "codigo_habilidade": "HB0222",
-          "nome_habilidade": "orientar decisões técnicas do time"
-        },
-        {
-          "codigo_habilidade": "HB0223",
-          "nome_habilidade": "equilibrar prazo qualidade e risco"
-        },
-        {
-          "codigo_habilidade": "HB0224",
-          "nome_habilidade": "desenvolver autonomia técnica do time"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP057",
-      "nome_competencia": "Gestão de dívida técnica",
-      "descricao_competencia": "Identificação, priorização e redução de compromissos técnicos que afetam sustentabilidade.",
-      "carreiras_relacionadas": [
-        "Tech Lead",
-        "Arquitetura de Soluções",
-        "Liderança"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0225",
-          "nome_habilidade": "mapear dívidas técnicas relevantes"
-        },
-        {
-          "codigo_habilidade": "HB0226",
-          "nome_habilidade": "priorizar correções por impacto"
-        },
-        {
-          "codigo_habilidade": "HB0227",
-          "nome_habilidade": "planejar evolução sem interromper entregas"
-        },
-        {
-          "codigo_habilidade": "HB0228",
-          "nome_habilidade": "acompanhar redução de passivos"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP058",
-      "nome_competencia": "Mentoria e desenvolvimento técnico",
-      "descricao_competencia": "Apoio estruturado ao crescimento de pessoas em competências técnicas e práticas de trabalho.",
-      "carreiras_relacionadas": [
-        "Tech Lead",
-        "Liderança",
-        "Arquitetura de Soluções",
-        "Recursos Humanos"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0229",
-          "nome_habilidade": "dar feedback técnico acionável"
-        },
-        {
-          "codigo_habilidade": "HB0230",
-          "nome_habilidade": "orientar planos de desenvolvimento"
-        },
-        {
-          "codigo_habilidade": "HB0231",
-          "nome_habilidade": "acompanhar evolução de desempenho"
-        },
-        {
-          "codigo_habilidade": "HB0232",
-          "nome_habilidade": "compartilhar referências e práticas"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP059",
-      "nome_competencia": "Comunicação com stakeholders",
-      "descricao_competencia": "Alinhamento entre áreas por meio de comunicação clara, técnica e orientada a decisão.",
-      "carreiras_relacionadas": [
-        "Tech Lead",
-        "Arquitetura de Soluções",
-        "Liderança",
-        "Governança de Dados",
-        "Recursos Humanos",
-        "Growth Marketing",
-        "Social Media Marketing",
-        "UX Design",
-        "UI Design"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0233",
-          "nome_habilidade": "traduzir temas técnicos para negócio"
-        },
-        {
-          "codigo_habilidade": "HB0234",
-          "nome_habilidade": "conduzir alinhamentos entre áreas"
-        },
-        {
-          "codigo_habilidade": "HB0235",
-          "nome_habilidade": "registrar decisões e próximos passos"
-        },
-        {
-          "codigo_habilidade": "HB0236",
-          "nome_habilidade": "negociar prioridades e restrições"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP060",
-      "nome_competencia": "Liderança de pessoas",
-      "descricao_competencia": "Condução de times com foco em desempenho, contexto, desenvolvimento e cultura.",
-      "carreiras_relacionadas": [
-        "Liderança",
-        "Tech Lead",
-        "Recursos Humanos"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0237",
-          "nome_habilidade": "definir expectativas de atuação"
-        },
-        {
-          "codigo_habilidade": "HB0238",
-          "nome_habilidade": "acompanhar desempenho do time"
-        },
-        {
-          "codigo_habilidade": "HB0239",
-          "nome_habilidade": "conduzir conversas de desenvolvimento"
-        },
-        {
-          "codigo_habilidade": "HB0240",
-          "nome_habilidade": "fortalecer cultura de colaboração"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP061",
-      "nome_competencia": "Recrutamento e seleção",
-      "descricao_competencia": "Estruturação de processos para atrair, avaliar e contratar pessoas aderentes ao contexto.",
-      "carreiras_relacionadas": [
-        "Recursos Humanos",
-        "Liderança",
-        "Tech Lead"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0241",
-          "nome_habilidade": "definir perfil de vaga"
-        },
-        {
-          "codigo_habilidade": "HB0242",
-          "nome_habilidade": "triagem de candidatos"
-        },
-        {
-          "codigo_habilidade": "HB0243",
-          "nome_habilidade": "conduzir entrevistas estruturadas"
-        },
-        {
-          "codigo_habilidade": "HB0244",
-          "nome_habilidade": "consolidar parecer de seleção"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP062",
-      "nome_competencia": "Treinamento e desenvolvimento",
-      "descricao_competencia": "Planejamento de ações de aprendizagem para evolução de competências organizacionais.",
-      "carreiras_relacionadas": [
-        "Recursos Humanos",
-        "Liderança",
-        "Tech Lead"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0245",
-          "nome_habilidade": "diagnosticar necessidades de desenvolvimento"
-        },
-        {
-          "codigo_habilidade": "HB0246",
-          "nome_habilidade": "desenhar trilhas de aprendizagem"
-        },
-        {
-          "codigo_habilidade": "HB0247",
-          "nome_habilidade": "avaliar efetividade de capacitações"
-        },
-        {
-          "codigo_habilidade": "HB0248",
-          "nome_habilidade": "acompanhar evolução de competências"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP063",
-      "nome_competencia": "People analytics",
-      "descricao_competencia": "Uso de dados de pessoas para compreender padrões e apoiar decisões organizacionais.",
-      "carreiras_relacionadas": [
-        "Recursos Humanos",
-        "Liderança",
-        "Análise de Dados",
-        "Governança de Dados"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0249",
           "nome_habilidade": "definir indicadores de pessoas"
         },
         {
-          "codigo_habilidade": "HB0250",
+          "codigo_habilidade": "HB0214",
           "nome_habilidade": "analisar turnover e engajamento"
         },
         {
-          "codigo_habilidade": "HB0251",
+          "codigo_habilidade": "HB0215",
           "nome_habilidade": "cruzar dados de desempenho e contexto"
         },
         {
-          "codigo_habilidade": "HB0252",
+          "codigo_habilidade": "HB0216",
           "nome_habilidade": "comunicar achados para liderança"
         }
       ]
     },
     {
-      "codigo_competencia": "CP064",
-      "nome_competencia": "Planejamento de marketing",
-      "descricao_competencia": "Definição de objetivos, canais, públicos e ações para crescimento e posicionamento.",
-      "carreiras_relacionadas": [
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Liderança"
-      ],
+      "codigo_competencia": "CP055",
+      "nome_competencia": "Analytics de produto",
+      "descricao_competencia": "Leitura de comportamento do usuário e métricas para evolução de produto digital.",
       "habilidades": [
         {
-          "codigo_habilidade": "HB0253",
-          "nome_habilidade": "definir metas de campanha"
+          "codigo_habilidade": "HB0217",
+          "nome_habilidade": "definir métricas de uso e retenção"
         },
         {
-          "codigo_habilidade": "HB0254",
-          "nome_habilidade": "segmentar público-alvo"
+          "codigo_habilidade": "HB0218",
+          "nome_habilidade": "analisar funis de navegação"
         },
         {
-          "codigo_habilidade": "HB0255",
-          "nome_habilidade": "selecionar canais de aquisição"
+          "codigo_habilidade": "HB0219",
+          "nome_habilidade": "relacionar comportamento e valor entregue"
         },
         {
-          "codigo_habilidade": "HB0256",
-          "nome_habilidade": "distribuir orçamento entre ações"
+          "codigo_habilidade": "HB0220",
+          "nome_habilidade": "priorizar melhorias com base em uso"
         }
       ]
     },
     {
-      "codigo_competencia": "CP065",
-      "nome_competencia": "Marketing de conteúdo",
-      "descricao_competencia": "Produção de conteúdo orientado à jornada, autoridade e conversão de audiência.",
-      "carreiras_relacionadas": [
-        "Social Media Marketing",
-        "Growth Marketing"
-      ],
+      "codigo_competencia": "CP056",
+      "nome_competencia": "Analytics de marketing",
+      "descricao_competencia": "Leitura de aquisição, engajamento, retenção e retorno sobre investimento.",
       "habilidades": [
         {
-          "codigo_habilidade": "HB0257",
-          "nome_habilidade": "planejar calendário editorial"
-        },
-        {
-          "codigo_habilidade": "HB0258",
-          "nome_habilidade": "criar conteúdos por objetivo"
-        },
-        {
-          "codigo_habilidade": "HB0259",
-          "nome_habilidade": "adaptar linguagem ao canal"
-        },
-        {
-          "codigo_habilidade": "HB0260",
-          "nome_habilidade": "otimizar conteúdo para conversão"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP066",
-      "nome_competencia": "Gestão de mídias sociais",
-      "descricao_competencia": "Operação estratégica de presença digital em redes, comunidades e canais de relacionamento.",
-      "carreiras_relacionadas": [
-        "Social Media Marketing",
-        "Growth Marketing"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0261",
-          "nome_habilidade": "planejar pautas por rede"
-        },
-        {
-          "codigo_habilidade": "HB0262",
-          "nome_habilidade": "publicar conteúdos com consistência"
-        },
-        {
-          "codigo_habilidade": "HB0263",
-          "nome_habilidade": "interagir com audiência"
-        },
-        {
-          "codigo_habilidade": "HB0264",
-          "nome_habilidade": "acompanhar desempenho de posts"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP067",
-      "nome_competencia": "SEO e descoberta orgânica",
-      "descricao_competencia": "Melhoria de visibilidade orgânica por relevância de conteúdo, estrutura e intenção de busca.",
-      "carreiras_relacionadas": [
-        "Growth Marketing",
-        "Social Media Marketing"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0265",
-          "nome_habilidade": "pesquisar intenções de busca"
-        },
-        {
-          "codigo_habilidade": "HB0266",
-          "nome_habilidade": "otimizar páginas para palavras-chave"
-        },
-        {
-          "codigo_habilidade": "HB0267",
-          "nome_habilidade": "estruturar conteúdo para ranqueamento"
-        },
-        {
-          "codigo_habilidade": "HB0268",
-          "nome_habilidade": "monitorar tráfego orgânico"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP068",
-      "nome_competencia": "Growth e experimentação",
-      "descricao_competencia": "Otimização contínua de aquisição, ativação, retenção e receita por experimentos orientados a dados.",
-      "carreiras_relacionadas": [
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Análise de Dados"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0269",
-          "nome_habilidade": "formular hipóteses de crescimento"
-        },
-        {
-          "codigo_habilidade": "HB0270",
-          "nome_habilidade": "planejar testes A/B"
-        },
-        {
-          "codigo_habilidade": "HB0271",
-          "nome_habilidade": "medir impacto de experimentos"
-        },
-        {
-          "codigo_habilidade": "HB0272",
-          "nome_habilidade": "priorizar ações por potencial de ganho"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP069",
-      "nome_competencia": "Automação de marketing",
-      "descricao_competencia": "Configuração de fluxos automatizados para relacionamento, nutrição e operação de campanhas.",
-      "carreiras_relacionadas": [
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Arquitetura de Soluções"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0273",
-          "nome_habilidade": "configurar jornadas automatizadas"
-        },
-        {
-          "codigo_habilidade": "HB0274",
-          "nome_habilidade": "segmentar contatos por comportamento"
-        },
-        {
-          "codigo_habilidade": "HB0275",
-          "nome_habilidade": "acionar mensagens por gatilhos"
-        },
-        {
-          "codigo_habilidade": "HB0276",
-          "nome_habilidade": "monitorar conversão dos fluxos"
-        }
-      ]
-    },
-    {
-      "codigo_competencia": "CP070",
-      "nome_competencia": "Análise de métricas de marketing",
-      "descricao_competencia": "Leitura de indicadores de aquisição, engajamento, retenção e retorno sobre investimento.",
-      "carreiras_relacionadas": [
-        "Growth Marketing",
-        "Social Media Marketing",
-        "Análise de Dados"
-      ],
-      "habilidades": [
-        {
-          "codigo_habilidade": "HB0277",
+          "codigo_habilidade": "HB0221",
           "nome_habilidade": "definir KPIs de canal"
         },
         {
-          "codigo_habilidade": "HB0278",
+          "codigo_habilidade": "HB0222",
           "nome_habilidade": "construir dashboards de performance"
         },
         {
-          "codigo_habilidade": "HB0279",
+          "codigo_habilidade": "HB0223",
           "nome_habilidade": "interpretar funis de conversão"
         },
         {
-          "codigo_habilidade": "HB0280",
+          "codigo_habilidade": "HB0224",
           "nome_habilidade": "recomendar otimizações com base em dados"
         }
       ]
     },
     {
+      "codigo_competencia": "CP057",
+      "nome_competencia": "Reprodutibilidade analítica",
+      "descricao_competencia": "Garantia de que análises e transformações possam ser refeitas com consistência.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0225",
+          "nome_habilidade": "organizar scripts e insumos da análise"
+        },
+        {
+          "codigo_habilidade": "HB0226",
+          "nome_habilidade": "versionar consultas e notebooks"
+        },
+        {
+          "codigo_habilidade": "HB0227",
+          "nome_habilidade": "padronizar etapas de processamento"
+        },
+        {
+          "codigo_habilidade": "HB0228",
+          "nome_habilidade": "reexecutar análises com resultados consistentes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP058",
+      "nome_competencia": "Machine learning supervisionado",
+      "descricao_competencia": "Construção de modelos preditivos com dados rotulados para classificação e regressão.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0229",
+          "nome_habilidade": "treinar modelos supervisionados"
+        },
+        {
+          "codigo_habilidade": "HB0230",
+          "nome_habilidade": "separar dados de treino e teste"
+        },
+        {
+          "codigo_habilidade": "HB0231",
+          "nome_habilidade": "selecionar métricas de avaliação"
+        },
+        {
+          "codigo_habilidade": "HB0232",
+          "nome_habilidade": "comparar desempenho entre modelos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP059",
+      "nome_competencia": "Machine learning não supervisionado",
+      "descricao_competencia": "Uso de técnicas para descobrir estruturas e agrupamentos sem rótulos prévios.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0233",
+          "nome_habilidade": "agrupar registros por similaridade"
+        },
+        {
+          "codigo_habilidade": "HB0234",
+          "nome_habilidade": "reduzir dimensionalidade dos dados"
+        },
+        {
+          "codigo_habilidade": "HB0235",
+          "nome_habilidade": "interpretar clusters gerados"
+        },
+        {
+          "codigo_habilidade": "HB0236",
+          "nome_habilidade": "avaliar utilidade dos agrupamentos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP060",
+      "nome_competencia": "Engenharia de atributos",
+      "descricao_competencia": "Criação e seleção de representações de dados que ampliam o desempenho de modelos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0237",
+          "nome_habilidade": "codificar variáveis categóricas"
+        },
+        {
+          "codigo_habilidade": "HB0238",
+          "nome_habilidade": "normalizar variáveis numéricas"
+        },
+        {
+          "codigo_habilidade": "HB0239",
+          "nome_habilidade": "criar atributos derivados"
+        },
+        {
+          "codigo_habilidade": "HB0240",
+          "nome_habilidade": "selecionar atributos relevantes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP061",
+      "nome_competencia": "Avaliação de modelos",
+      "descricao_competencia": "Análise de desempenho, robustez e adequação de modelos ao objetivo.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0241",
+          "nome_habilidade": "calcular métricas de desempenho"
+        },
+        {
+          "codigo_habilidade": "HB0242",
+          "nome_habilidade": "avaliar overfitting e underfitting"
+        },
+        {
+          "codigo_habilidade": "HB0243",
+          "nome_habilidade": "validar modelos com cross-validation"
+        },
+        {
+          "codigo_habilidade": "HB0244",
+          "nome_habilidade": "interpretar erros do modelo"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP062",
+      "nome_competencia": "Pipelines de machine learning",
+      "descricao_competencia": "Orquestração das etapas de preparação, treino, validação e publicação de modelos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0245",
+          "nome_habilidade": "encadear etapas de treino e validação"
+        },
+        {
+          "codigo_habilidade": "HB0246",
+          "nome_habilidade": "automatizar preparo de dados para treino"
+        },
+        {
+          "codigo_habilidade": "HB0247",
+          "nome_habilidade": "registrar execuções e parâmetros"
+        },
+        {
+          "codigo_habilidade": "HB0248",
+          "nome_habilidade": "publicar saídas do pipeline"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP063",
+      "nome_competencia": "MLOps e operação de modelos",
+      "descricao_competencia": "Automação do ciclo de vida de modelos em produção com monitoramento.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0249",
+          "nome_habilidade": "empacotar modelos para deploy"
+        },
+        {
+          "codigo_habilidade": "HB0250",
+          "nome_habilidade": "versionar artefatos de modelo"
+        },
+        {
+          "codigo_habilidade": "HB0251",
+          "nome_habilidade": "monitorar deriva e desempenho"
+        },
+        {
+          "codigo_habilidade": "HB0252",
+          "nome_habilidade": "automatizar reprocesso e reimplantação"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP064",
+      "nome_competencia": "Prompt engineering",
+      "descricao_competencia": "Definição de instruções eficazes para orientar modelos generativos em tarefas específicas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0253",
+          "nome_habilidade": "escrever prompts orientados a tarefa"
+        },
+        {
+          "codigo_habilidade": "HB0254",
+          "nome_habilidade": "estruturar contexto e restrições"
+        },
+        {
+          "codigo_habilidade": "HB0255",
+          "nome_habilidade": "refinar prompts com base em saídas"
+        },
+        {
+          "codigo_habilidade": "HB0256",
+          "nome_habilidade": "definir formatos de resposta"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP065",
+      "nome_competencia": "Aplicações com LLMs",
+      "descricao_competencia": "Construção de soluções que incorporam modelos de linguagem em fluxos de produto.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0257",
+          "nome_habilidade": "integrar aplicações com APIs de modelos"
+        },
+        {
+          "codigo_habilidade": "HB0258",
+          "nome_habilidade": "controlar contexto e histórico"
+        },
+        {
+          "codigo_habilidade": "HB0259",
+          "nome_habilidade": "estruturar saídas em formatos utilizáveis"
+        },
+        {
+          "codigo_habilidade": "HB0260",
+          "nome_habilidade": "tratar limites e falhas de geração"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP066",
+      "nome_competencia": "Busca semântica e embeddings",
+      "descricao_competencia": "Representação vetorial e recuperação semântica de conteúdo em aplicações inteligentes.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0261",
+          "nome_habilidade": "gerar embeddings de conteúdo"
+        },
+        {
+          "codigo_habilidade": "HB0262",
+          "nome_habilidade": "indexar vetores para consulta"
+        },
+        {
+          "codigo_habilidade": "HB0263",
+          "nome_habilidade": "recuperar contexto por similaridade"
+        },
+        {
+          "codigo_habilidade": "HB0264",
+          "nome_habilidade": "avaliar relevância de recuperação"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP067",
+      "nome_competencia": "RAG e enriquecimento contextual",
+      "descricao_competencia": "Combinação de recuperação de contexto e geração para respostas mais precisas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0265",
+          "nome_habilidade": "preparar base documental para RAG"
+        },
+        {
+          "codigo_habilidade": "HB0266",
+          "nome_habilidade": "fragmentar conteúdo para recuperação"
+        },
+        {
+          "codigo_habilidade": "HB0267",
+          "nome_habilidade": "combinar contexto recuperado com geração"
+        },
+        {
+          "codigo_habilidade": "HB0268",
+          "nome_habilidade": "avaliar groundedness das respostas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP068",
+      "nome_competencia": "Agentes e automação inteligente",
+      "descricao_competencia": "Construção de fluxos autônomos com ferramentas, decisões e execução orientada a objetivos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0269",
+          "nome_habilidade": "definir objetivos e etapas do agente"
+        },
+        {
+          "codigo_habilidade": "HB0270",
+          "nome_habilidade": "integrar ferramentas ao fluxo"
+        },
+        {
+          "codigo_habilidade": "HB0271",
+          "nome_habilidade": "controlar memória e contexto do agente"
+        },
+        {
+          "codigo_habilidade": "HB0272",
+          "nome_habilidade": "estabelecer guardrails de execução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP069",
+      "nome_competencia": "Sistemas multiagentes",
+      "descricao_competencia": "Coordenação de agentes especializados para resolver tarefas compostas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0273",
+          "nome_habilidade": "distribuir papéis entre agentes"
+        },
+        {
+          "codigo_habilidade": "HB0274",
+          "nome_habilidade": "orquestrar passagem de contexto"
+        },
+        {
+          "codigo_habilidade": "HB0275",
+          "nome_habilidade": "avaliar colaboração entre agentes"
+        },
+        {
+          "codigo_habilidade": "HB0276",
+          "nome_habilidade": "controlar redundância e conflito de ações"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP070",
+      "nome_competencia": "Integração com APIs de modelos",
+      "descricao_competencia": "Conexão de aplicações a provedores de IA com controle de contexto, custo e resposta.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0277",
+          "nome_habilidade": "configurar chamadas a APIs de modelos"
+        },
+        {
+          "codigo_habilidade": "HB0278",
+          "nome_habilidade": "tratar autenticação e limites de uso"
+        },
+        {
+          "codigo_habilidade": "HB0279",
+          "nome_habilidade": "estruturar payloads e respostas"
+        },
+        {
+          "codigo_habilidade": "HB0280",
+          "nome_habilidade": "monitorar custo e latência das chamadas"
+        }
+      ]
+    },
+    {
       "codigo_competencia": "CP071",
-      "nome_competencia": "Uso responsável de IA",
-      "descricao_competencia": "Aplicação crítica de IA com atenção a risco, qualidade, transparência e impacto.",
-      "carreiras_relacionadas": [
-        "Especialista em IA",
-        "Engenharia de IA",
-        "Engenharia de Machine Learning",
-        "Arquitetura de Soluções",
-        "Tech Lead",
-        "Liderança",
-        "Recursos Humanos",
-        "Growth Marketing",
-        "Social Media Marketing"
-      ],
+      "nome_competencia": "Governança de IA",
+      "descricao_competencia": "Definição de critérios, controles e responsabilidades para uso responsável de IA.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0281",
-          "nome_habilidade": "avaliar riscos de uso de IA"
+          "nome_habilidade": "definir políticas de uso de IA"
         },
         {
           "codigo_habilidade": "HB0282",
-          "nome_habilidade": "definir limites e supervisão humana"
+          "nome_habilidade": "registrar decisões e evidências"
         },
         {
           "codigo_habilidade": "HB0283",
-          "nome_habilidade": "registrar decisões e fontes"
+          "nome_habilidade": "estabelecer revisão humana em fluxos críticos"
         },
         {
           "codigo_habilidade": "HB0284",
-          "nome_habilidade": "revisar vieses e inconsistências"
+          "nome_habilidade": "acompanhar aderência a critérios definidos"
         }
       ]
     },
     {
       "codigo_competencia": "CP072",
-      "nome_competencia": "Tomada de decisão orientada por dados",
-      "descricao_competencia": "Uso de evidências para priorizar ações, avaliar alternativas e sustentar escolhas.",
-      "carreiras_relacionadas": [
-        "Análise de Dados",
-        "Ciência de Dados",
-        "Governança de Dados",
-        "Liderança",
-        "Tech Lead",
-        "Arquitetura de Soluções",
-        "Growth Marketing",
-        "Recursos Humanos"
-      ],
+      "nome_competencia": "Avaliação de sistemas de IA",
+      "descricao_competencia": "Medição da qualidade, confiabilidade e segurança de soluções inteligentes.",
       "habilidades": [
         {
           "codigo_habilidade": "HB0285",
-          "nome_habilidade": "definir critérios de decisão"
+          "nome_habilidade": "definir critérios de avaliação"
         },
         {
           "codigo_habilidade": "HB0286",
-          "nome_habilidade": "confrontar hipóteses com evidências"
+          "nome_habilidade": "comparar respostas com casos de referência"
         },
         {
           "codigo_habilidade": "HB0287",
-          "nome_habilidade": "priorizar ações por impacto"
+          "nome_habilidade": "medir precisão e cobertura"
         },
         {
           "codigo_habilidade": "HB0288",
+          "nome_habilidade": "identificar falhas recorrentes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP073",
+      "nome_competencia": "Observabilidade de IA",
+      "descricao_competencia": "Coleta de sinais sobre entradas, saídas, latência e qualidade de sistemas de IA.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0289",
+          "nome_habilidade": "registrar execuções e resultados"
+        },
+        {
+          "codigo_habilidade": "HB0290",
+          "nome_habilidade": "monitorar custo e tempo de resposta"
+        },
+        {
+          "codigo_habilidade": "HB0291",
+          "nome_habilidade": "acompanhar falhas e degradação"
+        },
+        {
+          "codigo_habilidade": "HB0292",
+          "nome_habilidade": "correlacionar telemetria e qualidade percebida"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP074",
+      "nome_competencia": "Dados para IA",
+      "descricao_competencia": "Preparação e organização de insumos para treinamento, inferência e recuperação contextual.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0293",
+          "nome_habilidade": "selecionar fontes relevantes para IA"
+        },
+        {
+          "codigo_habilidade": "HB0294",
+          "nome_habilidade": "limpar dados para uso em modelos"
+        },
+        {
+          "codigo_habilidade": "HB0295",
+          "nome_habilidade": "estruturar conjuntos para treino ou busca"
+        },
+        {
+          "codigo_habilidade": "HB0296",
+          "nome_habilidade": "rastrear origem e versão dos insumos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP075",
+      "nome_competencia": "Automação corporativa com IA",
+      "descricao_competencia": "Aplicação de IA em rotinas de trabalho para acelerar execução e tomada de decisão.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0297",
+          "nome_habilidade": "mapear tarefas candidatas à automação"
+        },
+        {
+          "codigo_habilidade": "HB0298",
+          "nome_habilidade": "integrar IA a fluxos internos"
+        },
+        {
+          "codigo_habilidade": "HB0299",
+          "nome_habilidade": "definir validações no processo automatizado"
+        },
+        {
+          "codigo_habilidade": "HB0300",
+          "nome_habilidade": "medir ganho operacional obtido"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP076",
+      "nome_competencia": "Copilotos de produtividade",
+      "descricao_competencia": "Uso de assistentes de IA para apoiar escrita, síntese, revisão e execução profissional.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0301",
+          "nome_habilidade": "delegar tarefas adequadas ao copiloto"
+        },
+        {
+          "codigo_habilidade": "HB0302",
+          "nome_habilidade": "fornecer contexto útil à solicitação"
+        },
+        {
+          "codigo_habilidade": "HB0303",
+          "nome_habilidade": "revisar saídas antes de aplicar"
+        },
+        {
+          "codigo_habilidade": "HB0304",
+          "nome_habilidade": "refinar interações para obter melhores resultados"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP077",
+      "nome_competencia": "Uso responsável de IA",
+      "descricao_competencia": "Aplicação crítica de IA com atenção a risco, qualidade, transparência e impacto.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0305",
+          "nome_habilidade": "avaliar riscos de uso de IA"
+        },
+        {
+          "codigo_habilidade": "HB0306",
+          "nome_habilidade": "definir limites e supervisão humana"
+        },
+        {
+          "codigo_habilidade": "HB0307",
+          "nome_habilidade": "registrar decisões e fontes"
+        },
+        {
+          "codigo_habilidade": "HB0308",
+          "nome_habilidade": "revisar vieses e inconsistências"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP078",
+      "nome_competencia": "Containers e empacotamento",
+      "descricao_competencia": "Empacotamento reprodutível de aplicações e serviços para execução consistente.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0309",
+          "nome_habilidade": "criar imagens de aplicação"
+        },
+        {
+          "codigo_habilidade": "HB0310",
+          "nome_habilidade": "definir dependências de runtime"
+        },
+        {
+          "codigo_habilidade": "HB0311",
+          "nome_habilidade": "executar containers localmente"
+        },
+        {
+          "codigo_habilidade": "HB0312",
+          "nome_habilidade": "otimizar tamanho e segurança da imagem"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP079",
+      "nome_competencia": "CI/CD e entrega contínua",
+      "descricao_competencia": "Automação de build, validação e implantação para acelerar entregas confiáveis.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0313",
+          "nome_habilidade": "automatizar build e testes"
+        },
+        {
+          "codigo_habilidade": "HB0314",
+          "nome_habilidade": "publicar artefatos de deploy"
+        },
+        {
+          "codigo_habilidade": "HB0315",
+          "nome_habilidade": "configurar etapas de implantação"
+        },
+        {
+          "codigo_habilidade": "HB0316",
+          "nome_habilidade": "reverter releases com segurança"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP080",
+      "nome_competencia": "Orquestração com Kubernetes",
+      "descricao_competencia": "Operação de workloads conteinerizados com escalabilidade e resiliência.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0317",
+          "nome_habilidade": "implantar workloads em cluster"
+        },
+        {
+          "codigo_habilidade": "HB0318",
+          "nome_habilidade": "configurar serviços e ingressos"
+        },
+        {
+          "codigo_habilidade": "HB0319",
+          "nome_habilidade": "ajustar escalonamento de pods"
+        },
+        {
+          "codigo_habilidade": "HB0320",
+          "nome_habilidade": "diagnosticar falhas em execução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP081",
+      "nome_competencia": "Cloud e serviços gerenciados",
+      "descricao_competencia": "Uso de recursos de nuvem para compor soluções escaláveis e operáveis.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0321",
+          "nome_habilidade": "selecionar serviços de computação"
+        },
+        {
+          "codigo_habilidade": "HB0322",
+          "nome_habilidade": "configurar armazenamento em nuvem"
+        },
+        {
+          "codigo_habilidade": "HB0323",
+          "nome_habilidade": "integrar serviços gerenciados"
+        },
+        {
+          "codigo_habilidade": "HB0324",
+          "nome_habilidade": "avaliar custo e escala"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP082",
+      "nome_competencia": "Infraestrutura como código",
+      "descricao_competencia": "Definição declarativa de infraestrutura para padronizar e automatizar ambientes.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0325",
+          "nome_habilidade": "descrever recursos como código"
+        },
+        {
+          "codigo_habilidade": "HB0326",
+          "nome_habilidade": "versionar mudanças de infraestrutura"
+        },
+        {
+          "codigo_habilidade": "HB0327",
+          "nome_habilidade": "reaplicar ambientes de forma consistente"
+        },
+        {
+          "codigo_habilidade": "HB0328",
+          "nome_habilidade": "validar planos antes da execução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP083",
+      "nome_competencia": "Observabilidade",
+      "descricao_competencia": "Coleta e interpretação de sinais operacionais para entender saúde dos sistemas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0329",
+          "nome_habilidade": "coletar logs métricas e traces"
+        },
+        {
+          "codigo_habilidade": "HB0330",
+          "nome_habilidade": "criar painéis operacionais"
+        },
+        {
+          "codigo_habilidade": "HB0331",
+          "nome_habilidade": "definir alertas relevantes"
+        },
+        {
+          "codigo_habilidade": "HB0332",
+          "nome_habilidade": "investigar incidentes com telemetria"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP084",
+      "nome_competencia": "Confiabilidade de serviços",
+      "descricao_competencia": "Planejamento e operação com foco em disponibilidade, resiliência e recuperação.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0333",
+          "nome_habilidade": "definir objetivos de disponibilidade"
+        },
+        {
+          "codigo_habilidade": "HB0334",
+          "nome_habilidade": "planejar redundância e failover"
+        },
+        {
+          "codigo_habilidade": "HB0335",
+          "nome_habilidade": "executar testes de resiliência"
+        },
+        {
+          "codigo_habilidade": "HB0336",
+          "nome_habilidade": "conduzir recuperação de incidentes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP085",
+      "nome_competencia": "Resposta a incidentes",
+      "descricao_competencia": "Atuação coordenada para detectar, conter, comunicar e recuperar falhas operacionais.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0337",
+          "nome_habilidade": "classificar severidade de incidentes"
+        },
+        {
+          "codigo_habilidade": "HB0338",
+          "nome_habilidade": "coordenar ações de contenção"
+        },
+        {
+          "codigo_habilidade": "HB0339",
+          "nome_habilidade": "comunicar impacto e status"
+        },
+        {
+          "codigo_habilidade": "HB0340",
+          "nome_habilidade": "conduzir análise pós-incidente"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP086",
+      "nome_competencia": "Automação operacional",
+      "descricao_competencia": "Uso de scripts e fluxos para reduzir esforço manual em operações técnicas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0341",
+          "nome_habilidade": "automatizar rotinas de suporte"
+        },
+        {
+          "codigo_habilidade": "HB0342",
+          "nome_habilidade": "acionar tarefas por eventos"
+        },
+        {
+          "codigo_habilidade": "HB0343",
+          "nome_habilidade": "padronizar execuções recorrentes"
+        },
+        {
+          "codigo_habilidade": "HB0344",
+          "nome_habilidade": "registrar resultados de automações"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP087",
+      "nome_competencia": "Platform engineering",
+      "descricao_competencia": "Criação de capacidades internas que aceleram times com consistência operacional.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0345",
+          "nome_habilidade": "padronizar fluxos de entrega"
+        },
+        {
+          "codigo_habilidade": "HB0346",
+          "nome_habilidade": "disponibilizar serviços self-service"
+        },
+        {
+          "codigo_habilidade": "HB0347",
+          "nome_habilidade": "documentar caminhos de uso da plataforma"
+        },
+        {
+          "codigo_habilidade": "HB0348",
+          "nome_habilidade": "medir experiência do desenvolvedor"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP088",
+      "nome_competencia": "Experiência do desenvolvedor",
+      "descricao_competencia": "Melhoria das condições de trabalho técnico por ferramentas, fluxos e padrões internos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0349",
+          "nome_habilidade": "mapear fricções na jornada do desenvolvedor"
+        },
+        {
+          "codigo_habilidade": "HB0350",
+          "nome_habilidade": "simplificar setup e entrega"
+        },
+        {
+          "codigo_habilidade": "HB0351",
+          "nome_habilidade": "criar padrões de uso recorrente"
+        },
+        {
+          "codigo_habilidade": "HB0352",
+          "nome_habilidade": "coletar feedback sobre a plataforma"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP089",
+      "nome_competencia": "Linux para operações",
+      "descricao_competencia": "Uso de Linux na administração de serviços, troubleshooting e automação operacional.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0353",
+          "nome_habilidade": "administrar serviços em Linux"
+        },
+        {
+          "codigo_habilidade": "HB0354",
+          "nome_habilidade": "inspecionar logs e processos"
+        },
+        {
+          "codigo_habilidade": "HB0355",
+          "nome_habilidade": "ajustar configurações do sistema"
+        },
+        {
+          "codigo_habilidade": "HB0356",
+          "nome_habilidade": "automatizar tarefas administrativas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP090",
+      "nome_competencia": "Runtime e ambientes de execução",
+      "descricao_competencia": "Gestão de parâmetros, dependências e comportamento de aplicações em execução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0357",
+          "nome_habilidade": "configurar variáveis e segredos de ambiente"
+        },
+        {
+          "codigo_habilidade": "HB0358",
+          "nome_habilidade": "ajustar parâmetros de runtime"
+        },
+        {
+          "codigo_habilidade": "HB0359",
+          "nome_habilidade": "comparar ambientes de execução"
+        },
+        {
+          "codigo_habilidade": "HB0360",
+          "nome_habilidade": "diagnosticar diferenças entre ambientes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP091",
+      "nome_competencia": "Entrega contínua de dados e IA",
+      "descricao_competencia": "Automação de deploy e operação para pipelines de dados e soluções inteligentes.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0361",
+          "nome_habilidade": "publicar pipelines de dados em ambiente"
+        },
+        {
+          "codigo_habilidade": "HB0362",
+          "nome_habilidade": "automatizar deploy de serviços de IA"
+        },
+        {
+          "codigo_habilidade": "HB0363",
+          "nome_habilidade": "validar saúde após implantação"
+        },
+        {
+          "codigo_habilidade": "HB0364",
+          "nome_habilidade": "coordenar rollback de componentes analíticos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP092",
+      "nome_competencia": "Custos e eficiência operacional",
+      "descricao_competencia": "Controle de consumo de recursos para sustentar escala com viabilidade financeira.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0365",
+          "nome_habilidade": "identificar recursos com maior custo"
+        },
+        {
+          "codigo_habilidade": "HB0366",
+          "nome_habilidade": "comparar alternativas de arquitetura"
+        },
+        {
+          "codigo_habilidade": "HB0367",
+          "nome_habilidade": "otimizar uso de capacidade"
+        },
+        {
+          "codigo_habilidade": "HB0368",
+          "nome_habilidade": "acompanhar indicadores de eficiência"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP093",
+      "nome_competencia": "Testes de carga e resiliência",
+      "descricao_competencia": "Validação do comportamento de sistemas sob volume, concorrência e falhas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0369",
+          "nome_habilidade": "simular carga em serviços"
+        },
+        {
+          "codigo_habilidade": "HB0370",
+          "nome_habilidade": "medir tempos e saturação"
+        },
+        {
+          "codigo_habilidade": "HB0371",
+          "nome_habilidade": "testar recuperação após falhas"
+        },
+        {
+          "codigo_habilidade": "HB0372",
+          "nome_habilidade": "interpretar resultados para ajustes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP094",
+      "nome_competencia": "Segurança de aplicações",
+      "descricao_competencia": "Incorporação de práticas de proteção ao longo do desenvolvimento e operação.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0373",
+          "nome_habilidade": "identificar vulnerabilidades comuns"
+        },
+        {
+          "codigo_habilidade": "HB0374",
+          "nome_habilidade": "validar entradas contra abuso"
+        },
+        {
+          "codigo_habilidade": "HB0375",
+          "nome_habilidade": "proteger dependências e segredos"
+        },
+        {
+          "codigo_habilidade": "HB0376",
+          "nome_habilidade": "corrigir falhas com prioridade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP095",
+      "nome_competencia": "Autenticação e autorização",
+      "descricao_competencia": "Controle de identidade, sessão e permissões em aplicações e serviços.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0377",
+          "nome_habilidade": "implementar autenticação de usuários"
+        },
+        {
+          "codigo_habilidade": "HB0378",
+          "nome_habilidade": "definir regras de autorização"
+        },
+        {
+          "codigo_habilidade": "HB0379",
+          "nome_habilidade": "proteger rotas e recursos"
+        },
+        {
+          "codigo_habilidade": "HB0380",
+          "nome_habilidade": "validar fluxo de sessão e expiração"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP096",
+      "nome_competencia": "Segurança de APIs",
+      "descricao_competencia": "Proteção de interfaces de serviço contra abuso, exposição indevida e acesso não autorizado.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0381",
+          "nome_habilidade": "aplicar autenticação em endpoints"
+        },
+        {
+          "codigo_habilidade": "HB0382",
+          "nome_habilidade": "limitar uso e abuso de requisições"
+        },
+        {
+          "codigo_habilidade": "HB0383",
+          "nome_habilidade": "validar payloads recebidos"
+        },
+        {
+          "codigo_habilidade": "HB0384",
+          "nome_habilidade": "proteger dados expostos em respostas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP097",
+      "nome_competencia": "Gestão de segredos",
+      "descricao_competencia": "Proteção de credenciais, tokens e chaves usadas por aplicações e ambientes.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0385",
+          "nome_habilidade": "armazenar segredos com segurança"
+        },
+        {
+          "codigo_habilidade": "HB0386",
+          "nome_habilidade": "evitar exposição em código e logs"
+        },
+        {
+          "codigo_habilidade": "HB0387",
+          "nome_habilidade": "rotacionar credenciais sensíveis"
+        },
+        {
+          "codigo_habilidade": "HB0388",
+          "nome_habilidade": "restringir acesso a segredos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP098",
+      "nome_competencia": "Gestão de identidade e acesso",
+      "descricao_competencia": "Controle de autenticação, autorização e privilégios em sistemas e ambientes.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0389",
+          "nome_habilidade": "configurar autenticação de usuários"
+        },
+        {
+          "codigo_habilidade": "HB0390",
+          "nome_habilidade": "definir perfis e permissões"
+        },
+        {
+          "codigo_habilidade": "HB0391",
+          "nome_habilidade": "aplicar princípio do menor privilégio"
+        },
+        {
+          "codigo_habilidade": "HB0392",
+          "nome_habilidade": "auditar acessos e credenciais"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP099",
+      "nome_competencia": "Segurança em cloud",
+      "descricao_competencia": "Proteção de recursos e configurações em nuvem com foco em postura e conformidade.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0393",
+          "nome_habilidade": "revisar configurações inseguras"
+        },
+        {
+          "codigo_habilidade": "HB0394",
+          "nome_habilidade": "proteger redes e perímetros"
+        },
+        {
+          "codigo_habilidade": "HB0395",
+          "nome_habilidade": "monitorar postura de segurança"
+        },
+        {
+          "codigo_habilidade": "HB0396",
+          "nome_habilidade": "responder a desvios de conformidade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP100",
+      "nome_competencia": "Threat modeling",
+      "descricao_competencia": "Análise estruturada de ameaças para orientar controles e decisões de proteção.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0397",
+          "nome_habilidade": "mapear ativos e superfícies de ataque"
+        },
+        {
+          "codigo_habilidade": "HB0398",
+          "nome_habilidade": "identificar ameaças por fluxo"
+        },
+        {
+          "codigo_habilidade": "HB0399",
+          "nome_habilidade": "priorizar riscos por impacto"
+        },
+        {
+          "codigo_habilidade": "HB0400",
+          "nome_habilidade": "propor mitigação por cenário"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP101",
+      "nome_competencia": "DevSecOps",
+      "descricao_competencia": "Integração de práticas de segurança ao fluxo contínuo de desenvolvimento e entrega.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0401",
+          "nome_habilidade": "incluir verificações de segurança no pipeline"
+        },
+        {
+          "codigo_habilidade": "HB0402",
+          "nome_habilidade": "automatizar análise de dependências"
+        },
+        {
+          "codigo_habilidade": "HB0403",
+          "nome_habilidade": "bloquear releases com risco crítico"
+        },
+        {
+          "codigo_habilidade": "HB0404",
+          "nome_habilidade": "acompanhar correções no fluxo de entrega"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP102",
+      "nome_competencia": "SAST e SCA",
+      "descricao_competencia": "Análise estática e de dependências para identificar riscos no código e ecossistema.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0405",
+          "nome_habilidade": "executar análise estática no código"
+        },
+        {
+          "codigo_habilidade": "HB0406",
+          "nome_habilidade": "inspecionar bibliotecas vulneráveis"
+        },
+        {
+          "codigo_habilidade": "HB0407",
+          "nome_habilidade": "priorizar achados por criticidade"
+        },
+        {
+          "codigo_habilidade": "HB0408",
+          "nome_habilidade": "corrigir problemas antes do release"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP103",
+      "nome_competencia": "DAST e testes de segurança",
+      "descricao_competencia": "Avaliação dinâmica de aplicações em execução para identificar comportamentos inseguros.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0409",
+          "nome_habilidade": "executar varreduras em aplicações expostas"
+        },
+        {
+          "codigo_habilidade": "HB0410",
+          "nome_habilidade": "interpretar achados dinâmicos"
+        },
+        {
+          "codigo_habilidade": "HB0411",
+          "nome_habilidade": "reproduzir vulnerabilidades reportadas"
+        },
+        {
+          "codigo_habilidade": "HB0412",
+          "nome_habilidade": "validar correções aplicadas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP104",
+      "nome_competencia": "Postura de segurança",
+      "descricao_competencia": "Avaliação contínua de controles, configurações e exposições em ambientes digitais.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0413",
+          "nome_habilidade": "comparar ambiente com critérios definidos"
+        },
+        {
+          "codigo_habilidade": "HB0414",
+          "nome_habilidade": "identificar desvios recorrentes"
+        },
+        {
+          "codigo_habilidade": "HB0415",
+          "nome_habilidade": "priorizar remediação por risco"
+        },
+        {
+          "codigo_habilidade": "HB0416",
+          "nome_habilidade": "acompanhar evolução da postura"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP105",
+      "nome_competencia": "Resposta a incidentes de segurança",
+      "descricao_competencia": "Condução de contenção, investigação e recuperação em eventos de segurança.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0417",
+          "nome_habilidade": "classificar impacto do incidente"
+        },
+        {
+          "codigo_habilidade": "HB0418",
+          "nome_habilidade": "coletar evidências para análise"
+        },
+        {
+          "codigo_habilidade": "HB0419",
+          "nome_habilidade": "conter ameaça sem ampliar dano"
+        },
+        {
+          "codigo_habilidade": "HB0420",
+          "nome_habilidade": "documentar causa e ações preventivas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP106",
+      "nome_competencia": "Conformidade e privacidade",
+      "descricao_competencia": "Aplicação de requisitos regulatórios e organizacionais no uso de dados e tecnologia.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0421",
+          "nome_habilidade": "classificar dados pessoais"
+        },
+        {
+          "codigo_habilidade": "HB0422",
+          "nome_habilidade": "aplicar requisitos de consentimento"
+        },
+        {
+          "codigo_habilidade": "HB0423",
+          "nome_habilidade": "documentar bases de tratamento"
+        },
+        {
+          "codigo_habilidade": "HB0424",
+          "nome_habilidade": "avaliar riscos de conformidade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP107",
+      "nome_competencia": "Governança e compliance",
+      "descricao_competencia": "Definição de políticas, controles e critérios de aderência em práticas tecnológicas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0425",
+          "nome_habilidade": "documentar políticas e padrões"
+        },
+        {
+          "codigo_habilidade": "HB0426",
+          "nome_habilidade": "atribuir responsáveis por controles"
+        },
+        {
+          "codigo_habilidade": "HB0427",
+          "nome_habilidade": "auditar aderência a requisitos"
+        },
+        {
+          "codigo_habilidade": "HB0428",
+          "nome_habilidade": "tratar desvios e exceções"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP108",
+      "nome_competencia": "Acessibilidade como requisito",
+      "descricao_competencia": "Incorporação de critérios de acessibilidade em produto, design e implementação.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0429",
+          "nome_habilidade": "avaliar contraste e legibilidade"
+        },
+        {
+          "codigo_habilidade": "HB0430",
+          "nome_habilidade": "garantir navegação por teclado"
+        },
+        {
+          "codigo_habilidade": "HB0431",
+          "nome_habilidade": "descrever elementos para tecnologias assistivas"
+        },
+        {
+          "codigo_habilidade": "HB0432",
+          "nome_habilidade": "validar interface com critérios de acessibilidade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP109",
+      "nome_competencia": "Experiência do usuário",
+      "descricao_competencia": "Projeto de fluxos digitais centrados nas necessidades e comportamento das pessoas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0433",
+          "nome_habilidade": "mapear jornadas de uso"
+        },
+        {
+          "codigo_habilidade": "HB0434",
+          "nome_habilidade": "definir fluxos de interação"
+        },
+        {
+          "codigo_habilidade": "HB0435",
+          "nome_habilidade": "validar hipóteses com usuários"
+        },
+        {
+          "codigo_habilidade": "HB0436",
+          "nome_habilidade": "identificar fricções na experiência"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP110",
+      "nome_competencia": "Pesquisa com usuários",
+      "descricao_competencia": "Coleta de evidências qualitativas e comportamentais para orientar decisões de produto.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0437",
+          "nome_habilidade": "planejar pesquisas por objetivo"
+        },
+        {
+          "codigo_habilidade": "HB0438",
+          "nome_habilidade": "conduzir entrevistas ou testes"
+        },
+        {
+          "codigo_habilidade": "HB0439",
+          "nome_habilidade": "sintetizar achados recorrentes"
+        },
+        {
+          "codigo_habilidade": "HB0440",
+          "nome_habilidade": "transformar evidências em oportunidades"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP111",
+      "nome_competencia": "Arquitetura da informação",
+      "descricao_competencia": "Organização de conteúdos, navegação e estruturas para facilitar entendimento e uso.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0441",
+          "nome_habilidade": "agrupar conteúdos por contexto"
+        },
+        {
+          "codigo_habilidade": "HB0442",
+          "nome_habilidade": "definir hierarquia de navegação"
+        },
+        {
+          "codigo_habilidade": "HB0443",
+          "nome_habilidade": "rotular menus e seções com clareza"
+        },
+        {
+          "codigo_habilidade": "HB0444",
+          "nome_habilidade": "testar compreensão da estrutura"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP112",
+      "nome_competencia": "Personas e jornadas",
+      "descricao_competencia": "Representação de perfis, contextos e etapas de uso para orientar soluções.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0445",
+          "nome_habilidade": "caracterizar perfis de usuário"
+        },
+        {
+          "codigo_habilidade": "HB0446",
+          "nome_habilidade": "mapear etapas da jornada"
+        },
+        {
+          "codigo_habilidade": "HB0447",
+          "nome_habilidade": "identificar dores e expectativas"
+        },
+        {
+          "codigo_habilidade": "HB0448",
+          "nome_habilidade": "relacionar jornada e oportunidades"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP113",
+      "nome_competencia": "Wireframes e protótipos",
+      "descricao_competencia": "Representação estrutural e navegável de interfaces para validação de fluxos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0449",
+          "nome_habilidade": "criar wireframes de baixa fidelidade"
+        },
+        {
+          "codigo_habilidade": "HB0450",
+          "nome_habilidade": "prototipar fluxos navegáveis"
+        },
+        {
+          "codigo_habilidade": "HB0451",
+          "nome_habilidade": "validar navegação antes da implementação"
+        },
+        {
+          "codigo_habilidade": "HB0452",
+          "nome_habilidade": "iterar protótipos com base em feedback"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP114",
+      "nome_competencia": "Design de interface",
+      "descricao_competencia": "Construção visual e estrutural de interfaces digitais consistentes e funcionais.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0453",
+          "nome_habilidade": "criar layouts de interface"
+        },
+        {
+          "codigo_habilidade": "HB0454",
+          "nome_habilidade": "aplicar hierarquia visual"
+        },
+        {
+          "codigo_habilidade": "HB0455",
+          "nome_habilidade": "prototipar telas navegáveis"
+        },
+        {
+          "codigo_habilidade": "HB0456",
+          "nome_habilidade": "documentar componentes visuais"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP115",
+      "nome_competencia": "Design systems",
+      "descricao_competencia": "Definição e manutenção de padrões reutilizáveis para interfaces e implementação.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0457",
+          "nome_habilidade": "definir biblioteca de componentes"
+        },
+        {
+          "codigo_habilidade": "HB0458",
+          "nome_habilidade": "padronizar tokens visuais"
+        },
+        {
+          "codigo_habilidade": "HB0459",
+          "nome_habilidade": "documentar regras de uso"
+        },
+        {
+          "codigo_habilidade": "HB0460",
+          "nome_habilidade": "alinhar handoff entre design e código"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP116",
+      "nome_competencia": "Design tokens",
+      "descricao_competencia": "Organização de variáveis visuais para garantir consistência entre plataformas e times.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0461",
+          "nome_habilidade": "definir tokens de cor e tipografia"
+        },
+        {
+          "codigo_habilidade": "HB0462",
+          "nome_habilidade": "estruturar escalas visuais reutilizáveis"
+        },
+        {
+          "codigo_habilidade": "HB0463",
+          "nome_habilidade": "sincronizar tokens com implementação"
+        },
+        {
+          "codigo_habilidade": "HB0464",
+          "nome_habilidade": "evoluir tokens sem quebrar consistência"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP117",
+      "nome_competencia": "Handoff para desenvolvimento",
+      "descricao_competencia": "Transferência clara de decisões de design para implementação técnica.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0465",
+          "nome_habilidade": "documentar comportamento de componentes"
+        },
+        {
+          "codigo_habilidade": "HB0466",
+          "nome_habilidade": "especificar estados e variações"
+        },
+        {
+          "codigo_habilidade": "HB0467",
+          "nome_habilidade": "alinhar dúvidas com engenharia"
+        },
+        {
+          "codigo_habilidade": "HB0468",
+          "nome_habilidade": "validar implementação contra o design"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP118",
+      "nome_competencia": "Design Ops",
+      "descricao_competencia": "Estruturação de processos, artefatos e rotinas para escalar a prática de design.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0469",
+          "nome_habilidade": "padronizar arquivos e fluxos de design"
+        },
+        {
+          "codigo_habilidade": "HB0470",
+          "nome_habilidade": "organizar bibliotecas compartilhadas"
+        },
+        {
+          "codigo_habilidade": "HB0471",
+          "nome_habilidade": "definir rituais e checkpoints"
+        },
+        {
+          "codigo_habilidade": "HB0472",
+          "nome_habilidade": "medir eficiência da operação de design"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP119",
+      "nome_competencia": "UX Strategy",
+      "descricao_competencia": "Priorização de oportunidades de experiência alinhadas a objetivos de produto e negócio.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0473",
+          "nome_habilidade": "avaliar impacto de problemas de experiência"
+        },
+        {
+          "codigo_habilidade": "HB0474",
+          "nome_habilidade": "priorizar oportunidades de melhoria"
+        },
+        {
+          "codigo_habilidade": "HB0475",
+          "nome_habilidade": "conectar UX a metas de produto"
+        },
+        {
+          "codigo_habilidade": "HB0476",
+          "nome_habilidade": "definir critérios de evolução da experiência"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP120",
+      "nome_competencia": "IA aplicada a design",
+      "descricao_competencia": "Uso de IA para pesquisa, ideação, síntese e documentação em fluxos de design.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0477",
+          "nome_habilidade": "usar IA para gerar alternativas iniciais"
+        },
+        {
+          "codigo_habilidade": "HB0478",
+          "nome_habilidade": "sintetizar feedbacks de pesquisa com IA"
+        },
+        {
+          "codigo_habilidade": "HB0479",
+          "nome_habilidade": "documentar decisões de design com apoio de IA"
+        },
+        {
+          "codigo_habilidade": "HB0480",
+          "nome_habilidade": "avaliar criticamente saídas geradas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP121",
+      "nome_competencia": "Qualidade da experiência",
+      "descricao_competencia": "Avaliação de consistência, clareza e fluidez de interações digitais.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0481",
+          "nome_habilidade": "validar consistência entre telas"
+        },
+        {
+          "codigo_habilidade": "HB0482",
+          "nome_habilidade": "identificar ambiguidades na interface"
+        },
+        {
+          "codigo_habilidade": "HB0483",
+          "nome_habilidade": "testar qualidade de fluxos críticos"
+        },
+        {
+          "codigo_habilidade": "HB0484",
+          "nome_habilidade": "priorizar correções de experiência"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP122",
+      "nome_competencia": "Produto orientado ao usuário",
+      "descricao_competencia": "Conexão entre necessidades do usuário, valor do produto e decisões de evolução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0485",
+          "nome_habilidade": "traduzir dores em oportunidades de produto"
+        },
+        {
+          "codigo_habilidade": "HB0486",
+          "nome_habilidade": "relacionar feedback a hipóteses de melhoria"
+        },
+        {
+          "codigo_habilidade": "HB0487",
+          "nome_habilidade": "avaliar valor percebido em funcionalidades"
+        },
+        {
+          "codigo_habilidade": "HB0488",
+          "nome_habilidade": "priorizar evolução com foco em uso"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP123",
+      "nome_competencia": "Planejamento de marketing",
+      "descricao_competencia": "Definição de objetivos, canais, públicos e ações para crescimento e posicionamento.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0489",
+          "nome_habilidade": "definir metas de campanha"
+        },
+        {
+          "codigo_habilidade": "HB0490",
+          "nome_habilidade": "segmentar público-alvo"
+        },
+        {
+          "codigo_habilidade": "HB0491",
+          "nome_habilidade": "selecionar canais de aquisição"
+        },
+        {
+          "codigo_habilidade": "HB0492",
+          "nome_habilidade": "distribuir orçamento entre ações"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP124",
+      "nome_competencia": "Marketing de conteúdo",
+      "descricao_competencia": "Produção de conteúdo orientado à jornada, autoridade e conversão de audiência.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0493",
+          "nome_habilidade": "planejar calendário editorial"
+        },
+        {
+          "codigo_habilidade": "HB0494",
+          "nome_habilidade": "criar conteúdos por objetivo"
+        },
+        {
+          "codigo_habilidade": "HB0495",
+          "nome_habilidade": "adaptar linguagem ao canal"
+        },
+        {
+          "codigo_habilidade": "HB0496",
+          "nome_habilidade": "otimizar conteúdo para conversão"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP125",
+      "nome_competencia": "Gestão de mídias sociais",
+      "descricao_competencia": "Operação estratégica de presença digital em redes e canais de relacionamento.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0497",
+          "nome_habilidade": "planejar pautas por rede"
+        },
+        {
+          "codigo_habilidade": "HB0498",
+          "nome_habilidade": "publicar conteúdos com consistência"
+        },
+        {
+          "codigo_habilidade": "HB0499",
+          "nome_habilidade": "interagir com audiência"
+        },
+        {
+          "codigo_habilidade": "HB0500",
+          "nome_habilidade": "acompanhar desempenho de posts"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP126",
+      "nome_competencia": "SEO e descoberta orgânica",
+      "descricao_competencia": "Melhoria de visibilidade orgânica por relevância de conteúdo e intenção de busca.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0501",
+          "nome_habilidade": "pesquisar intenções de busca"
+        },
+        {
+          "codigo_habilidade": "HB0502",
+          "nome_habilidade": "otimizar páginas para palavras-chave"
+        },
+        {
+          "codigo_habilidade": "HB0503",
+          "nome_habilidade": "estruturar conteúdo para ranqueamento"
+        },
+        {
+          "codigo_habilidade": "HB0504",
+          "nome_habilidade": "monitorar tráfego orgânico"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP127",
+      "nome_competencia": "Mídia paga",
+      "descricao_competencia": "Planejamento e operação de campanhas pagas com foco em aquisição e retorno.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0505",
+          "nome_habilidade": "configurar campanhas por objetivo"
+        },
+        {
+          "codigo_habilidade": "HB0506",
+          "nome_habilidade": "segmentar audiências para mídia paga"
+        },
+        {
+          "codigo_habilidade": "HB0507",
+          "nome_habilidade": "acompanhar custo e conversão"
+        },
+        {
+          "codigo_habilidade": "HB0508",
+          "nome_habilidade": "otimizar criativos e orçamento"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP128",
+      "nome_competencia": "Growth e experimentação",
+      "descricao_competencia": "Otimização contínua de aquisição, ativação, retenção e receita por experimentos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0509",
+          "nome_habilidade": "formular hipóteses de crescimento"
+        },
+        {
+          "codigo_habilidade": "HB0510",
+          "nome_habilidade": "planejar testes A/B"
+        },
+        {
+          "codigo_habilidade": "HB0511",
+          "nome_habilidade": "medir impacto de experimentos"
+        },
+        {
+          "codigo_habilidade": "HB0512",
+          "nome_habilidade": "priorizar ações por potencial de ganho"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP129",
+      "nome_competencia": "Automação de marketing",
+      "descricao_competencia": "Configuração de fluxos automatizados para relacionamento, nutrição e campanhas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0513",
+          "nome_habilidade": "configurar jornadas automatizadas"
+        },
+        {
+          "codigo_habilidade": "HB0514",
+          "nome_habilidade": "segmentar contatos por comportamento"
+        },
+        {
+          "codigo_habilidade": "HB0515",
+          "nome_habilidade": "acionar mensagens por gatilhos"
+        },
+        {
+          "codigo_habilidade": "HB0516",
+          "nome_habilidade": "monitorar conversão dos fluxos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP130",
+      "nome_competencia": "Analytics de marketing",
+      "descricao_competencia": "Leitura de performance de aquisição, engajamento, retenção e monetização.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0517",
+          "nome_habilidade": "definir KPIs de canal"
+        },
+        {
+          "codigo_habilidade": "HB0518",
+          "nome_habilidade": "construir dashboards de performance"
+        },
+        {
+          "codigo_habilidade": "HB0519",
+          "nome_habilidade": "interpretar funis de conversão"
+        },
+        {
+          "codigo_habilidade": "HB0520",
+          "nome_habilidade": "recomendar otimizações com base em dados"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP131",
+      "nome_competencia": "Tagueamento e mensuração",
+      "descricao_competencia": "Implementação de rastreamento para capturar eventos e atribuir resultados.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0521",
+          "nome_habilidade": "definir eventos e parâmetros de rastreio"
+        },
+        {
+          "codigo_habilidade": "HB0522",
+          "nome_habilidade": "configurar tags em páginas e fluxos"
+        },
+        {
+          "codigo_habilidade": "HB0523",
+          "nome_habilidade": "validar coleta de eventos"
+        },
+        {
+          "codigo_habilidade": "HB0524",
+          "nome_habilidade": "garantir consistência de mensuração"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP132",
+      "nome_competencia": "Segmentação e personalização",
+      "descricao_competencia": "Adequação de mensagens e experiências a perfis, sinais e momentos da audiência.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0525",
+          "nome_habilidade": "segmentar usuários por comportamento"
+        },
+        {
+          "codigo_habilidade": "HB0526",
+          "nome_habilidade": "adaptar conteúdo por perfil"
+        },
+        {
+          "codigo_habilidade": "HB0527",
+          "nome_habilidade": "definir gatilhos de personalização"
+        },
+        {
+          "codigo_habilidade": "HB0528",
+          "nome_habilidade": "medir impacto da personalização"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP133",
+      "nome_competencia": "Conteúdo orientado à jornada",
+      "descricao_competencia": "Planejamento de peças e mensagens conforme estágio de relacionamento do público.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0529",
+          "nome_habilidade": "mapear conteúdos por etapa da jornada"
+        },
+        {
+          "codigo_habilidade": "HB0530",
+          "nome_habilidade": "alinhar formatos a intenções do público"
+        },
+        {
+          "codigo_habilidade": "HB0531",
+          "nome_habilidade": "conectar conteúdo e objetivo comercial"
+        },
+        {
+          "codigo_habilidade": "HB0532",
+          "nome_habilidade": "revisar lacunas na jornada de conteúdo"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP134",
+      "nome_competencia": "Comunidade e influência",
+      "descricao_competencia": "Relacionamento com audiência, criadores e comunidades para ampliar alcance e confiança.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0533",
+          "nome_habilidade": "identificar comunidades e parceiros relevantes"
+        },
+        {
+          "codigo_habilidade": "HB0534",
+          "nome_habilidade": "planejar ativações com influenciadores"
+        },
+        {
+          "codigo_habilidade": "HB0535",
+          "nome_habilidade": "estimular interação recorrente"
+        },
+        {
+          "codigo_habilidade": "HB0536",
+          "nome_habilidade": "acompanhar impacto de ações de comunidade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP135",
+      "nome_competencia": "Monetização e retenção",
+      "descricao_competencia": "Otimização de recorrência, receita e permanência a partir de sinais de comportamento.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0537",
+          "nome_habilidade": "analisar churn e retenção"
+        },
+        {
+          "codigo_habilidade": "HB0538",
+          "nome_habilidade": "identificar oportunidades de monetização"
+        },
+        {
+          "codigo_habilidade": "HB0539",
+          "nome_habilidade": "testar alavancas de reativação"
+        },
+        {
+          "codigo_habilidade": "HB0540",
+          "nome_habilidade": "acompanhar receita por coorte"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP136",
+      "nome_competencia": "IA aplicada a marketing",
+      "descricao_competencia": "Uso de IA para criação, personalização, análise e otimização de campanhas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0541",
+          "nome_habilidade": "gerar rascunhos de conteúdo com IA"
+        },
+        {
+          "codigo_habilidade": "HB0542",
+          "nome_habilidade": "segmentar públicos com apoio de IA"
+        },
+        {
+          "codigo_habilidade": "HB0543",
+          "nome_habilidade": "sintetizar desempenho de campanhas"
+        },
+        {
+          "codigo_habilidade": "HB0544",
+          "nome_habilidade": "revisar criticamente saídas geradas por IA"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP137",
+      "nome_competencia": "Liderança de pessoas",
+      "descricao_competencia": "Condução de times com foco em desempenho, contexto, desenvolvimento e cultura.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0545",
+          "nome_habilidade": "definir expectativas de atuação"
+        },
+        {
+          "codigo_habilidade": "HB0546",
+          "nome_habilidade": "acompanhar desempenho do time"
+        },
+        {
+          "codigo_habilidade": "HB0547",
+          "nome_habilidade": "conduzir conversas de desenvolvimento"
+        },
+        {
+          "codigo_habilidade": "HB0548",
+          "nome_habilidade": "fortalecer cultura de colaboração"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP138",
+      "nome_competencia": "Comunicação profissional",
+      "descricao_competencia": "Troca clara de informações em contextos técnicos, organizacionais e multidisciplinares.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0549",
+          "nome_habilidade": "estruturar mensagens com objetividade"
+        },
+        {
+          "codigo_habilidade": "HB0550",
+          "nome_habilidade": "adaptar linguagem ao público"
+        },
+        {
+          "codigo_habilidade": "HB0551",
+          "nome_habilidade": "registrar decisões e combinados"
+        },
+        {
+          "codigo_habilidade": "HB0552",
+          "nome_habilidade": "conduzir alinhamentos produtivos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP139",
+      "nome_competencia": "Feedback e desenvolvimento",
+      "descricao_competencia": "Práticas de devolutiva e acompanhamento para evolução individual e coletiva.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0553",
+          "nome_habilidade": "dar feedback acionável"
+        },
+        {
+          "codigo_habilidade": "HB0554",
+          "nome_habilidade": "combinar próximos passos de evolução"
+        },
+        {
+          "codigo_habilidade": "HB0555",
+          "nome_habilidade": "acompanhar mudanças de comportamento"
+        },
+        {
+          "codigo_habilidade": "HB0556",
+          "nome_habilidade": "reconhecer avanços e lacunas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP140",
+      "nome_competencia": "Mentoria e desenvolvimento técnico",
+      "descricao_competencia": "Apoio estruturado ao crescimento de pessoas em competências técnicas e práticas.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0557",
+          "nome_habilidade": "orientar planos de desenvolvimento"
+        },
+        {
+          "codigo_habilidade": "HB0558",
+          "nome_habilidade": "acompanhar evolução de desempenho"
+        },
+        {
+          "codigo_habilidade": "HB0559",
+          "nome_habilidade": "compartilhar referências e práticas"
+        },
+        {
+          "codigo_habilidade": "HB0560",
+          "nome_habilidade": "estimular autonomia no aprendizado"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP141",
+      "nome_competencia": "Gestão de stakeholders",
+      "descricao_competencia": "Alinhamento com pessoas e áreas que influenciam ou são impactadas pelas decisões.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0561",
+          "nome_habilidade": "mapear stakeholders relevantes"
+        },
+        {
+          "codigo_habilidade": "HB0562",
+          "nome_habilidade": "alinhar expectativas e restrições"
+        },
+        {
+          "codigo_habilidade": "HB0563",
+          "nome_habilidade": "negociar prioridades entre áreas"
+        },
+        {
+          "codigo_habilidade": "HB0564",
+          "nome_habilidade": "comunicar riscos e decisões"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP142",
+      "nome_competencia": "Recrutamento e seleção",
+      "descricao_competencia": "Estruturação de processos para atrair, avaliar e contratar pessoas aderentes ao contexto.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0565",
+          "nome_habilidade": "definir perfil de vaga"
+        },
+        {
+          "codigo_habilidade": "HB0566",
+          "nome_habilidade": "triagem de candidatos"
+        },
+        {
+          "codigo_habilidade": "HB0567",
+          "nome_habilidade": "conduzir entrevistas estruturadas"
+        },
+        {
+          "codigo_habilidade": "HB0568",
+          "nome_habilidade": "consolidar parecer de seleção"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP143",
+      "nome_competencia": "Treinamento e desenvolvimento",
+      "descricao_competencia": "Planejamento de ações de aprendizagem para evolução de competências organizacionais.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0569",
+          "nome_habilidade": "diagnosticar necessidades de desenvolvimento"
+        },
+        {
+          "codigo_habilidade": "HB0570",
+          "nome_habilidade": "desenhar trilhas de aprendizagem"
+        },
+        {
+          "codigo_habilidade": "HB0571",
+          "nome_habilidade": "avaliar efetividade de capacitações"
+        },
+        {
+          "codigo_habilidade": "HB0572",
+          "nome_habilidade": "acompanhar evolução de competências"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP144",
+      "nome_competencia": "Employee experience",
+      "descricao_competencia": "Estruturação de experiências de trabalho que favoreçam engajamento e permanência.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0573",
+          "nome_habilidade": "mapear momentos da jornada do colaborador"
+        },
+        {
+          "codigo_habilidade": "HB0574",
+          "nome_habilidade": "identificar fricções na experiência interna"
+        },
+        {
+          "codigo_habilidade": "HB0575",
+          "nome_habilidade": "propor melhorias em rituais e processos"
+        },
+        {
+          "codigo_habilidade": "HB0576",
+          "nome_habilidade": "acompanhar sinais de engajamento"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP145",
+      "nome_competencia": "Employer branding",
+      "descricao_competencia": "Construção da percepção de marca empregadora para atrair e reter talentos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0577",
+          "nome_habilidade": "definir proposta de valor ao talento"
+        },
+        {
+          "codigo_habilidade": "HB0578",
+          "nome_habilidade": "alinhar comunicação de carreira e cultura"
+        },
+        {
+          "codigo_habilidade": "HB0579",
+          "nome_habilidade": "produzir conteúdos de marca empregadora"
+        },
+        {
+          "codigo_habilidade": "HB0580",
+          "nome_habilidade": "medir percepção da marca empregadora"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP146",
+      "nome_competencia": "Business partner de RH",
+      "descricao_competencia": "Atuação consultiva de RH conectando pessoas, contexto organizacional e resultados.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0581",
+          "nome_habilidade": "diagnosticar demandas das lideranças"
+        },
+        {
+          "codigo_habilidade": "HB0582",
+          "nome_habilidade": "propor ações de pessoas alinhadas ao contexto"
+        },
+        {
+          "codigo_habilidade": "HB0583",
+          "nome_habilidade": "acompanhar indicadores de clima e desempenho"
+        },
+        {
+          "codigo_habilidade": "HB0584",
+          "nome_habilidade": "mediar decisões com impacto organizacional"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP147",
+      "nome_competencia": "Gestão da mudança",
+      "descricao_competencia": "Condução de adoção organizacional em processos, estruturas e tecnologias.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0585",
+          "nome_habilidade": "mapear impactos da mudança"
+        },
+        {
+          "codigo_habilidade": "HB0586",
+          "nome_habilidade": "planejar comunicação e capacitação"
+        },
+        {
+          "codigo_habilidade": "HB0587",
+          "nome_habilidade": "acompanhar adesão das equipes"
+        },
+        {
+          "codigo_habilidade": "HB0588",
+          "nome_habilidade": "ajustar ações conforme resistência observada"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP148",
+      "nome_competencia": "Cultura organizacional",
+      "descricao_competencia": "Leitura e fortalecimento de práticas, valores e comportamentos no ambiente de trabalho.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0589",
+          "nome_habilidade": "identificar padrões culturais recorrentes"
+        },
+        {
+          "codigo_habilidade": "HB0590",
+          "nome_habilidade": "alinhar rituais a valores desejados"
+        },
+        {
+          "codigo_habilidade": "HB0591",
+          "nome_habilidade": "estimular comportamentos coerentes"
+        },
+        {
+          "codigo_habilidade": "HB0592",
+          "nome_habilidade": "acompanhar sinais de cultura nas equipes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP149",
+      "nome_competencia": "Organização de rotinas e processos",
+      "descricao_competencia": "Estruturação de fluxos de trabalho para dar previsibilidade e eficiência operacional.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0593",
+          "nome_habilidade": "mapear etapas de trabalho recorrente"
+        },
+        {
+          "codigo_habilidade": "HB0594",
+          "nome_habilidade": "definir responsáveis e checkpoints"
+        },
+        {
+          "codigo_habilidade": "HB0595",
+          "nome_habilidade": "padronizar registros e handoffs"
+        },
+        {
+          "codigo_habilidade": "HB0596",
+          "nome_habilidade": "revisar gargalos e retrabalho"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP150",
+      "nome_competencia": "Produtividade com IA para gestão",
+      "descricao_competencia": "Uso de copilotos e automações para apoiar rotinas administrativas e de liderança.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0597",
+          "nome_habilidade": "usar IA para sintetizar informações"
+        },
+        {
+          "codigo_habilidade": "HB0598",
+          "nome_habilidade": "automatizar tarefas administrativas simples"
+        },
+        {
+          "codigo_habilidade": "HB0599",
+          "nome_habilidade": "estruturar planos e acompanhamentos com IA"
+        },
+        {
+          "codigo_habilidade": "HB0600",
+          "nome_habilidade": "revisar criticamente recomendações geradas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP151",
+      "nome_competencia": "Arquitetura de soluções",
+      "descricao_competencia": "Desenho end-to-end de soluções alinhando componentes, integrações, riscos e valor.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0601",
+          "nome_habilidade": "modelar solução ponta a ponta"
+        },
+        {
+          "codigo_habilidade": "HB0602",
+          "nome_habilidade": "definir componentes e integrações"
+        },
+        {
+          "codigo_habilidade": "HB0603",
+          "nome_habilidade": "avaliar trade-offs técnicos"
+        },
+        {
+          "codigo_habilidade": "HB0604",
+          "nome_habilidade": "documentar decisões arquiteturais"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP152",
+      "nome_competencia": "Arquitetura orientada a negócio",
+      "descricao_competencia": "Tradução de objetivos e restrições do negócio em decisões de solução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0605",
+          "nome_habilidade": "levantar requisitos de negócio"
+        },
+        {
+          "codigo_habilidade": "HB0606",
+          "nome_habilidade": "mapear restrições operacionais"
+        },
+        {
+          "codigo_habilidade": "HB0607",
+          "nome_habilidade": "priorizar critérios de decisão"
+        },
+        {
+          "codigo_habilidade": "HB0608",
+          "nome_habilidade": "explicar impactos da solução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP153",
+      "nome_competencia": "Arquitetura de aplicações",
+      "descricao_competencia": "Organização estrutural de componentes, camadas e responsabilidades de uma solução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0609",
+          "nome_habilidade": "separar camadas da aplicação"
+        },
+        {
+          "codigo_habilidade": "HB0610",
+          "nome_habilidade": "definir responsabilidades por componente"
+        },
+        {
+          "codigo_habilidade": "HB0611",
+          "nome_habilidade": "aplicar padrões arquiteturais"
+        },
+        {
+          "codigo_habilidade": "HB0612",
+          "nome_habilidade": "avaliar impactos de mudanças estruturais"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP154",
+      "nome_competencia": "Arquitetura de dados",
+      "descricao_competencia": "Definição de estruturas e fluxos informacionais para consistência, escala e consumo.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0613",
+          "nome_habilidade": "desenhar domínios e entidades de dados"
+        },
+        {
+          "codigo_habilidade": "HB0614",
+          "nome_habilidade": "definir fluxos entre origem e consumo"
+        },
+        {
+          "codigo_habilidade": "HB0615",
+          "nome_habilidade": "planejar armazenamento por uso"
+        },
+        {
+          "codigo_habilidade": "HB0616",
+          "nome_habilidade": "avaliar consistência e disponibilidade"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP155",
+      "nome_competencia": "Arquitetura de integrações",
+      "descricao_competencia": "Estruturação de conexões entre sistemas, serviços e eventos em ecossistemas complexos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0617",
+          "nome_habilidade": "definir padrões de integração"
+        },
+        {
+          "codigo_habilidade": "HB0618",
+          "nome_habilidade": "selecionar mecanismos síncronos ou assíncronos"
+        },
+        {
+          "codigo_habilidade": "HB0619",
+          "nome_habilidade": "planejar contratos entre domínios"
+        },
+        {
+          "codigo_habilidade": "HB0620",
+          "nome_habilidade": "avaliar impacto de dependências distribuídas"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP156",
+      "nome_competencia": "Arquitetura de cloud",
+      "descricao_competencia": "Definição de componentes de infraestrutura, disponibilidade e escala em nuvem.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0621",
+          "nome_habilidade": "desenhar topologia de serviços em nuvem"
+        },
+        {
+          "codigo_habilidade": "HB0622",
+          "nome_habilidade": "equilibrar custo e resiliência"
+        },
+        {
+          "codigo_habilidade": "HB0623",
+          "nome_habilidade": "selecionar serviços por requisito técnico"
+        },
+        {
+          "codigo_habilidade": "HB0624",
+          "nome_habilidade": "planejar observabilidade da solução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP157",
+      "nome_competencia": "Arquitetura de segurança",
+      "descricao_competencia": "Incorporação de identidade, proteção e conformidade no desenho da solução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0625",
+          "nome_habilidade": "definir controles por componente"
+        },
+        {
+          "codigo_habilidade": "HB0626",
+          "nome_habilidade": "avaliar superfícies de risco"
+        },
+        {
+          "codigo_habilidade": "HB0627",
+          "nome_habilidade": "alinhar arquitetura e requisitos de proteção"
+        },
+        {
+          "codigo_habilidade": "HB0628",
+          "nome_habilidade": "documentar guardrails arquiteturais"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP158",
+      "nome_competencia": "Arquitetura de IA",
+      "descricao_competencia": "Definição estrutural de soluções com modelos, dados, avaliação e guardrails.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0629",
+          "nome_habilidade": "definir componentes de IA na solução"
+        },
+        {
+          "codigo_habilidade": "HB0630",
+          "nome_habilidade": "integrar modelos com fluxos corporativos"
+        },
+        {
+          "codigo_habilidade": "HB0631",
+          "nome_habilidade": "estabelecer avaliação e guardrails"
+        },
+        {
+          "codigo_habilidade": "HB0632",
+          "nome_habilidade": "planejar operação de soluções inteligentes"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP159",
+      "nome_competencia": "Trade-offs técnicos",
+      "descricao_competencia": "Avaliação comparativa de alternativas com foco em impacto, risco e sustentabilidade.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0633",
+          "nome_habilidade": "comparar opções por critérios explícitos"
+        },
+        {
+          "codigo_habilidade": "HB0634",
+          "nome_habilidade": "explicitar ganhos e perdas de cada alternativa"
+        },
+        {
+          "codigo_habilidade": "HB0635",
+          "nome_habilidade": "considerar custo prazo e complexidade"
+        },
+        {
+          "codigo_habilidade": "HB0636",
+          "nome_habilidade": "registrar decisão com justificativa"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP160",
+      "nome_competencia": "Documentação de decisões técnicas",
+      "descricao_competencia": "Registro de escolhas estruturais para dar contexto e rastreabilidade à evolução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0637",
+          "nome_habilidade": "estruturar contexto da decisão"
+        },
+        {
+          "codigo_habilidade": "HB0638",
+          "nome_habilidade": "registrar alternativas consideradas"
+        },
+        {
+          "codigo_habilidade": "HB0639",
+          "nome_habilidade": "documentar critérios e consequências"
+        },
+        {
+          "codigo_habilidade": "HB0640",
+          "nome_habilidade": "atualizar decisões quando o contexto muda"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP161",
+      "nome_competencia": "Liderança técnica",
+      "descricao_competencia": "Condução de decisões, padrões e evolução técnica de times de engenharia.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0641",
+          "nome_habilidade": "definir padrões de engenharia"
+        },
+        {
+          "codigo_habilidade": "HB0642",
+          "nome_habilidade": "orientar decisões técnicas do time"
+        },
+        {
+          "codigo_habilidade": "HB0643",
+          "nome_habilidade": "equilibrar prazo qualidade e risco"
+        },
+        {
+          "codigo_habilidade": "HB0644",
+          "nome_habilidade": "desenvolver autonomia técnica do time"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP162",
+      "nome_competencia": "Gestão de dívida técnica",
+      "descricao_competencia": "Identificação, priorização e redução de passivos que afetam sustentabilidade.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0645",
+          "nome_habilidade": "mapear dívidas técnicas relevantes"
+        },
+        {
+          "codigo_habilidade": "HB0646",
+          "nome_habilidade": "priorizar correções por impacto"
+        },
+        {
+          "codigo_habilidade": "HB0647",
+          "nome_habilidade": "planejar evolução sem interromper entregas"
+        },
+        {
+          "codigo_habilidade": "HB0648",
+          "nome_habilidade": "acompanhar redução de passivos"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP163",
+      "nome_competencia": "Padrões de engenharia",
+      "descricao_competencia": "Definição de critérios compartilhados para implementação, revisão e manutenção técnica.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0649",
+          "nome_habilidade": "formalizar convenções de implementação"
+        },
+        {
+          "codigo_habilidade": "HB0650",
+          "nome_habilidade": "alinhar critérios de revisão"
+        },
+        {
+          "codigo_habilidade": "HB0651",
+          "nome_habilidade": "difundir padrões no time"
+        },
+        {
+          "codigo_habilidade": "HB0652",
+          "nome_habilidade": "revisar padrões conforme contexto evolui"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP164",
+      "nome_competencia": "Saúde técnica do produto",
+      "descricao_competencia": "Leitura contínua de sinais que indicam sustentabilidade e risco na engenharia.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0653",
+          "nome_habilidade": "acompanhar indicadores de qualidade"
+        },
+        {
+          "codigo_habilidade": "HB0654",
+          "nome_habilidade": "identificar áreas frágeis do sistema"
+        },
+        {
+          "codigo_habilidade": "HB0655",
+          "nome_habilidade": "relacionar riscos técnicos e entrega"
+        },
+        {
+          "codigo_habilidade": "HB0656",
+          "nome_habilidade": "priorizar ações de estabilização"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP165",
+      "nome_competencia": "Coordenação técnica de entregas",
+      "descricao_competencia": "Orquestração de execução técnica entre pessoas, dependências e restrições de prazo.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0657",
+          "nome_habilidade": "organizar fluxo técnico da entrega"
+        },
+        {
+          "codigo_habilidade": "HB0658",
+          "nome_habilidade": "antecipar bloqueios e dependências"
+        },
+        {
+          "codigo_habilidade": "HB0659",
+          "nome_habilidade": "alinhar qualidade e velocidade de execução"
+        },
+        {
+          "codigo_habilidade": "HB0660",
+          "nome_habilidade": "acompanhar progresso técnico do time"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP166",
+      "nome_competencia": "Tomada de decisão orientada por dados",
+      "descricao_competencia": "Uso de evidências para priorizar ações e sustentar escolhas técnicas e de negócio.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0661",
+          "nome_habilidade": "definir critérios de decisão"
+        },
+        {
+          "codigo_habilidade": "HB0662",
+          "nome_habilidade": "confrontar hipóteses com evidências"
+        },
+        {
+          "codigo_habilidade": "HB0663",
+          "nome_habilidade": "priorizar ações por impacto"
+        },
+        {
+          "codigo_habilidade": "HB0664",
           "nome_habilidade": "comunicar recomendações com base em dados"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP167",
+      "nome_competencia": "Visão sistêmica",
+      "descricao_competencia": "Leitura de relações entre tecnologia, operação, negócio e experiência na solução.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0665",
+          "nome_habilidade": "identificar efeitos entre componentes e áreas"
+        },
+        {
+          "codigo_habilidade": "HB0666",
+          "nome_habilidade": "avaliar impacto além do módulo local"
+        },
+        {
+          "codigo_habilidade": "HB0667",
+          "nome_habilidade": "relacionar decisão técnica e valor entregue"
+        },
+        {
+          "codigo_habilidade": "HB0668",
+          "nome_habilidade": "considerar operação e negócio na solução"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP168",
+      "nome_competencia": "Pensamento estratégico",
+      "descricao_competencia": "Priorização de movimentos com foco em posicionamento, sustentabilidade e geração de valor.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0669",
+          "nome_habilidade": "analisar contexto antes de agir"
+        },
+        {
+          "codigo_habilidade": "HB0670",
+          "nome_habilidade": "definir prioridades de médio prazo"
+        },
+        {
+          "codigo_habilidade": "HB0671",
+          "nome_habilidade": "relacionar ações a objetivos maiores"
+        },
+        {
+          "codigo_habilidade": "HB0672",
+          "nome_habilidade": "reavaliar estratégia conforme evidências"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP169",
+      "nome_competencia": "Geração de valor com tecnologia",
+      "descricao_competencia": "Conexão entre entregas técnicas, resultados do negócio e experiência do usuário.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0673",
+          "nome_habilidade": "relacionar solução técnica e resultado esperado"
+        },
+        {
+          "codigo_habilidade": "HB0674",
+          "nome_habilidade": "priorizar iniciativas por impacto de valor"
+        },
+        {
+          "codigo_habilidade": "HB0675",
+          "nome_habilidade": "medir efeito das entregas no contexto"
+        },
+        {
+          "codigo_habilidade": "HB0676",
+          "nome_habilidade": "explicar contribuição da tecnologia ao negócio"
+        }
+      ]
+    },
+    {
+      "codigo_competencia": "CP170",
+      "nome_competencia": "Colaboração multidisciplinar",
+      "descricao_competencia": "Trabalho coordenado entre áreas distintas para resolver problemas complexos.",
+      "habilidades": [
+        {
+          "codigo_habilidade": "HB0677",
+          "nome_habilidade": "alinhar objetivos entre especialidades"
+        },
+        {
+          "codigo_habilidade": "HB0678",
+          "nome_habilidade": "traduzir necessidades entre áreas"
+        },
+        {
+          "codigo_habilidade": "HB0679",
+          "nome_habilidade": "mediar conflitos de prioridade"
+        },
+        {
+          "codigo_habilidade": "HB0680",
+          "nome_habilidade": "registrar decisões compartilhadas"
         }
       ]
     }

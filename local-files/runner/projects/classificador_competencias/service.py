@@ -78,14 +78,14 @@ def _validar_competencias(competencias: list[dict]) -> list[dict]:
     """
     validas = []
     for comp in competencias:
-        comp_id = comp.get("id", "")
+        comp_id = comp.get("codigo_competencia", "")
         if comp_id not in _BIBLIOTECA_IDS:
             print(f"AVISO: competência ignorada (ID inválido): {comp_id}")
             continue
 
         habilidades_validas = [
             h for h in comp.get("habilidades", [])
-            if h.get("id") in _HABILIDADES_IDS
+            if h.get("codigo_habilidade") in _HABILIDADES_IDS
         ]
         ignoradas = len(comp.get("habilidades", [])) - len(habilidades_validas)
         if ignoradas:

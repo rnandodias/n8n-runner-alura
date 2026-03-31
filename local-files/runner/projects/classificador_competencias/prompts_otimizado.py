@@ -61,11 +61,11 @@ Retorne APENAS um objeto JSON válido, sem texto adicional, neste formato exato:
 {
   "competencias": [
     {
-      "id": "CP001",
-      "nome": "Nome da competência",
-      "descricao": "Descrição da competência",
+      "codigo_competencia": "CP001",
+      "nome_competencia": "Nome da competência",
+      "descricao_competencia": "Descrição da competência",
       "habilidades": [
-        { "id": "HB0001", "nome": "nome da habilidade" }
+        { "codigo_habilidade": "HB0001", "nome_habilidade": "nome da habilidade" }
       ]
     }
   ]

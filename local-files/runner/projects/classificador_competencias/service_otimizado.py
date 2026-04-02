@@ -49,11 +49,19 @@ def _parsear_resposta(resposta: str) -> list[dict]:
     """Extrai e valida a lista de competências da resposta do LLM."""
     resposta = resposta.strip()
 
-    if resposta.startswith("```"):
-        resposta = re.sub(r'^```\w*\s*\n?', '', resposta)
-        resposta = re.sub(r'\n?```\s*$', '', resposta)
-        resposta = resposta.strip()
+    # Tentativa 1: múltiplos blocos de código — tenta o último primeiro (resposta final do modelo)
+    blocos = re.findall(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', resposta)
+    for bloco in reversed(blocos):
+        try:
+            data = json.loads(bloco.strip())
+            if isinstance(data, dict) and "competencias" in data:
+                return data["competencias"]
+            if isinstance(data, list):
+                return data
+        except json.JSONDecodeError:
+            pass
 
+    # Tentativa 2: parse direto (resposta sem markdown)
     try:
         data = json.loads(resposta)
         if isinstance(data, dict) and "competencias" in data:
@@ -63,6 +71,7 @@ def _parsear_resposta(resposta: str) -> list[dict]:
     except json.JSONDecodeError:
         pass
 
+    # Tentativa 3: extrai o objeto JSON da resposta (fallback)
     match = re.search(r'\{[\s\S]*"competencias"[\s\S]*\}', resposta)
     if match:
         try:

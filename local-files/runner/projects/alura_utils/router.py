@@ -5,6 +5,7 @@ Prefix: /utils
 Endpoints:
   POST /utils/cursos              — sincroniza curso (scraping + API pública)
   GET  /utils/cursos/{id}         — retorna curso do banco sem scraping
+  GET  /utils/cursos/slug/{slug}  — retorna curso do banco buscando pelo slug
   POST /utils/carreiras/sync      — atualiza cache de todas as carreiras
   POST /utils/carreiras           — adiciona novo slug de carreira
   GET  /utils/carreiras           — lista carreiras cadastradas
@@ -14,7 +15,12 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from projects.alura_utils.queue import scraping_semaphore
-from projects.alura_utils.repository import get_all_carreiras, get_course_dados, insert_carreira_slug
+from projects.alura_utils.repository import (
+    get_all_carreiras,
+    get_course_dados,
+    get_course_dados_by_slug,
+    insert_carreira_slug,
+)
 from projects.alura_utils.service import sincronizar_carreiras, sincronizar_curso
 
 router = APIRouter(prefix="/utils")
@@ -48,6 +54,20 @@ async def get_cursos(course_id: int):
         dados = await get_course_dados(course_id)
         if not dados:
             raise HTTPException(status_code=404, detail=f"Curso {course_id} não encontrado")
+        return {"course_id": course_id, **dados}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao consultar curso: {e}")
+
+
+@router.get("/cursos/slug/{slug}")
+async def get_cursos_by_slug(slug: str):
+    try:
+        resultado = await get_course_dados_by_slug(slug)
+        if not resultado:
+            raise HTTPException(status_code=404, detail=f"Curso com slug '{slug}' não encontrado")
+        course_id, dados = resultado
         return {"course_id": course_id, **dados}
     except HTTPException:
         raise

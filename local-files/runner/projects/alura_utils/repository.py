@@ -18,6 +18,19 @@ async def get_course_dados(course_id: int) -> dict | None:
         return json.loads(row["dados"]) if row else None
 
 
+async def get_course_dados_by_slug(slug: str) -> tuple[int, dict] | None:
+    """Retorna (course_id, dados) do curso buscando pelo slug, ou None se não existe."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "SELECT course_id, dados FROM alura_cursos WHERE dados->>'slug' = $1",
+            slug,
+        )
+        if not row:
+            return None
+        return row["course_id"], json.loads(row["dados"])
+
+
 async def upsert_course(course_id: int, dados: dict) -> None:
     """Salva (ou substitui) o documento JSON do curso."""
     pool = await get_pool()

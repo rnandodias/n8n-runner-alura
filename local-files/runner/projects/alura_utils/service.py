@@ -4,6 +4,7 @@ Combina API pública Alura + scraper Playwright + PostgreSQL.
 """
 
 import asyncio
+import time
 from datetime import datetime
 
 from projects.alura_utils.api_client import get_career_api, get_course_api
@@ -222,9 +223,12 @@ async def sincronizar_cursos_batch(
     delay_segundos: float = 1.5,
 ) -> dict:
     """Sincroniza múltiplos cursos em uma única sessão Alura."""
+    total = len(course_ids)
+    print(f"[batch] iniciando — {total} cursos", flush=True)
     carreiras_cache = await get_all_carreiras()
     plano: list[dict] = []
 
+    print(f"[batch] pré-passada (checando cache via API pública)…", flush=True)
     for course_id in course_ids:
         try:
             existing = await get_course_dados(course_id)
@@ -248,6 +252,8 @@ async def sincronizar_cursos_batch(
                 "status_pre": status_pre,
                 "erro_pre": None,
             })
+            marca = "raspar" if precisa_scraping else "cache"
+            print(f"[batch] curso {course_id} — slug={slug or '?'} ({marca})", flush=True)
         except Exception as e:
             plano.append({
                 "course_id": course_id,
@@ -258,20 +264,29 @@ async def sincronizar_cursos_batch(
                 "status_pre": "erro",
                 "erro_pre": str(e),
             })
+            print(f"[batch] curso {course_id} — erro na pré-passada: {e}", flush=True)
 
     resultados: list[dict] = []
     precisam = [p for p in plano if p["precisa_scraping"]]
+    print(f"[batch] pré-passada concluída — {len(precisam)}/{total} precisam de scraping", flush=True)
 
     if not precisam:
+        print(f"[batch] nenhum curso precisa de scraping — pulando login", flush=True)
         for p in plano:
             resultados.append(_resultado_pre(p))
     else:
+        print(f"[batch] abrindo sessão Alura (login único)…", flush=True)
         async with alura_session() as page:
+            print(f"[batch] sessão aberta — começando scraping", flush=True)
             i_scrape = 0
+            n_scrape = len(precisam)
             for p in plano:
                 if not p["precisa_scraping"]:
                     resultados.append(_resultado_pre(p))
                     continue
+                i_scrape += 1
+                t0 = time.monotonic()
+                print(f"[batch] ({i_scrape}/{n_scrape}) raspando curso {p['course_id']} ({p['slug'] or '?'})…", flush=True)
                 try:
                     dados = await _sincronizar_curso_com_page(
                         p["course_id"], page, p["api_data"], p["existing"], carreiras_cache,
@@ -281,6 +296,8 @@ async def sincronizar_cursos_batch(
                         "slug": dados.get("slug"),
                         "status": "ok",
                     })
+                    elapsed = time.monotonic() - t0
+                    print(f"[batch] ({i_scrape}/{n_scrape}) ok — curso {p['course_id']} em {elapsed:.1f}s", flush=True)
                 except Exception as e:
                     resultados.append({
                         "course_id": p["course_id"],
@@ -288,14 +305,21 @@ async def sincronizar_cursos_batch(
                         "status": "erro",
                         "erro": str(e),
                     })
-                i_scrape += 1
-                if i_scrape < len(precisam) and delay_segundos > 0:
+                    elapsed = time.monotonic() - t0
+                    print(f"[batch] ({i_scrape}/{n_scrape}) erro — curso {p['course_id']} em {elapsed:.1f}s: {e}", flush=True)
+                if i_scrape < n_scrape and delay_segundos > 0:
                     await asyncio.sleep(delay_segundos)
+            print(f"[batch] fechando sessão Alura", flush=True)
+
+    ok = sum(1 for r in resultados if r["status"] == "ok")
+    unchanged = sum(1 for r in resultados if r["status"] == "unchanged")
+    erros = sum(1 for r in resultados if r["status"] == "erro")
+    print(f"[batch] concluído — total={total} ok={ok} unchanged={unchanged} erros={erros}", flush=True)
 
     return {
-        "total": len(course_ids),
-        "ok": sum(1 for r in resultados if r["status"] == "ok"),
-        "unchanged": sum(1 for r in resultados if r["status"] == "unchanged"),
-        "erros": sum(1 for r in resultados if r["status"] == "erro"),
+        "total": total,
+        "ok": ok,
+        "unchanged": unchanged,
+        "erros": erros,
         "detalhes": resultados,
     }

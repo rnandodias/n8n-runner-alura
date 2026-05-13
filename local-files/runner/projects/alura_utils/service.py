@@ -3,6 +3,7 @@ Orquestração do fluxo de sincronização de cursos e carreiras.
 Combina API pública Alura + scraper Playwright + PostgreSQL.
 """
 
+import asyncio
 from datetime import datetime
 
 from projects.alura_utils.api_client import get_career_api, get_course_api
@@ -184,3 +185,117 @@ async def sincronizar_carreiras() -> dict:
     ok_count = sum(1 for r in resultados if r["ok"])
     erros = [r for r in resultados if not r["ok"]]
     return {"sincronizadas": ok_count, "erros": erros, "detalhes": resultados}
+
+
+async def _sincronizar_curso_com_page(
+    course_id: int,
+    page,
+    api_data: dict | None,
+    existing: dict | None,
+    carreiras_cache: list[dict],
+) -> dict:
+    """Sincroniza um curso usando uma page Playwright já logada. Assume que o scraping é necessário."""
+    task_cache = _build_task_cache(existing)
+    slug = existing.get("slug") if existing else None
+
+    if not slug:
+        slug = await get_course_slug(page, course_id)
+    if api_data is None:
+        api_data = await get_course_api(slug)
+
+    aulas = await _scrape_aulas(page, course_id, task_cache)
+    carreiras = _get_carreiras_para_curso(slug, carreiras_cache)
+    dados = _build_dados(api_data, aulas, carreiras)
+    await upsert_course(course_id, dados)
+    return dados
+
+
+def _resultado_pre(p: dict) -> dict:
+    base = {"course_id": p["course_id"], "slug": p["slug"], "status": p["status_pre"]}
+    if p["status_pre"] == "erro":
+        base["erro"] = p["erro_pre"]
+    return base
+
+
+async def sincronizar_cursos_batch(
+    course_ids: list[int],
+    delay_segundos: float = 1.5,
+) -> dict:
+    """Sincroniza múltiplos cursos em uma única sessão Alura."""
+    carreiras_cache = await get_all_carreiras()
+    plano: list[dict] = []
+
+    for course_id in course_ids:
+        try:
+            existing = await get_course_dados(course_id)
+            slug = existing.get("slug") if existing else None
+            api_data = None
+            precisa_scraping = True
+            status_pre = None
+
+            if slug:
+                api_data = await get_course_api(slug)
+                if existing and existing.get("data_atualizacao") == api_data.get("data_atualizacao"):
+                    precisa_scraping = False
+                    status_pre = "unchanged"
+
+            plano.append({
+                "course_id": course_id,
+                "existing": existing,
+                "api_data": api_data,
+                "slug": slug,
+                "precisa_scraping": precisa_scraping,
+                "status_pre": status_pre,
+                "erro_pre": None,
+            })
+        except Exception as e:
+            plano.append({
+                "course_id": course_id,
+                "existing": None,
+                "api_data": None,
+                "slug": None,
+                "precisa_scraping": False,
+                "status_pre": "erro",
+                "erro_pre": str(e),
+            })
+
+    resultados: list[dict] = []
+    precisam = [p for p in plano if p["precisa_scraping"]]
+
+    if not precisam:
+        for p in plano:
+            resultados.append(_resultado_pre(p))
+    else:
+        async with alura_session() as page:
+            i_scrape = 0
+            for p in plano:
+                if not p["precisa_scraping"]:
+                    resultados.append(_resultado_pre(p))
+                    continue
+                try:
+                    dados = await _sincronizar_curso_com_page(
+                        p["course_id"], page, p["api_data"], p["existing"], carreiras_cache,
+                    )
+                    resultados.append({
+                        "course_id": p["course_id"],
+                        "slug": dados.get("slug"),
+                        "status": "ok",
+                    })
+                except Exception as e:
+                    resultados.append({
+                        "course_id": p["course_id"],
+                        "slug": p["slug"],
+                        "status": "erro",
+                        "erro": str(e),
+                    })
+                i_scrape += 1
+                if i_scrape < len(precisam) and delay_segundos > 0:
+                    await asyncio.sleep(delay_segundos)
+
+    return {
+        "total": len(course_ids),
+        "ok": sum(1 for r in resultados if r["status"] == "ok"),
+        "unchanged": sum(1 for r in resultados if r["status"] == "unchanged"),
+        "erros": sum(1 for r in resultados if r["status"] == "erro"),
+        "detalhes": resultados,
+    }

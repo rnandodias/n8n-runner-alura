@@ -4,6 +4,7 @@ Prefix: /utils
 
 Endpoints:
   POST /utils/cursos              — sincroniza curso (scraping + API pública)
+  POST /utils/cursos/batch        — sincroniza vários cursos em uma única sessão Alura
   GET  /utils/cursos/{id}         — retorna curso do banco sem scraping
   GET  /utils/cursos/slug/{slug}  — retorna curso do banco buscando pelo slug
   POST /utils/carreiras/sync      — atualiza cache de todas as carreiras
@@ -21,13 +22,17 @@ from projects.alura_utils.repository import (
     get_course_dados_by_slug,
     insert_carreira_slug,
 )
-from projects.alura_utils.service import sincronizar_carreiras, sincronizar_curso
+from projects.alura_utils.service import sincronizar_carreiras, sincronizar_curso, sincronizar_cursos_batch
 
 router = APIRouter(prefix="/utils")
 
 
 class CursoPayload(BaseModel):
     course_id: int
+
+
+class CursosBatchPayload(BaseModel):
+    course_ids: list[int]
 
 
 class CarreiraPayload(BaseModel):
@@ -46,6 +51,21 @@ async def post_cursos(payload: CursoPayload):
             raise HTTPException(status_code=400, detail=str(e))
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Erro ao sincronizar curso: {e}")
+
+
+@router.post("/cursos/batch")
+async def post_cursos_batch(payload: CursosBatchPayload):
+    if not payload.course_ids:
+        raise HTTPException(status_code=400, detail="course_ids não pode ser vazio")
+    if len(payload.course_ids) > 100:
+        raise HTTPException(status_code=400, detail="Máximo 100 cursos por chamada")
+    async with scraping_semaphore:
+        try:
+            return await sincronizar_cursos_batch(payload.course_ids)
+        except PermissionError as e:
+            raise HTTPException(status_code=401, detail=str(e))
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Erro no batch: {e}")
 
 
 @router.get("/cursos/{course_id}")

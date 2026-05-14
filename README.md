@@ -48,6 +48,15 @@ Este projeto fornece um runner FastAPI que combina:
 | `GET /ping` | GET | Health check do serviço |
 | `GET /backup` | GET | Dump completo do banco (`.sql.gz`) para download — ver [Backup do Banco](#backup-do-banco) |
 
+### Database — Diagnóstico
+
+| Endpoint | Metodo | Descricao |
+|----------|--------|-----------|
+| `GET /database/cursos/total` | GET | Total de cursos no banco |
+| `GET /database/cursos/sem-competencias` | GET | Cursos sem o campo `competencias` preenchido |
+| `GET /database/cursos/sem-transcricoes` | GET | Cursos sem transcrições de vídeo |
+| `GET /database/cursos/resumo` | GET | Os três números acima em uma única chamada |
+
 ### Alura Utils — Cursos e Carreiras
 
 | Endpoint | Metodo | Descricao |

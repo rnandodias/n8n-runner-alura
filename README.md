@@ -46,6 +46,7 @@ Este projeto fornece um runner FastAPI que combina:
 | Endpoint | Metodo | Descricao |
 |----------|--------|-----------|
 | `GET /ping` | GET | Health check do serviço |
+| `GET /backup` | GET | Dump completo do banco (`.sql.gz`) para download — ver [Backup do Banco](#backup-do-banco) |
 
 ### Alura Utils — Cursos e Carreiras
 
@@ -773,6 +774,47 @@ O projeto inclui workflow n8n para revisão automatizada:
 1. Acesse n8n → Settings → Import Workflow
 2. Cole o JSON de `workflows/`
 3. Configure credenciais (Google Drive, se usado)
+
+---
+
+## Backup do Banco
+
+O endpoint `GET /backup` executa `pg_dump` completo (todas as tabelas e schemas) e devolve um arquivo `.sql.gz` para download manual. Existe um workflow n8n pronto **Backup do Banco (Runner)** (pasta `Conteúdo > Utils`) que dispara esse endpoint com 1 clique e exibe o arquivo como anexo binário no painel de execução.
+
+### Como fazer backup (via n8n)
+
+1. Abra o workflow **Backup do Banco (Runner)** no n8n
+2. Clique em **Execute Workflow**
+3. Aguarde a execução terminar (alguns segundos a poucos minutos, dependendo do tamanho do banco)
+4. No nó "Baixar Dump do Banco" → painel direito → aparece um item com o arquivo `runner_YYYYMMDD_HHMMSS.sql.gz`
+5. Clique no ícone de download e salve o arquivo na pasta `backup-bd/` na raiz do projeto (ignorada pelo git)
+
+### Como fazer backup (via curl, sem n8n)
+
+De dentro da rede Docker (ex.: outro container ou execução manual):
+
+```bash
+mkdir -p backup-bd
+curl -o "backup-bd/runner_$(date +%Y%m%d_%H%M%S).sql.gz" http://runner:8000/backup
+```
+
+### Como restaurar
+
+Da máquina local, manda o arquivo de volta para a VPS:
+
+```powershell
+scp backup-bd\runner_20260514_143022.sql.gz seu-usuario@ip-vps:/tmp/
+```
+
+Na VPS, restaura o dump dentro do container do Postgres:
+
+```bash
+gunzip -c /tmp/runner_20260514_143022.sql.gz \
+  | docker compose --env-file ~/n8n-runner-alura/n8n-runner/.env exec -T postgres \
+    psql -U $POSTGRES_USER -d ${POSTGRES_DB:-runner}
+```
+
+> A pasta `backup-bd/` está incluída no `.gitignore` para evitar commits acidentais de dumps grandes contendo dados de produção.
 
 ---
 

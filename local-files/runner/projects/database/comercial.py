@@ -150,8 +150,8 @@ def _build_capa_indice(wb: Workbook, cursos: list[dict]) -> None:
     abas_doc = [
         ("🎯 Catálogo Geral", "1 linha por curso. Use Ctrl+F e os filtros do header para buscar."),
         ("📂 Por Categoria (uma aba por área)", "Cursos da categoria com competências e habilidades detalhadas em células mescladas."),
-        ("🛤️ Por Carreira", "Trilhas completas com cursos na ordem do step (Iniciante / Intermediário / Avançado)."),
-        ("🧠 Por Competência", "Visão reversa: cada competência da biblioteca com cursos que a ensinam."),
+        ("🛤️ Por Carreira", "Tabela flat — 1 linha por (carreira × curso). Filtre por Carreira + Step + Categoria para responder 'que cursos compõem o nível Intermediário de Front-End?'."),
+        ("🧠 Por Competência", "Tabela flat — 1 linha por (competência × habilidade × curso). Filtre combinando Competência + Categoria + Carreira para queries como 'cursos com competência X em Data Science'."),
     ]
     row = 9
     for nome, desc in abas_doc:
@@ -167,7 +167,7 @@ def _build_catalogo_geral(wb: Workbook, cursos: list[dict]) -> None:
         "ID", "Nome", "Link", "Categoria", "Subcategoria", "Carreiras",
         "Instrutores", "Carga horária (h)", "Qtd aulas", "Min de vídeo",
         "Qtd alunos", "Nota", "Última atualização", "Público-alvo",
-        "Resumo", "Qtd competências", "Qtd habilidades", "Nota do comercial",
+        "Resumo", "Nota do comercial",
     ]
     _aplicar_header(ws, 1, headers)
 
@@ -192,8 +192,6 @@ def _build_catalogo_geral(wb: Workbook, cursos: list[dict]) -> None:
             data_atu,
             curso.get("publico_alvo", "") or "",
             (curso.get("metadescription") or "")[:300],
-            len(curso.get("competencias", []) or []),
-            _qtd_habilidades(curso),
             "",
         ]
         for col, val in enumerate(row_data, start=1):
@@ -214,7 +212,7 @@ def _build_catalogo_geral(wb: Workbook, cursos: list[dict]) -> None:
     _ajustar_larguras(ws, {
         "A": 8, "B": 50, "C": 40, "D": 22, "E": 22, "F": 30,
         "G": 30, "H": 14, "I": 10, "J": 12, "K": 12, "L": 8,
-        "M": 14, "N": 30, "O": 60, "P": 14, "Q": 14, "R": 25,
+        "M": 14, "N": 30, "O": 60, "P": 25,
     })
 
 
@@ -293,108 +291,148 @@ def _build_abas_por_categoria(wb: Workbook, cursos: list[dict]) -> None:
 
 
 def _build_aba_por_carreira(wb: Workbook, cursos: list[dict]) -> None:
+    """
+    Tabela flat — uma linha por (carreira × curso).
+    Permite filtrar por Carreira + Step + Categoria para responder perguntas como:
+    'que cursos compõem o nível Intermediário de Front-End React?'
+    """
     ws = wb.create_sheet("🛤️ Por Carreira")
-    por_carreira: dict[str, list[dict]] = defaultdict(list)
+    headers = [
+        "Carreira", "Step", "Posição",
+        "ID", "Curso", "Link",
+        "Categoria", "Subcategoria",
+        "Carga (h)", "Qtd aulas", "Min de vídeo", "Nota",
+    ]
+    _aplicar_header(ws, 1, headers)
+
+    linhas: list[tuple] = []
     for curso in cursos:
         for carreira in curso.get("carreiras", []) or []:
             titulo = carreira.get("titulo")
-            if titulo:
-                por_carreira[titulo].append({
-                    "curso": curso,
-                    "step_titulo": carreira.get("step_titulo", ""),
-                    "step_position": carreira.get("step_position", 0),
-                })
-
-    if not por_carreira:
-        ws["A1"] = "Nenhuma carreira cadastrada no banco."
-        return
-
-    row = 1
-    for carreira in sorted(por_carreira.keys()):
-        itens = sorted(
-            por_carreira[carreira],
-            key=lambda x: (x["step_position"], x["curso"].get("nome", "")),
-        )
-        cor = _cor_estavel(carreira)
-
-        _aplicar_banner(ws, row, 5, f"{carreira} — {len(itens)} cursos", cor)
-        row += 1
-
-        _aplicar_header(ws, row, ["ID", "Curso", "Link", "Step", "Carga (h)"])
-        row += 1
-
-        for item in itens:
-            curso = item["curso"]
-            link = curso.get("link", "") or ""
-            valores = [
+            if not titulo:
+                continue
+            linhas.append((
+                titulo,
+                carreira.get("step_titulo", ""),
+                carreira.get("step_position", 0),
                 curso.get("course_id"),
                 curso.get("nome", ""),
-                link,
-                item["step_titulo"],
+                curso.get("link", "") or "",
+                _nome_or_str(curso.get("categoria")),
+                _nome_or_str(curso.get("subcategoria")),
                 curso.get("carga_horaria"),
-            ]
-            for col, v in enumerate(valores, start=1):
-                cell = ws.cell(row=row, column=col, value=v)
-                cell.alignment = _ALIGN_LEFT_CENTER
-                cell.border = _BORDER
-            if link:
-                link_cell = ws.cell(row=row, column=3)
-                link_cell.hyperlink = link
-                link_cell.font = _LINK_FONT
-            row += 1
+                curso.get("quantidade_aulas"),
+                curso.get("minutos_video"),
+                curso.get("nota"),
+            ))
 
-        row += 1  # espaço entre blocos de carreira
+    if not linhas:
+        ws.cell(row=2, column=1, value="Nenhuma carreira cadastrada no banco.")
+        return
 
-    _ajustar_larguras(ws, {"A": 8, "B": 50, "C": 35, "D": 22, "E": 10})
+    # Ordena: Carreira → Posição → Nome do curso
+    linhas.sort(key=lambda r: (r[0], r[2], r[4]))
+
+    for i, valores in enumerate(linhas, start=2):
+        for col, v in enumerate(valores, start=1):
+            cell = ws.cell(row=i, column=col, value=v)
+            cell.alignment = _ALIGN_LEFT_TOP
+            cell.border = _BORDER
+            if i % 2 == 0:
+                cell.fill = _ZEBRA_FILL
+        link = valores[5]
+        if link:
+            link_cell = ws.cell(row=i, column=6)
+            link_cell.hyperlink = link
+            link_cell.font = _LINK_FONT
+
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{len(linhas) + 1}"
+    _ajustar_larguras(ws, {
+        "A": 30, "B": 22, "C": 10,
+        "D": 8, "E": 50, "F": 35,
+        "G": 22, "H": 22,
+        "I": 10, "J": 10, "K": 12, "L": 8,
+    })
 
 
 def _build_aba_por_competencia(wb: Workbook, cursos: list[dict]) -> None:
+    """
+    Tabela flat — uma linha por (competência × habilidade × curso).
+    Permite filtros combinados como:
+      - 'cursos com competência X na carreira Front-End React'
+      - 'cursos com competência Y na categoria Data Science'
+      - 'todas as habilidades de uma competência específica'
+    """
     ws = wb.create_sheet("🧠 Por Competência")
-
-    por_comp: dict[tuple, list[tuple]] = defaultdict(list)
-    habs_por_comp: dict[tuple, set] = defaultdict(set)
-
-    for curso in cursos:
-        for comp in curso.get("competencias", []) or []:
-            key = (
-                comp.get("codigo_competencia", ""),
-                comp.get("nome_competencia", ""),
-                comp.get("descricao_competencia", ""),
-            )
-            por_comp[key].append((curso.get("course_id"), curso.get("nome", "")))
-            for hab in comp.get("habilidades", []) or []:
-                habs_por_comp[key].add((
-                    hab.get("codigo_habilidade", ""),
-                    hab.get("nome_habilidade", ""),
-                ))
-
-    headers = ["Código", "Competência", "Descrição", "Habilidades", "Qtd cursos", "Exemplos de cursos (5 primeiros)"]
+    headers = [
+        "Cód. Competência", "Competência", "Descrição da Competência",
+        "Cód. Habilidade", "Habilidade",
+        "ID", "Curso", "Link",
+        "Categoria", "Subcategoria", "Carreiras",
+        "Carga (h)", "Nota",
+    ]
     _aplicar_header(ws, 1, headers)
 
-    if not por_comp:
+    linhas: list[tuple] = []
+    for curso in cursos:
+        for comp in curso.get("competencias", []) or []:
+            cod_comp = comp.get("codigo_competencia", "")
+            nome_comp = comp.get("nome_competencia", "")
+            desc_comp = comp.get("descricao_competencia", "")
+            habs = comp.get("habilidades", []) or []
+
+            curso_meta = (
+                curso.get("course_id"),
+                curso.get("nome", ""),
+                curso.get("link", "") or "",
+                _nome_or_str(curso.get("categoria")),
+                _nome_or_str(curso.get("subcategoria")),
+                _nomes_carreiras(curso),
+                curso.get("carga_horaria"),
+                curso.get("nota"),
+            )
+
+            if not habs:
+                linhas.append((cod_comp, nome_comp, desc_comp, "", "", *curso_meta))
+            else:
+                for hab in habs:
+                    linhas.append((
+                        cod_comp, nome_comp, desc_comp,
+                        hab.get("codigo_habilidade", ""),
+                        hab.get("nome_habilidade", ""),
+                        *curso_meta,
+                    ))
+
+    if not linhas:
         ws.cell(row=2, column=1, value="Nenhuma competência encontrada nos cursos classificados.")
         return
 
-    row = 2
-    for key in sorted(por_comp.keys()):
-        codigo, nome, desc = key
-        cursos_da_comp = por_comp[key]
-        habs = sorted(habs_por_comp[key])
-        habs_text = "\n".join(f"{h[0]} — {h[1]}" for h in habs)
-        exemplos = "\n".join(f"#{cid} {cnome}" for cid, cnome in cursos_da_comp[:5])
+    # Ordena: Competência → Habilidade → Carreira → Curso
+    linhas.sort(key=lambda r: (r[0], r[3], r[10], r[6]))
 
-        valores = [codigo, nome, desc, habs_text, len(cursos_da_comp), exemplos]
+    for i, valores in enumerate(linhas, start=2):
         for col, v in enumerate(valores, start=1):
-            cell = ws.cell(row=row, column=col, value=v)
-            cell.alignment = _ALIGN_CENTER if col == 5 else _ALIGN_LEFT_TOP
+            cell = ws.cell(row=i, column=col, value=v)
+            cell.alignment = _ALIGN_LEFT_TOP
             cell.border = _BORDER
-            if row % 2 == 0:
+            if i % 2 == 0:
                 cell.fill = _ZEBRA_FILL
-        row += 1
+        link = valores[7]
+        if link:
+            link_cell = ws.cell(row=i, column=8)
+            link_cell.hyperlink = link
+            link_cell.font = _LINK_FONT
 
     ws.freeze_panes = "A2"
-    ws.auto_filter.ref = f"A1:F{row - 1}"
-    _ajustar_larguras(ws, {"A": 12, "B": 35, "C": 50, "D": 50, "E": 12, "F": 50})
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{len(linhas) + 1}"
+    _ajustar_larguras(ws, {
+        "A": 14, "B": 35, "C": 50,
+        "D": 14, "E": 35,
+        "F": 8, "G": 45, "H": 35,
+        "I": 22, "J": 22, "K": 30,
+        "L": 10, "M": 8,
+    })
 
 
 # ─── Função pública ──────────────────────────────────────────────────────────

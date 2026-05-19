@@ -90,16 +90,25 @@ def _qtd_habilidades(curso: dict) -> int:
     return sum(len(c.get("habilidades", []) or []) for c in curso.get("competencias", []) or [])
 
 
+def _nome_or_str(v) -> str:
+    """Aceita str ou dict {'nome': ...} e devolve string. Outros tipos → ''."""
+    if isinstance(v, dict):
+        return v.get("nome", "") or ""
+    if isinstance(v, str):
+        return v
+    return ""
+
+
 def _categorias_do_curso(curso: dict) -> set[str]:
-    """Coleta categoria principal + lista categorias[] (que pode ser str ou dict)."""
+    """Coleta categoria principal + lista categorias[] (cada item pode ser str ou dict)."""
     cats: set[str] = set()
-    if curso.get("categoria"):
-        cats.add(curso["categoria"])
+    nome_principal = _nome_or_str(curso.get("categoria"))
+    if nome_principal:
+        cats.add(nome_principal)
     for c in curso.get("categorias", []) or []:
-        if isinstance(c, dict) and c.get("nome"):
-            cats.add(c["nome"])
-        elif isinstance(c, str) and c:
-            cats.add(c)
+        nome = _nome_or_str(c)
+        if nome:
+            cats.add(nome)
     return cats
 
 
@@ -171,8 +180,8 @@ def _build_catalogo_geral(wb: Workbook, cursos: list[dict]) -> None:
             curso.get("course_id"),
             curso.get("nome", ""),
             link,
-            curso.get("categoria", ""),
-            curso.get("subcategoria", ""),
+            _nome_or_str(curso.get("categoria")),
+            _nome_or_str(curso.get("subcategoria")),
             _nomes_carreiras(curso),
             _nomes_instrutores(curso),
             curso.get("carga_horaria"),

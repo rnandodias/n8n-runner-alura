@@ -13,3 +13,4 @@ cairosvg
 Unidecode
 playwright
 asyncpg
+openpyxl

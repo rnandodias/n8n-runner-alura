@@ -3,18 +3,25 @@ Router FastAPI para diagnóstico/inspeção do banco.
 Prefix: /database
 
 Endpoints:
-  GET /database/cursos/total              — total de cursos no banco
-  GET /database/cursos/sem-competencias   — cursos sem o campo `competencias` preenchido
-  GET /database/cursos/sem-transcricoes   — cursos sem nenhuma transcrição de vídeo
-  GET /database/cursos/resumo             — os 3 números acima em uma chamada
+  GET /database/cursos/total                       — total de cursos no banco
+  GET /database/cursos/sem-competencias            — cursos sem o campo `competencias` preenchido
+  GET /database/cursos/sem-transcricoes            — cursos sem nenhuma transcrição de vídeo
+  GET /database/cursos/resumo                      — os 3 números acima em uma chamada
+  GET /database/cursos/exportar-xlsx-comercial     — planilha XLSX comercial (6 tipos de aba)
 """
 
-from fastapi import APIRouter, HTTPException
+import io
+from datetime import datetime
 
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
+
+from projects.database.comercial import build_workbook
 from projects.database.repository import (
     contar_cursos_total,
     listar_cursos_sem_competencias,
     listar_cursos_sem_transcricoes,
+    listar_todos_cursos_com_dados,
 )
 
 router = APIRouter(prefix="/database")
@@ -59,3 +66,36 @@ async def get_cursos_resumo():
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro: {e}")
+
+
+@router.get("/cursos/exportar-xlsx-comercial")
+async def get_exportar_xlsx_comercial():
+    """
+    Gera planilha XLSX rica com todos os cursos para uso do time comercial B2B.
+    Múltiplas abas: Capa+Índice, Catálogo Geral, por Categoria, por Carreira, por Competência.
+    """
+    try:
+        print("[exportar-xlsx-comercial] carregando cursos do banco…", flush=True)
+        cursos = await listar_todos_cursos_com_dados()
+        print(
+            f"[exportar-xlsx-comercial] {len(cursos)} cursos carregados, montando workbook…",
+            flush=True,
+        )
+
+        xlsx_bytes = build_workbook(cursos)
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"catalogo_alura_comercial_{timestamp}.xlsx"
+        size_mb = len(xlsx_bytes) / 1024 / 1024
+        print(
+            f"[exportar-xlsx-comercial] workbook pronto — {size_mb:.1f} MB → {filename}",
+            flush=True,
+        )
+
+        return StreamingResponse(
+            io.BytesIO(xlsx_bytes),
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao gerar planilha: {e}")

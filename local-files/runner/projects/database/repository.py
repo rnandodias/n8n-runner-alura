@@ -1,5 +1,7 @@
 """Operações de leitura no banco para diagnóstico do projeto database."""
 
+import json
+
 from core.database import get_pool
 
 
@@ -46,3 +48,18 @@ async def listar_cursos_sem_transcricoes() -> list[int]:
     async with pool.acquire() as conn:
         rows = await conn.fetch(sql)
         return [r["course_id"] for r in rows]
+
+
+async def listar_todos_cursos_com_dados() -> list[dict]:
+    """
+    Retorna todos os cursos do banco com o `dados` JSONB completo, mesclado com `course_id`.
+    Usado pela exportação comercial XLSX. Pode pesar ~50-100MB em memória para 2000+ cursos.
+    """
+    sql = "SELECT course_id, dados FROM alura_cursos ORDER BY course_id"
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(sql)
+        return [
+            {"course_id": r["course_id"], **json.loads(r["dados"])}
+            for r in rows
+        ]

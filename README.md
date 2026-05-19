@@ -56,6 +56,7 @@ Este projeto fornece um runner FastAPI que combina:
 | `GET /database/cursos/sem-competencias` | GET | Cursos sem o campo `competencias` preenchido |
 | `GET /database/cursos/sem-transcricoes` | GET | Cursos sem transcrições de vídeo |
 | `GET /database/cursos/resumo` | GET | Os três números acima em uma única chamada |
+| `GET /database/cursos/exportar-xlsx-comercial` | GET | Planilha XLSX comercial (6 tipos de aba, formatada) para o time de vendas B2B |
 
 ### Alura Utils — Cursos e Carreiras
 

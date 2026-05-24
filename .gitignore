@@ -23,3 +23,9 @@ docker-compose.local.yml
 
 # Backups do banco baixados via GET /backup (nunca commitar — dados de producao)
 /backup-bd/
+
+# Outputs locais de testes (planilhas geradas, dumps, etc)
+/output/
+
+# Resultados de batches Anthropic/OpenAI baixados para analise pontual
+/*.jsonl

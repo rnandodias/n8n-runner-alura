@@ -31,6 +31,17 @@ async def get_course_dados_by_slug(slug: str) -> tuple[int, dict] | None:
         return row["course_id"], json.loads(row["dados"])
 
 
+async def delete_course(course_id: int) -> bool:
+    """Remove o curso do banco. Retorna True se algo foi deletado, False se não existia."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        deleted = await conn.fetchval(
+            "DELETE FROM alura_cursos WHERE course_id = $1 RETURNING course_id",
+            course_id,
+        )
+        return deleted is not None
+
+
 async def upsert_course(course_id: int, dados: dict) -> None:
     """Salva (ou substitui) o documento JSON do curso."""
     pool = await get_pool()

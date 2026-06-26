@@ -7,6 +7,7 @@ Endpoints:
   POST /utils/cursos/batch        — sincroniza vários cursos em uma única sessão Alura
   GET  /utils/cursos/{id}         — retorna curso do banco sem scraping
   GET  /utils/cursos/slug/{slug}  — retorna curso do banco buscando pelo slug
+  DELETE /utils/cursos/{id}       — remove curso do banco pelo ID
   POST /utils/carreiras/sync      — atualiza cache de todas as carreiras
   POST /utils/carreiras           — adiciona novo slug de carreira
   GET  /utils/carreiras           — lista carreiras cadastradas
@@ -17,6 +18,7 @@ from pydantic import BaseModel
 
 from projects.alura_utils.queue import scraping_semaphore
 from projects.alura_utils.repository import (
+    delete_course,
     get_all_carreiras,
     get_course_dados,
     get_course_dados_by_slug,
@@ -79,6 +81,19 @@ async def get_cursos(course_id: int):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao consultar curso: {e}")
+
+
+@router.delete("/cursos/{course_id}")
+async def delete_curso(course_id: int):
+    try:
+        deletado = await delete_course(course_id)
+        if not deletado:
+            raise HTTPException(status_code=404, detail=f"Curso {course_id} não encontrado")
+        return {"course_id": course_id, "deletado": True}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao excluir curso: {e}")
 
 
 @router.get("/cursos/slug/{slug}")
